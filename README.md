@@ -1,4 +1,4 @@
-//INSTRUCTION TO PARTITION DRIVE\\
+//INSTRUCTION TO PARTITION DRIVE\\\
 
 fdisk /dev/sda
 g -> create partitiontable
@@ -26,8 +26,8 @@ sudo mount /dev/sda1 /mnt/boot
 
 
 
-mkdir /mnt/etc/nixos
-git clone https://github.com/schlenko/FirstPush.git
+mkdir /mnt/etc
+git clone https://github.com/schlenko/nixos.git
 
 rm -r hardware-configuration.nix
 sudo nixos-generate-config --root /mnt
