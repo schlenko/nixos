@@ -29,6 +29,8 @@ w -> save
 sudo mkfs.fat -F32 /dev/sda1
 sudo mkfs.ext4 /dev/sda2
 
+lsblk -f
+
 sudo mount /dev/sda2 /mnt
 sudo mkdir -p /mnt/boot
 sudo mount /dev/sda1 /mnt/boot
