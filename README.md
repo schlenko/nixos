@@ -13,6 +13,15 @@ n -> new partition
 "ENTER" partition start
 "+1GB" partition end
 
+t -> change partition type
+"1" choose first partition
+"1" this is how to choose EFI 
+
+p -> check if everyhing is correct
+
+sda1 1gb EFI System
+sda2 fullsize Linux Filesystem
+
 w -> save
 
 
