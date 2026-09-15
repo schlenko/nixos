@@ -1,0 +1,74 @@
+touchpad:
+  gestures:
+    # go back / global
+    - type: swipe
+      fingers: 3
+      direction: left
+
+      actions:
+        - on: begin
+          input:
+            - keyboard: [ leftalt+left ]
+
+    # go forward / global
+    - type: swipe
+      fingers: 3
+      direction: right
+
+      actions:
+        - on: begin
+          input:
+            - keyboard: [ leftalt+right ]
+
+    # volume up&down / global
+    - type: swipe
+      fingers: 4
+      direction: up_down
+
+      actions:
+        - on: update
+          interval: -20
+          input:
+            - keyboard: [ leftshift+volumeup ]
+
+        - on: update
+          interval: 20
+          input:
+            - keyboard: [ leftshift+volumedown ]
+
+    # mute / global
+    - type: swipe
+      fingers: 3
+      direction: down
+
+      actions:
+        - on: begin
+          input:
+            - keyboard: [ mute ]
+
+    # maximize window / global
+    - type: swipe
+      fingers: 3
+      direction: up
+
+      actions:
+        - on: begin
+          plasma_shortcut: kwin,Window Maximize
+
+    # minimize window / global
+    - type: pinch
+      fingers: 3
+      direction: in
+
+      actions:
+        - on: begin
+          plasma_shortcut: kwin,Window Minimize
+
+    # close window / global
+    - type: pinch
+      fingers: 4
+      direction: in
+
+      actions:
+        - on: begin
+          plasma_shortcut: kwin,Window Close
