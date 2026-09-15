@@ -21,6 +21,15 @@
           home-manager.nixosModules.home-manager
 
           {
+            users.users.t = {
+              isNormalUser = true;
+              description = "t";
+              extraGroups = [
+                "wheel"
+                "networkmanager"
+              ];
+            };
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
