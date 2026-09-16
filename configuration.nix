@@ -31,6 +31,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   security.polkit.enable = true;
+  
+  hardware.bluetooth.enable = true;
 
 
   systemd.user.services.polkit-gnome-agent = {
@@ -78,6 +80,7 @@
     wget
     fastfetch
     python3
+    bluetuith
 
     qt6.qtmultimedia
     qt6.qtbase
