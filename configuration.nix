@@ -18,6 +18,7 @@
 
   users.users.t = {
     isNormalUser = true;
+
     extraGroups = [
       "wheel"
       "networkmanager"

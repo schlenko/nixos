@@ -6,6 +6,12 @@
 
   home.stateVersion = "25.11";
 
+    dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
   home.activation.installHyprlandConfig =
     config.lib.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.config/hypr"
@@ -21,8 +27,8 @@
   home.file.".config/quickshell".source =
     ./HyprlandApps/quickshell;    
 
-  home.file.".config/qylock".source =
-    ./HyprlandApps/qylock;  
+   home.file.".config/qylock".source =
+    ./HyprlandApps/qylock;
 
   programs.home-manager.enable = true;
 }
