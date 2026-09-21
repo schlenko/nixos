@@ -16,7 +16,19 @@
       layout = "de";
     };
 
-    programs.zsh.enable = true;
+programs.zsh = {
+  enable = true;
+
+  shellAliases = {
+    ll = "ls -lah";
+  };
+
+  oh-my-zsh = {
+    enable = true;
+    plugins = [ "git" ];
+    theme = "robbyrussell";
+  };
+};
 
     users.users.t = {
       isNormalUser = true;

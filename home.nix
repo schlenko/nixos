@@ -24,12 +24,6 @@
   home.file.".config/kitty".source =
     ./HyprlandApps/kitty;
 
-  home.file.".oh-my-zsh".source =
-    ./zsh;
-
-  home.file.".zshrc".source =
-    ./zsh/.zshrc;
-
   home.file.".config/quickshell".source =
     ./HyprlandApps/quickshell;    
 
