@@ -24,11 +24,22 @@
   home.file.".config/kitty".source =
     ./HyprlandApps/kitty;
 
+  home.file.".oh-my-zsh".source =
+    ./zsh;
+
+  home.file.".zshrc".source =
+    ./zsh/.zshrc;
+
   home.file.".config/quickshell".source =
     ./HyprlandApps/quickshell;    
 
    home.file.".config/qylock".source =
     ./HyprlandApps/qylock;
+
+       home.file.".config/looking-glass".source =
+    ./looking-glass;
+
+    
 
   programs.home-manager.enable = true;
 }
