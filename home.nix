@@ -21,10 +21,10 @@
       chmod 644 "$HOME/.config/hypr/hyprland.conf"
     '';
 
-  home.file.".config/kitty".source =
+    home.file.".config/kitty".source =
     ./HyprlandApps/kitty;
 
-  home.file.".config/quickshell".source =
+    home.file.".config/quickshell".source =
     ./HyprlandApps/quickshell;    
 
    home.file.".config/qylock".source =

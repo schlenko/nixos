@@ -16,19 +16,20 @@
       layout = "de";
     };
 
-programs.zsh = {
-  enable = true;
+    programs.zsh = 
+    {
+     enable = true;
 
-  shellAliases = {
-    ll = "ls -lah";
-  };
+    shellAliases = {
+      ll = "ls -lah";
+     };
 
-  oh-my-zsh = {
-    enable = true;
-    plugins = [ "git" ];
-    theme = "robbyrussell";
-  };
-};
+    oh-my-zsh = {
+     enable = true;
+      plugins = [ "git" ];
+      theme = "jonathan";
+   };
+  };  
 
     users.users.t = {
       isNormalUser = true;
@@ -73,15 +74,14 @@ programs.zsh = {
     nixpkgs.config.allowUnfree = true;
 
     system.stateVersion = "25.11";
-    
 
     environment.systemPackages = with pkgs; [
-      kitty
       adwaita-icon-theme
       quickshell
       hyprpaper
       hyprpicker
       thunar
+      kitty
 
       (stdenvNoCC.mkDerivation {
         pname = "qylock-themes";
