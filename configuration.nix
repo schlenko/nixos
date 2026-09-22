@@ -29,7 +29,7 @@
      }; 
 
      interactiveShellInit = ''
-      python3 /etc/nixos/pokemonscript/pokemon-colorscripts.py --random
+      python3 /etc/nixos/Apps/pokemonscript/pokemon-colorscripts.py --random
      '';
 
     oh-my-zsh = {
