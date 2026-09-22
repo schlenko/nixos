@@ -16,27 +16,28 @@
     config.lib.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.config/hypr"
 
-      cp -r ${./HyprlandApps/hypr}/. "$HOME/.config/hypr/"
+      cp -r ${./Apps/hypr}/. "$HOME/.config/hypr/"
 
       chmod 644 "$HOME/.config/hypr/hyprland.conf"
     '';
 
     home.file.".config/kitty".source =
-    ./HyprlandApps/kitty;
+    ./Apps/kitty;
 
     home.file.".config/quickshell".source =
-    ./HyprlandApps/quickshell;    
+    ./Apps/quickshell;    
 
    home.file.".config/qylock".source =
-    ./HyprlandApps/qylock;
+    ./Apps/qylock;
 
        home.file.".config/looking-glass".source =
-    ./looking-glass;
+    ./Apps/looking-glass;
 
-    home.file.".config/gtk-3.0".source =
-     ./HyprlandApps/gtk-3.0;
+  home.file.".config/gtk-3.0/settings.ini".source =
+   ./Apps/gtk-3.0/settings.ini;
 
-    
+    home.file.".zshrc".source =
+     ./Apps/zsh/.zshrc;
 
   programs.home-manager.enable = true;
 }

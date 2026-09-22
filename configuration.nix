@@ -19,10 +19,18 @@
     programs.zsh = 
     {
      enable = true;
+     syntaxHighlighting.enable = true;
+
 
     shellAliases = {
       ll = "ls -lah";
-     };
+      pkmn="python3 /etc/nixos/Apps/pokemonscript/pokemon-colorscripts.py --random";
+      pwr="cat /sys/class/power_supply/BAT1/capacity";
+     }; 
+
+     interactiveShellInit = ''
+      python3 /etc/nixos/pokemonscript/pokemon-colorscripts.py --random
+     '';
 
     oh-my-zsh = {
      enable = true;
@@ -52,7 +60,6 @@
     security.polkit.enable = true;
     
     hardware.bluetooth.enable = true;
-
 
     systemd.user.services.polkit-gnome-agent = {
       description = "Polkit Authentication Agent";
@@ -87,7 +94,7 @@
         pname = "qylock-themes";
         version = "1.0";
 
-        src = ./HyprlandApps/qylock/themes;
+        src = ./Apps/qylock/themes;
 
         installPhase = ''
           mkdir -p $out/share/sddm/themes
@@ -96,6 +103,7 @@
       })
 
       git
+      gh
       curl
       wget
       fastfetch
@@ -109,6 +117,7 @@
       nodejs
       wl-clipboard
       sl
+      bettercap
 
       qt6.qtmultimedia
       qt6.qtbase
