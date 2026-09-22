@@ -27,7 +27,7 @@
     oh-my-zsh = {
      enable = true;
       plugins = [ "git" ];
-      theme = "jonathan";
+      theme = "crcandy";
    };
   };  
 

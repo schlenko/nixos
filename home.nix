@@ -33,6 +33,9 @@
        home.file.".config/looking-glass".source =
     ./looking-glass;
 
+    home.file.".config/gtk-3.0".source =
+     ./HyprlandApps/gtk-3.0;
+
     
 
   programs.home-manager.enable = true;
