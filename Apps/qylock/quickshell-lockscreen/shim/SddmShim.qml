@@ -160,6 +160,7 @@ Item {
     }
 
     property var sddm: QtObject {
+        property string hostName: "quickshell"
         signal loginFailed()
         signal loginSucceeded()
 

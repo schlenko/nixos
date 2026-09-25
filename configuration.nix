@@ -16,10 +16,12 @@
       layout = "de";
     };
 
-    programs.zsh = 
-    {
+    programs.zsh = {
+    
      enable = true;
      syntaxHighlighting.enable = true;
+     autosuggestions.enable = true; 
+
 
 
     shellAliases = {
@@ -32,12 +34,13 @@
       python3 /etc/nixos/Apps/pokemonscript/pokemon-colorscripts.py --random
      '';
 
-    oh-my-zsh = {
+    ohMyZsh = {
      enable = true;
       plugins = [ "git" ];
       theme = "crcandy";
    };
   };  
+  
 
     users.users.t = {
       isNormalUser = true;
@@ -83,7 +86,7 @@
     system.stateVersion = "25.11";
 
     environment.systemPackages = with pkgs; [
-      adwaita-icon-theme
+        adwaita-icon-theme
       quickshell
       hyprpaper
       hyprpicker
@@ -94,7 +97,7 @@
         pname = "qylock-themes";
         version = "1.0";
 
-        src = ./Apps/qylock/themes;
+        src = ./Apps/qylock/theme;
 
         installPhase = ''
           mkdir -p $out/share/sddm/themes
@@ -133,7 +136,9 @@
       telegram-desktop
       spotify
       timeshift
+
     ];
+
     
     environment.variables = {
       QML2_IMPORT_PATH = "/run/current-system/sw/lib/qt-6/qml";
@@ -142,16 +147,16 @@
 
     services.displayManager.sddm = {
       enable = true;
-      theme = "pixel-night-city";
+      theme = "current";
 
       wayland = {
         enable = true;
         compositor = "kwin";
       };
 
-      extraPackages = with pkgs; [
-        qt6.qtmultimedia
-        qt6.qt5compat
+      extraPackages = with pkgs.kdePackages; [
+        qtmultimedia
+        qt5compat
       ];
 
       settings = {
@@ -259,5 +264,44 @@
 };
 
   programs.virt-manager.enable = true;
+
+    systemd.services.wpa_supplicant.environment.OPENSSL_CONF =
+    "/etc/NetworkManager/certs/wpa_openssl.cnf";
+
+      environment.etc."NetworkManager/certs/wpa_openssl.cnf".text = ''
+    openssl_conf = default_conf
+
+    [default_conf]
+    ssl_conf = ssl_sect
+
+    [ssl_sect]
+    system_default = system_default_sect
+
+    [system_default_sect]
+    MinProtocol = TLSv1
+    CipherString = DEFAULT@SECLEVEL=0
+  '';
+
+  networking.networkmanager.ensureProfiles.profiles."AP-SuS" = {
+  connection = {
+    id = "AP-SuS";
+    type = "wifi";
+  };
+
+  wifi = {
+    ssid = "AP-SuS";
+  };
+
+  wifi-security = {
+    key-mgmt = "wpa-eap";
+  };
+
+  "802-1x" = {
+    eap = "peap";
+    identity = "NikolenkoL672";
+    phase2-auth = "mschapv2";
+    ca-cert = "/etc/NetworkManager/certs/musterschule-DC01-CA.pem";
+  };
+};
 
   }

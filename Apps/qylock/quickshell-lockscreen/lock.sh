@@ -21,12 +21,8 @@ else
     export QS_THEME="nier-automata"
 fi
 
-# Set theme path
-if [ -d "$DIR/../themes" ] && [ ! -d "$DIR/themes_link" ]; then
-    export QS_THEME_PATH="$DIR/../themes/$QS_THEME"
-else
-    export QS_THEME_PATH="$DIR/themes_link/$QS_THEME"
-fi
+# Flat layout: Main.qml sits directly in ../themes
+export QS_THEME_PATH="$DIR/../theme"
 
 echo "Locking with Quickshell using theme: $QS_THEME"
 echo "Theme path: $QS_THEME_PATH"
