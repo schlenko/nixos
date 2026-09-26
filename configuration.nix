@@ -40,6 +40,12 @@
       theme = "crcandy";
    };
   };  
+  swapDevices = [
+  {
+    device = "/var/lib/swapfile";
+    size = 16 * 1024;
+  }
+];
   
 
     users.users.t = {
@@ -100,8 +106,8 @@
         src = ./Apps/qylock/theme;
 
         installPhase = ''
-          mkdir -p $out/share/sddm/themes
-          cp -r ./* $out/share/sddm/themes/
+          mkdir -p $out/share/sddm/themes/current
+          cp -r ./* $out/share/sddm/themes/current/
         '';
       })
 
@@ -110,6 +116,8 @@
       curl
       wget
       fastfetch
+      zip
+      unzip
       python3
       bluetuith
       brightnessctl
@@ -120,6 +128,8 @@
       nodejs
       wl-clipboard
       sl
+      btop
+      cmake
       bettercap
 
       qt6.qtmultimedia
@@ -129,13 +139,13 @@
 
       virt-viewer
       libguestfs
-      looking-glass-client
 
       chromium
       zapzap
       telegram-desktop
       spotify
       timeshift
+      discord
 
     ];
 
@@ -295,6 +305,11 @@
   wifi-security = {
     key-mgmt = "wpa-eap";
   };
+
+  zramSwap = {
+  enable = true;
+  memoryPercent = 50; 
+};  
 
   "802-1x" = {
     eap = "peap";
