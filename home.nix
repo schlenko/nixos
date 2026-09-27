@@ -119,6 +119,9 @@ in
   home.file.".config/rofi".source =
   ./Apps/rofi;
 
+  home.file.".config/waybar".source =
+  ./Apps/waybar;
+
   home.file.".config/gtk-3.0".source =
     ./Apps/gtk-3.0;
 

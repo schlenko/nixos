@@ -92,12 +92,15 @@
     system.stateVersion = "25.11";
 
     environment.systemPackages = with pkgs; [
+      adwaita-icon-theme
+
       quickshell
       hyprpaper
       hyprpicker
       thunar
       kitty
       rofi
+      waybar
 
       (stdenvNoCC.mkDerivation {
         pname = "qylock-themes";
@@ -129,6 +132,7 @@
       bluetui
       cmake
       bettercap
+      bc
 
       sl
       asciiquarium
@@ -150,6 +154,10 @@
       timeshift
       discord
 
+    ];
+
+    fonts.packages = [
+    ./Apps/waybar/scripts/fonts/Waycat.ttf
     ];
 
     
