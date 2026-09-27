@@ -92,12 +92,12 @@
     system.stateVersion = "25.11";
 
     environment.systemPackages = with pkgs; [
-        adwaita-icon-theme
       quickshell
       hyprpaper
       hyprpicker
       thunar
       kitty
+      rofi
 
       (stdenvNoCC.mkDerivation {
         pname = "qylock-themes";
@@ -115,7 +115,6 @@
       gh
       curl
       wget
-      fastfetch
       zip
       unzip
       python3
@@ -127,10 +126,14 @@
       nmap
       nodejs
       wl-clipboard
-      sl
-      btop
+      bluetui
       cmake
       bettercap
+
+      sl
+      asciiquarium
+      fetch
+      fastfetch
 
       qt6.qtmultimedia
       qt6.qtbase

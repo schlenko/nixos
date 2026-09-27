@@ -80,6 +80,8 @@ let
     '';
   };
 in
+
+
 {
   home.username = "t";
   home.homeDirectory = "/home/t";
@@ -113,15 +115,15 @@ in
 
   home.file.".config/looking-glass".source =
     ./Apps/looking-glass;
+  
+  home.file.".config/rofi".source =
+  ./Apps/rofi;
 
-  home.file.".config/gtk-3.0/settings.ini".source =
-    ./Apps/gtk-3.0/settings.ini;
+  home.file.".config/gtk-3.0".source =
+    ./Apps/gtk-3.0;
 
   home.file.".zshrc".source =
     ./Apps/zsh/.zshrc;
-
-  home.file.".config/btop".source =
-    ./Apps/btop;
 
 
   programs.home-manager.enable = true;
