@@ -149,7 +149,7 @@ ShellRoot {
 
     IpcHandler {
         target: "settings"
-        fu  nction toggle(): string {
+        function toggle(): string {
             root.expanded = !root.expanded
             if (root.expanded) {
                 root.currentTab = 1
@@ -713,6 +713,7 @@ ShellRoot {
         // Dynamic Island container fused to top screen edge (Mac notch style)
         Item {
             id: capsule
+            anchors.topMargin: 8
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
             opacity: 1.0
@@ -832,25 +833,15 @@ ShellRoot {
                         }
                     }
 
-                    // Clock (exact Waybar format: 17:04:12  -  Sábado, 26)
                     Text {
-                        text: root.clockStr
-                        color: root.colAccent
-                        font.family: "JetBrainsMono Nerd Font"
-                        font.pixelSize: 13
-                        font.weight: Font.Bold
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
+                            text: "❄️"
+                            color: root.colAccent
+                            font.family: "JetBrainsMono Nerd Font"
+                            font.pixelSize: 25
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
 
-                    // Indicator icon
-                    Text {
-                        text: root.expanded ? "󰅃" : "󰅀"
-                        color: root.colMuted
-                        font.family: "JetBrainsMono Nerd Font"
-                        font.pixelSize: 11
-                        opacity: 0.6
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
+                   
                 }
             }
 

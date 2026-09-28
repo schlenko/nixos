@@ -122,6 +122,9 @@ in
   home.file.".config/waybar".source =
   ./Apps/waybar;
 
+  home.file.".local/share/fonts/Waycat.ttf".source =
+  ./Apps/waybar/scripts/fonts/Waycat.ttf;
+
   home.file.".config/gtk-3.0".source =
     ./Apps/gtk-3.0;
 

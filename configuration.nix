@@ -133,7 +133,7 @@
       cmake
       bettercap
       bc
-
+      kdePackages.kcolorchooser
       sl
       asciiquarium
       fetch
