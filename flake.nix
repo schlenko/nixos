@@ -17,6 +17,8 @@
 
         modules = [
           ./configuration.nix
+          ./Hardware/hardware-configuration.nix
+          ./Hardware/VFIO_Swift.nix
 
           home-manager.nixosModules.home-manager
 

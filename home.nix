@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib,... }:
 
 let
   looking-glass-client = pkgs.stdenv.mkDerivation {
@@ -22,14 +22,14 @@ let
       SDL2
       libGL
       libGLU
-      libX11
+      libx11
       libxcb
-      libXcursor
-      libXi
-      libXinerama
-      libXrandr
-      libXScrnSaver
-      libXpresent
+      libxcursor
+      libxi
+      libxinerama
+      libxrandr
+      libxscrnsaver
+      libxpresent
       libxkbcommon
       wayland
       wayland-protocols
@@ -100,9 +100,10 @@ in
   ];
 
   home.activation.installHyprlandConfig =
-    config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.config/hypr"
-      cp -r ${./Apps/hypr}/. "$HOME/.config/hypr/"
+      chmod -R u+w "$HOME/.config/hypr"
+      cp -rT --no-preserve=mode ${./Apps/hypr} "$HOME/.config/hypr"
       chmod 644 "$HOME/.config/hypr/hyprland.conf"
     '';
 
