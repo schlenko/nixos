@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -18,7 +18,7 @@
         modules = [
           ./configuration.nix
           ./Hardware/hardware-configuration.nix
-          ./Hardware/VFIO_Swift.nix
+          # ./Hardware/VFIO_Swift.nix
 
           home-manager.nixosModules.home-manager
 
