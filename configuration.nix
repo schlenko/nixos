@@ -93,6 +93,8 @@
 
     environment.systemPackages = with pkgs; [
       adwaita-icon-theme
+      noto-fonts
+
 
       quickshell
       hyprpaper
@@ -156,11 +158,6 @@
 
     ];
 
-    fonts.packages = [
-    ./Apps/waybar/scripts/fonts/Waycat.ttf
-    ];
-
-    
     environment.variables = {
       QML2_IMPORT_PATH = "/run/current-system/sw/lib/qt-6/qml";
       QML_IMPORT_PATH = "/run/current-system/sw/lib/qt-6/qml";

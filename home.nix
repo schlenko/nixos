@@ -95,6 +95,8 @@ in
 
   home.packages = [
     looking-glass-client
+    pkgs.noto-fonts
+
   ];
 
   home.activation.installHyprlandConfig =
