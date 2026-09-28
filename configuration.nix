@@ -135,7 +135,7 @@
     kdePackages.kcolorchooser
     sl
     asciiquarium
-    fetch
+  #  fetch
     fastfetch
 
     qt6.qtmultimedia

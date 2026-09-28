@@ -22,14 +22,14 @@ let
       SDL2
       libGL
       libGLU
-      libx11
+      libX11
       libxcb
-      libxcursor
-      libxi
-      libxinerama
-      libxrandr
-      libxscrnsaver
-      libxpresent
+      libXcursor
+      libXi
+      libXinerama
+      libXrandr
+      libXScrnSaver
+      libXpresent
       libxkbcommon
       wayland
       wayland-protocols
