@@ -16,7 +16,8 @@ Rectangle {
         fillMode: Image.PreserveAspectCrop
     }
 
-    readonly property real s: Screen.height / 768
+    property real scaleFactor: 0.5
+    readonly property real s: (Screen.height / 768) * scaleFactor
     property bool isQuickshell: typeof sddm === "undefined" || sddm.hostName === undefined
     property int sessionIndex: (typeof sessionModel !== "undefined" && sessionModel.lastIndex >= 0) ? sessionModel.lastIndex : 0
     property int userIndex: (typeof userModel !== "undefined" && userModel.lastIndex >= 0) ? userModel.lastIndex : 0
@@ -190,7 +191,7 @@ Rectangle {
 
             // Settings Title
             Text {
-                text: "QUICK SETTINGS"
+                text: ""
                 font.family: root.sansFont
                 font.pixelSize: 11 * s
                 font.bold: true
