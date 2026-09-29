@@ -99,12 +99,12 @@ in
 
   ];
 
-  home.activation.installHyprlandConfig =
-    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+   home.activation.installHyprlandConfig =
+    config.lib.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.config/hypr"
-      chmod -R u+w "$HOME/.config/hypr"
-      cp -rT --no-preserve=mode ${./Apps/hypr} "$HOME/.config/hypr"
+      cp -r ${./Apps/hypr}/. "$HOME/.config/hypr/"
       chmod 644 "$HOME/.config/hypr/hyprland.conf"
+      chmod -R u+w "$HOME/.config/hypr"
     '';
 
   home.file.".config/kitty".source =

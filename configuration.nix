@@ -146,12 +146,12 @@
     virt-viewer
     libguestfs
 
-    chromium
-    zapzap
-    telegram-desktop
-    spotify
-    timeshift
-    discord
+  #  chromium
+  #  zapzap
+  #  telegram-desktop
+  #  spotify
+  #  timeshift
+  #  discord
   ];
 
   environment.variables = {
