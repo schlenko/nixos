@@ -53,18 +53,11 @@ section("env", function()
     hl.env("HYPRCURSOR_THEME", "Adwaita")
     hl.env("HYPRCURSOR_SIZE", "24")
     hl.env("XCURSOR_THEME", "Adwaita")
-    hl.env("XCURSOR_SIZE", "24")
+      hl.env("XCURSOR_SIZE", "24")
 
     hl.env("MOZ_ENABLE_WAYLAND", "1")
     hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
-
-    -- NVIDIA / VM compatibility
-    -- (comment the two nvidia lines out if you do NOT have an NVIDIA GPU)
-    hl.env("LIBVA_DRIVER_NAME", "nvidia")
-    hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
-    hl.env("NVD_BACKEND", "direct")
     hl.env("GSK_RENDERER", "ngl")
-    hl.env("WLR_RENDERER_ALLOW_SOFTWARE", "1")
 end)
 
 ----------------------------------------------------------------------
