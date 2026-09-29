@@ -135,12 +135,12 @@
     qt6.qtbase
     qt6.qt5compat
 
-  #  chromium
-  #  zapzap
-  #  telegram-desktop
-  #  spotify
-  #  timeshift
-  #  discord
+    chromium
+    zapzap
+    telegram-desktop
+    spotify
+    timeshift
+    discord
   ];
 
   environment.variables = {
