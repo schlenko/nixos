@@ -1,10 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
   time.timeZone = "Europe/Berlin";
-
   i18n.defaultLocale = "en_US.UTF-8";
-
   console.keyMap = "de";
 
   services.xserver.xkb = {
@@ -54,19 +56,15 @@
     extraGroups = [
       "wheel"
       "networkmanager"
-      "libvirtd"
-      "kvm"
     ];
   };
-
-  networking.networkmanager.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  security.polkit.enable = true;
-
+  networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
+  security.polkit.enable = true;
 
   systemd.user.services.polkit-gnome-agent = {
     description = "Polkit Authentication Agent";
@@ -135,16 +133,11 @@
     kdePackages.kcolorchooser
     sl
     asciiquarium
-  #  fetch
     fastfetch
 
     qt6.qtmultimedia
     qt6.qtbase
     qt6.qt5compat
-    swtpm
-
-    virt-viewer
-    libguestfs
 
   #  chromium
   #  zapzap
@@ -181,6 +174,11 @@
     };
   };
 
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+
   programs.vscode = {
     enable = true;
 
@@ -197,58 +195,9 @@
     ];
   };
 
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
-
   security.sudo.extraConfig = ''
     Defaults pwfeedback
   '';
-
-  virtualisation.libvirtd = {
-    enable = true;
-
-    qemu = {
-      package = pkgs.qemu_kvm;
-      swtpm.enable = true;
-
-      verbatimConfig = ''
-        namespaces = []
-        cgroup_device_acl = [
-          "/dev/null",
-          "/dev/full",
-          "/dev/zero",
-          "/dev/random",
-          "/dev/urandom",
-          "/dev/ptmx",
-          "/dev/kvm",
-          "/dev/kvmfr0",
-          "/dev/rtc",
-          "/dev/hpet"
-        ]
-      '';
-    };
-
-    onBoot = "ignore";
-    onShutdown = "shutdown";
-  };
-
-  systemd.services.libvirt-default-network = {
-    description = "Start libvirt default network";
-    after = [ "libvirtd.service" ];
-    wants = [ "libvirtd.service" ];
-    wantedBy = [ "multi-user.target" ];
-
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.libvirt}/bin/virsh net-start default";
-      ExecStop = "${pkgs.libvirt}/bin/virsh net-destroy default";
-      RemainAfterExit = true;
-    };
-  };
-
-  programs.virt-manager.enable = true;
 
   systemd.services.wpa_supplicant.environment.OPENSSL_CONF =
     "/etc/NetworkManager/certs/wpa_openssl.cnf";
