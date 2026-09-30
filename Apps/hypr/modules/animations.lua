@@ -3,31 +3,26 @@ local section, safe = util.section, util.safe
 
 section("curves", function()
     local curves = {
-        -- Smooth, fast deceleration
         easeOutQuint = {
             { 0.23, 1.0 },
             { 0.32, 1.0 },
         },
 
-        -- Smooth acceleration + deceleration
         easeInOutCubic = {
             { 0.65, 0.05 },
             { 0.36, 1.0 },
         },
 
-        -- Completely linear
         linear = {
             { 0.0, 0.0 },
             { 1.0, 1.0 },
         },
 
-        -- Almost linear, with a softer finish
         almostLinear = {
             { 0.5, 0.5 },
             { 0.75, 1.0 },
         },
 
-        -- Quick acceleration
         quick = {
             { 0.15, 0.0 },
             { 0.1, 1.0 },
@@ -41,8 +36,6 @@ section("curves", function()
         })
     end
 
-    -- Spring physics for window movement.
-    -- This is what gives the config its less-static, more physical feel.
     safe(hl.curve, "easy", {
         type = "spring",
         mass = 1,
@@ -54,7 +47,6 @@ end)
 
 section("animations", function()
     local animations = {
-        -- Global
         {
             leaf = "global",
             enabled = true,
@@ -62,7 +54,6 @@ section("animations", function()
             bezier = "default",
         },
 
-        -- Borders
         {
             leaf = "border",
             enabled = true,
@@ -70,8 +61,6 @@ section("animations", function()
             bezier = "easeOutQuint",
         },
 
-        -- Windows
-        -- Spring gives window movement a much more physical feel.
         {
             leaf = "windows",
             enabled = true,
@@ -79,8 +68,6 @@ section("animations", function()
             spring = "easy",
         },
 
-        -- Window opening
-        -- Pop-in replaces the old slide animation.
         {
             leaf = "windowsIn",
             enabled = true,
@@ -89,7 +76,6 @@ section("animations", function()
             style = "popin 87%",
         },
 
-        -- Window closing
         {
             leaf = "windowsOut",
             enabled = true,
@@ -98,7 +84,6 @@ section("animations", function()
             style = "popin 87%",
         },
 
-        -- Fade
         {
             leaf = "fadeIn",
             enabled = true,
@@ -120,7 +105,6 @@ section("animations", function()
             bezier = "quick",
         },
 
-        -- Layers
         {
             leaf = "layers",
             enabled = true,
@@ -158,7 +142,6 @@ section("animations", function()
             bezier = "almostLinear",
         },
 
-        -- Workspaces
         {
             leaf = "workspaces",
             enabled = true,
@@ -183,7 +166,6 @@ section("animations", function()
             style = "slide",
         },
 
-        -- Zoom
         {
             leaf = "zoomFactor",
             enabled = true,
