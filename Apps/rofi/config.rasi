@@ -69,7 +69,7 @@ listview {
     margin: 10px 0 0;
 
     columns: 1;
-    lines: 6;
+    lines: 20;
     fixed-height: false;
 }
 
