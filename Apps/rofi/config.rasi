@@ -1,4 +1,4 @@
-@theme "/dev/null"
+@theme "tokyo"
 
 * {
     bg: rgba(17, 18, 29, 0.6);
