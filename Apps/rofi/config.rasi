@@ -1,95 +1,122 @@
-@theme "tokyo"
-
-* {
-    bg: rgba(17, 18, 29, 0.6);
-    bg-alt: rgba(62, 71, 89, 0.6);
-    fg: rgba(255, 255, 255, 0.6);
-    fg-alt: #787c99;
-
-    background-color: transparent;
-
-    border: 0;
-    margin: 0;
-    padding: 0;
-    spacing: 0;
-}
 
 configuration {
     modes: "drun";
+    sorting-method: "normal";
     show-icons: true;
-    font: "JetBrainsMono Nerd Font 12";
-    display-drun: "Search: ";
+    matching: "regex";
+    drun-match-fields: "name";
+    display-run: "menu:";
+    display-drun: "Launch:";
 }
 
+@theme "tokyo"
+
+* {
+    font: "Iosevka Nerd Font 11";
+    background-color: transparent;
+    text-color: #ffff;
+
+    margin: 0px;
+    padding: 0px;
+    spacing: 0px;
+}
+
+/* ===== Window ===== */
 window {
     location: center;
-    anchor: center;
-    width: 50%;
-    border-radius: 12px;
-    transparency: "real";
+    width: 500;
+    y-offset: -20;
+
+    border-radius: 0px;
     border: 2px;
-    border-color: #ffffff30;
-    background-color: rgba(17, 18, 29, 0.85);
+    border-color: #C3A5E6;
+
+    background-color: rgba(30, 30, 46, 0.92);
 }
 
+/* ===== Main container ===== */
 mainbox {
-    orientation: vertical;
-    children: [inputbar, listview];
-    background-color: transparent;
+    padding: 0px;
+    background-color: #1B1D2E;
 }
 
-/* --- SEARCH BAR --- */
-
+/* ===== Input bar ===== */
 inputbar {
-    children: [prompt, entry];
-    background-color: transparent;
-    border-radius: 12px;
-    padding: 15px 15px 0px 15px;
+    background-color: #302037;
+    border-radius: 1px;
+    border: 1px;
+    border-color: rgba(90, 79, 111, 0.8);
+
+    padding: 8px 16px;
+    spacing: 8px;
 }
 
 prompt {
+    text-color: @cyan;
     background-color: transparent;
-    text-color: @fg;
-    padding: 0px 6px 0px 0px;
 }
 
 entry {
+    text-color: @fg0;
+    placeholder: "search";
+    placeholder-color: @cyan;
     background-color: transparent;
-    text-color: @fg;
 }
 
-/* --- APPLICATION LIST --- */
-
+/* ===== List ===== */
 listview {
-    columns: 2;
-    lines: 10;
-    padding: 15px;
-    fixed-height: true;
-    fixed-columns: true;
-    scrollbar: false;
-    background-color: transparent;
+    background-color: #1B1D2E;
+    margin: 10px 0 0;
+
+    columns: 1;
+    lines: 6;
+    fixed-height: false;
 }
 
+/* ===== Elements ===== */
 element {
-    padding: 10px;
-    text-color: @fg-alt;
-    background-color: transparent;
-    border-radius: 12px;
+    padding: 10px 6px;
+    spacing: 6px;
+    border-radius: 1px;
+
+    background-color: #1B1D2E;
 }
 
-element selected {
-    text-color: #11121d;
-    background-color: #18CBEF;
+element normal urgent {
+    text-color: @red;
 }
 
-element-text {
-    background-color: inherit;
-    text-color: inherit;
+element normal active {
+    text-color: @blue;
+}
+
+element selected normal,
+element selected active {
+    background-color: rgba(138, 120, 170, 0.22);
+}
+
+/* ===== Icons & text ===== */
+element-icon {
+    size: 1em;
     vertical-align: 0.5;
 }
 
-element-icon {
-    size: 25px;
-    background-color: inherit;
-    padding: 0px 10px 0px 0px;
+element-text {
+    text-color: inherit;
+    background-color: transparent;
+}
+
+/* ===== Message box ===== */
+message {
+    margin: 12px 0 0;
+    border-radius: 12px;
+    border: 1px;
+    border-color: rgba(90, 79, 111, 0.8);
+
+    background-color: rgba(17, 19, 24, 0.9);
+}
+
+textbox {
+    padding: 8px 24px;
+    background-color: rgba(17, 19, 24, 0.9);
 }
