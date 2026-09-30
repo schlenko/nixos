@@ -9,6 +9,16 @@ section("monitor", function()
     })
 end)
 
+section("monitor", function()
+    hl.monitor({
+        output = "Virtual-1",
+        mode = "1280x720@60",
+        position = "0x0",
+        scale = 1,
+    })
+end)
+
+
 section("workspace rules", function()
     hl.workspace_rule({
         workspace = "1",
