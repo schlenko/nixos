@@ -667,8 +667,8 @@ ShellRoot {
         exclusionMode: ExclusionMode.Ignore
         color: "transparent"
 
-        aboveWindows: true
-        WlrLayershell.layer: WlrLayer.Overlay
+        aboveWindows: false
+        WlrLayershell.layer: WlrLayer.Top
         WlrLayershell.keyboardFocus: root.expanded ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
 
         mask: Region {
