@@ -3,7 +3,7 @@ local section, safe = util.section, util.safe
 
 section("layer rules", function()
     local rules = {
-        { match = { namespace = "rofi" },                       blur = true, ignore_alpha = 0, animation = "slide" },
+        { match = { namespace = "rofi" },                       blur = true, ignore_alpha = 0, animation = "popin" },
         { match = { namespace = "notifications" },              blur = true, ignore_alpha = 0, animation = "slide" },
         { match = { namespace = "quickshell:overview" },        blur = true, ignore_alpha = 0.5 },
         { match = { namespace = "quickshell:expose" },          dim_around = true, blur = true, ignore_alpha = 0, xray = true },

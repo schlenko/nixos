@@ -7,14 +7,13 @@ section("binds.apps", function()
     hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(vars.terminal),
         { description = "Open terminal" })
 
-    hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("pkill rofi || " .. vars.launcher),
-        { description = "App launcher" })
+   hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("pkill rofi || " .. vars.launcher),
+    { description = "App launcher" })
+    
 
-    hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("xdg-open https://duckduckgo.com"),
+    hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("xdg-open https://"),
         { description = "Open default browser" })
 
-    hl.bind(mainMod .. " + CTRL + TAB", hl.dsp.exec_cmd("qs -c overview"),
-        { description = "Overview toggle" })
 end)
 
 section("binds.window", function()
@@ -27,8 +26,6 @@ section("binds.window", function()
     hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen(),
         { description = "Toggle fullscreen" })
 
-    hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exit(),
-        { description = "Exit Hyprland" })
 
     hl.bind(mainMod .. " + LEFT",  hl.dsp.focus({ direction = "left" }),  { description = "Focus left" })
     hl.bind(mainMod .. " + RIGHT", hl.dsp.focus({ direction = "right" }), { description = "Focus right" })
@@ -105,22 +102,4 @@ section("binds.workspace.numbers", function()
             hl.dsp.window.move({ workspace = ws }),
             { description = "Move to workspace " .. ws })
     end
-end)
-
-section("binds.workspace.move_adjacent", function()
-    hl.bind(mainMod .. " + SHIFT + BRACKETLEFT",
-        hl.dsp.window.move({ workspace = "m-1", follow = false }),
-        { description = "Move silently to previous workspace" })
-
-    hl.bind(mainMod .. " + SHIFT + BRACKETRIGHT",
-        hl.dsp.window.move({ workspace = "m+1", follow = false }),
-        { description = "Move silently to next workspace" })
-
-    hl.bind(mainMod .. " + CTRL + BRACKETLEFT",
-        hl.dsp.window.move({ workspace = "m-1" }),
-        { description = "Move to previous workspace" })
-
-    hl.bind(mainMod .. " + CTRL + BRACKETRIGHT",
-        hl.dsp.window.move({ workspace = "m+1" }),
-        { description = "Move to next workspace" })
 end)
