@@ -30,7 +30,7 @@ section("window rules", function()
         { match = { class = "^(qalculate-gtk|[Qq]alculate-gtk)$" },         float = true },
         { match = { class = "^(zoom|Zoom|onedriver|onedriver-launcher)$" }, float = true },
 
-        -- All windows: focused = 1.0, unfocused = 0.1
+        -- All windows: focused = 1.0, unfocused = 0.88
         { match = { class = ".*" }, opacity = "1.0 0.88" },
 
         -- MPV/VLC: disable blur, but inherit the global opacity rule

@@ -95,8 +95,6 @@ in
 
   home.packages = [
     looking-glass-client
-    pkgs.noto-fonts
-
   ];
 
    home.file.".config/hypr".source =
