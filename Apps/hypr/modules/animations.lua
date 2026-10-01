@@ -24,8 +24,8 @@ section("curves", function()
         },
 
         quick = {
-            { 0.15, 0.0 },
-            { 0.1, 1.0 },
+            { 0.25, 0.1 },
+            { 0.25, 1.0 },
         },
     }
 
@@ -47,131 +47,28 @@ end)
 
 section("animations", function()
     local animations = {
-        {
-            leaf = "global",
-            enabled = true,
-            speed = 10,
-            bezier = "default",
-        },
+        { leaf = "global",        enabled = true, speed = 10,   bezier = "default" },
+        { leaf = "border",        enabled = true, speed = 6,    bezier = "easeOutQuint" },
 
-        {
-            leaf = "border",
-            enabled = true,
-            speed = 5.39,
-            bezier = "easeOutQuint",
-        },
+        { leaf = "windows",       enabled = true, speed = 5.5,  spring = "easy" },
+        { leaf = "windowsIn",     enabled = true, speed = 5,    spring = "easy", style = "popin 87%" },
+        { leaf = "windowsOut",    enabled = true, speed = 3,    bezier = "linear", style = "popin 87%" },
 
-        {
-            leaf = "windows",
-            enabled = true,
-            speed = 4.79,
-            spring = "easy",
-        },
+        { leaf = "fadeIn",        enabled = true, speed = 3.2,  bezier = "almostLinear" },
+        { leaf = "fadeOut",       enabled = true, speed = 3,    bezier = "almostLinear" },
+        { leaf = "fade",          enabled = true, speed = 4.5,  bezier = "quick" },
 
-        {
-            leaf = "windowsIn",
-            enabled = true,
-            speed = 4.1,
-            spring = "easy",
-            style = "popin 87%",
-        },
+        { leaf = "layers",        enabled = true, speed = 4.5,  bezier = "easeOutQuint" },
+        { leaf = "layersIn",      enabled = true, speed = 5,    bezier = "easeOutQuint", style = "fade" },
+        { leaf = "layersOut",     enabled = true, speed = 3,    bezier = "linear", style = "fade" },
+        { leaf = "fadeLayersIn",  enabled = true, speed = 3.2,  bezier = "almostLinear" },
+        { leaf = "fadeLayersOut", enabled = true, speed = 3,    bezier = "almostLinear" },
 
-        {
-            leaf = "windowsOut",
-            enabled = true,
-            speed = 1.49,
-            bezier = "linear",
-            style = "popin 87%",
-        },
+        { leaf = "workspaces",    enabled = true, speed = 4,    bezier = "easeOutQuint", style = "slide" },
+        { leaf = "workspacesIn",  enabled = true, speed = 3.5,  bezier = "easeOutQuint", style = "slide" },
+        { leaf = "workspacesOut", enabled = true, speed = 4,    bezier = "easeOutQuint", style = "slide" },
 
-        {
-            leaf = "fadeIn",
-            enabled = true,
-            speed = 1.73,
-            bezier = "almostLinear",
-        },
-
-        {
-            leaf = "fadeOut",
-            enabled = true,
-            speed = 1.46,
-            bezier = "almostLinear",
-        },
-
-        {
-            leaf = "fade",
-            enabled = true,
-            speed = 3.03,
-            bezier = "quick",
-        },
-
-        {
-            leaf = "layers",
-            enabled = true,
-            speed = 3.81,
-            bezier = "easeOutQuint",
-        },
-
-        {
-            leaf = "layersIn",
-            enabled = true,
-            speed = 4,
-            bezier = "easeOutQuint",
-            style = "fade",
-        },
-
-        {
-            leaf = "layersOut",
-            enabled = true,
-            speed = 1.5,
-            bezier = "linear",
-            style = "fade",
-        },
-
-        {
-            leaf = "fadeLayersIn",
-            enabled = true,
-            speed = 1.79,
-            bezier = "almostLinear",
-        },
-
-        {
-            leaf = "fadeLayersOut",
-            enabled = true,
-            speed = 1.39,
-            bezier = "almostLinear",
-        },
-
-        {
-            leaf = "workspaces",
-            enabled = true,
-            speed = 1.94,
-            bezier = "easeOutQuint",
-            style = "slide",
-        },
-
-        {
-            leaf = "workspacesIn",
-            enabled = true,
-            speed = 1.21,
-            bezier = "easeOutQuint",
-            style = "slide",
-        },
-
-        {
-            leaf = "workspacesOut",
-            enabled = true,
-            speed = 1.94,
-            bezier = "easeOutQuint",
-            style = "slide",
-        },
-
-        {
-            leaf = "zoomFactor",
-            enabled = true,
-            speed = 7,
-            bezier = "quick",
-        },
+        { leaf = "zoomFactor",    enabled = true, speed = 8,    bezier = "quick" },
     }
 
     for _, anim in ipairs(animations) do

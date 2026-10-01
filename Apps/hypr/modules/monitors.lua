@@ -3,7 +3,7 @@ local section = require("modules.util").section
 section("monitor", function()
     hl.monitor({
         output = "eDP-1",
-        mode = "preferred",
+        mode = "highrr",
         position = "0x0",
         scale = 1,
     })

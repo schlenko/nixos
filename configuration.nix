@@ -95,6 +95,7 @@
     kitty
     rofi
     waybar
+    gotop 
 
     (stdenvNoCC.mkDerivation {
       pname = "qylock-themes";

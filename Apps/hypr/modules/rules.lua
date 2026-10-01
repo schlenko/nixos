@@ -11,6 +11,8 @@ section("layer rules", function()
         { match = { namespace = "swaync-notification-window" }, blur = true, ignore_alpha = 0 },
         { match = { namespace = "com.aurora.keybinds_help" },   blur = true, ignore_alpha = 0 },
         { match = { namespace = "logout_dialog" },              blur = true, ignore_alpha = 0 },
+        { match = { namespace = "waybar" },                     blur = true, ignore_alpha = 0 },
+
     }
     for _, rule in ipairs(rules) do
         safe(hl.layer_rule, rule)
@@ -28,14 +30,15 @@ section("window rules", function()
         { match = { class = "^(qalculate-gtk|[Qq]alculate-gtk)$" },         float = true },
         { match = { class = "^(zoom|Zoom|onedriver|onedriver-launcher)$" }, float = true },
 
-        { match = { tag = "browser" },      opacity = "0.99 0.8" },
-        { match = { tag = "terminal" },     opacity = "0.9 0.7" },
-        { match = { tag = "file-manager" }, opacity = "0.9 0.8" },
+        -- All windows: focused = 1.0, unfocused = 0.1
+        { match = { class = ".*" }, opacity = "1.0 0.88" },
 
-        { match = { class = "^(mpv|vlc)$" }, no_blur = true, opacity = "1.0" },
+        -- MPV/VLC: disable blur, but inherit the global opacity rule
+        { match = { class = "^(mpv|vlc)$" }, no_blur = true },
 
         { match = { fullscreen = true }, idle_inhibit = "fullscreen" },
     }
+
     for _, rule in ipairs(rules) do
         safe(hl.window_rule, rule)
     end
