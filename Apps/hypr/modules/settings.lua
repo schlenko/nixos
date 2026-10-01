@@ -169,3 +169,11 @@ section("config.cursor", function()
         },
     })
 end)
+
+section("config.gestures", function()
+    hl.config({
+        gestures = {
+            workspace_swipe_invert = false,
+        },
+    })
+end)
