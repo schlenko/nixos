@@ -86,7 +86,6 @@
 
   environment.systemPackages = with pkgs; [
     adwaita-icon-theme
-    noto-fonts
 
     quickshell
     hyprpaper
