@@ -3,8 +3,9 @@
 {
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
-  console.keyMap = "de";
-
+  console.keyMap = "de"; 
+  
+  
   services.xserver.xkb = {
     layout = "de";
   };
@@ -18,6 +19,7 @@
       ll = "ls -lah";
       pkmn = "python3 /etc/nixos/Apps/pokemonscript/pokemon-colorscripts.py --random";
       pwr = "cat /sys/class/power_supply/BAT1/capacity";
+      winshare = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
     };
 
     interactiveShellInit = ''
@@ -29,7 +31,6 @@
     ohMyZsh = {
       enable = true;
       plugins = [ "git" ];
-      theme = "crcandy";
     };
   };
 
@@ -55,7 +56,7 @@
     ];
   };
 
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = true;   
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;

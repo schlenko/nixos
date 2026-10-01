@@ -129,6 +129,9 @@ in
   home.file.".zshrc".source =
     ./Apps/zsh/.zshrc;
 
+  home.file.".oh-my-zsh/custom/themes".source =
+    ./Apps/zsh/themes;
+
 
   programs.home-manager.enable = true;
 }
