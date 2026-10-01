@@ -174,6 +174,9 @@ section("config.gestures", function()
     hl.config({
         gestures = {
             workspace_swipe_invert = false,
+            workspace_swipe_forever = true,   
+            workspace_swipe_distance = 100,   
+            workspace_swipe_create_new = false, 
         },
     })
 end)
