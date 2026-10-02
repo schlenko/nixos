@@ -14,6 +14,9 @@ section("binds.apps", function()
     hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("xdg-open https://"),
         { description = "Open default browser" })
 
+    hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("/etc/nixos/Apps/qylock/quickshell-lockscreen/lock.sh"),
+    { description = "Lock screen" })
+
 end)
 
 section("binds.window", function()
@@ -72,6 +75,8 @@ section("binds.workspace.nav", function()
     hl.bind(mainMod .. " + PERIOD", hl.dsp.focus({ workspace = "e+1" }), { description = "Next workspace" })
     hl.bind(mainMod .. " + COMMA",  hl.dsp.focus({ workspace = "e-1" }), { description = "Previous workspace" })
 end)
+
+
 
 section("binds.workspace.numbers", function()
     local workspaceKeys = {
