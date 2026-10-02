@@ -1,6 +1,11 @@
-{ config, pkgs, lib,... }:
+{ config, pkgs, lib, ... }:
 
 let
+  # Change this to switch themes: "default" or "windows7"
+  theme = "CatRice";
+
+  themePath = ./Themes + "/${theme}";
+
   looking-glass-client = pkgs.stdenv.mkDerivation {
     pname = "looking-glass-client";
     version = "236efcb155";
@@ -15,21 +20,21 @@ let
     nativeBuildInputs = with pkgs; [
       cmake
       pkg-config
-      wayland-scanner   # the actual tool/pkg-config file CMake needs
+      wayland-scanner
     ];
 
     buildInputs = with pkgs; [
       SDL2
       libGL
       libGLU
-      libX11
+      libx11
       libxcb
-      libXcursor
-      libXi
-      libXinerama
-      libXrandr
-      libXScrnSaver
-      libXpresent
+      libxcursor
+      libxi
+      libxinerama
+      libxrandr
+      libxscrnsaver
+      libxpresent
       libxkbcommon
       wayland
       wayland-protocols
@@ -47,9 +52,6 @@ let
       fuse3
       libunwind
       elfutils
-      libXpresent
-      libffi
-      libdecor
       libffi
       spice-protocol
     ];
@@ -64,7 +66,7 @@ let
         -DOPTIMIZE_FOR_NATIVE=OFF \
         -DENABLE_BACKTRACE=no
 
-      cmake --build client/build -j2
+      cmake --build client/build -j$NIX_BUILD_CORES
 
       runHook postBuild
     '';
@@ -80,8 +82,6 @@ let
     '';
   };
 in
-
-
 {
   home.username = "t";
   home.homeDirectory = "/home/t";
@@ -97,11 +97,25 @@ in
     looking-glass-client
   ];
 
-   home.file.".config/hypr".source =
-    ./Apps/hypr;
+
+  home.file.".config/hypr".source =
+    themePath + "/hypr";
 
   home.file.".config/kitty".source =
-    ./Apps/kitty;
+    themePath + "/kitty";
+
+  home.file.".config/rofi".source =
+    themePath + "/rofi";
+
+  home.file.".config/waybar".source =
+    themePath + "/waybar";
+
+  home.file.".config/gtk-3.0".source =
+    themePath + "/gtk-3.0";
+
+  home.file.".local/share/wallpaper".source =
+    themePath + "/wallpaper";
+
 
   home.file.".config/quickshell".source =
     ./Apps/quickshell;
@@ -111,25 +125,15 @@ in
 
   home.file.".config/looking-glass".source =
     ./Apps/looking-glass;
-  
-  home.file.".config/rofi".source =
-  ./Apps/rofi;
-
-  home.file.".config/waybar".source =
-  ./Apps/waybar;
 
   home.file.".local/share/fonts/Waycat.ttf".source =
-  ./Apps/waybar/scripts/fonts/Waycat.ttf;
-
-  home.file.".config/gtk-3.0".source =
-    ./Apps/gtk-3.0;
+    ./Apps/fonts/Waycat.ttf;
 
   home.file.".zshrc".source =
     ./Apps/zsh/.zshrc;
 
   home.file.".oh-my-zsh/custom/themes".source =
     ./Apps/zsh/themes;
-
 
   programs.home-manager.enable = true;
 }
