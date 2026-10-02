@@ -116,6 +116,10 @@ in
   home.file.".local/share/wallpaper".source =
     themePath + "/wallpaper";
 
+   home.file.".local/share/fonts/Waycat.ttf".source =
+    themePath + fonts/Waycat.ttf;
+    
+
 
   home.file.".config/quickshell".source =
     ./Apps/quickshell;
@@ -125,9 +129,6 @@ in
 
   home.file.".config/looking-glass".source =
     ./Apps/looking-glass;
-
-  home.file.".local/share/fonts/Waycat.ttf".source =
-    ./Apps/fonts/Waycat.ttf;
 
   home.file.".zshrc".source =
     ./Apps/zsh/.zshrc;
