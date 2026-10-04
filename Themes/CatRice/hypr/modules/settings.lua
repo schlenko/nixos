@@ -123,8 +123,8 @@ end)
 section("config.binds", function()
     hl.config({
         binds = {
-            workspace_back_and_forth = true,
-            allow_workspace_cycles = true,
+            workspace_back_and_forth = false,
+            allow_workspace_cycles = false,
             pass_mouse_when_bound = false,
         },
     })

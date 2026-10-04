@@ -19,7 +19,9 @@
       ll = "ls -lah";
       pkmn = "python3 /etc/nixos/Apps/pokemonscript/pokemon-colorscripts.py --random";
       pwr = "cat /sys/class/power_supply/BAT1/capacity";
-      winshare = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
+      wintonix = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
+      nixtowin = "sudo scp -r ~/shared twin@192.168.122.4:/C:/Users/";
+      pipes = "pipes.sh -f 100 -r 0 -B -c 1 -c 2 -c 3 -c 4 -c 5 -c 6 -c 7";
     };
 
     interactiveShellInit = ''
@@ -94,7 +96,7 @@
     kitty
     rofi
     waybar
-    gotop 
+    btop 
 
     (stdenvNoCC.mkDerivation {
       pname = "qylock-themes";
@@ -128,9 +130,15 @@
     bettercap
     bc
     kdePackages.kcolorchooser
+
     sl
     asciiquarium
-    fastfetch
+    pipes
+    cowsay
+    fortune
+    cmatrix
+    nyancat
+    genact
 
     qt6.qtmultimedia
     qt6.qtbase
@@ -177,20 +185,20 @@
   };
 
   programs.vscode = {
-    enable = true;
+  enable = true;
 
-    extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
-      ms-python.python
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        publisher = "bbenoist";
-        name = "QML";
-        version = "1.0.0";
-        sha256 = "sha256-tphnVlD5LA6Au+WDrLZkAxnMJeTCd3UTyTN1Jelditk=";
-      }
-    ];
-  };
+  extensions = with pkgs.vscode-extensions; [
+    bbenoist.nix
+    ms-python.python
+  ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    {
+      publisher = "bbenoist";
+      name = "QML";
+      version = "1.0.0";
+      sha256 = "sha256-tphnVlD5LA6Au+WDrLZkAxnMJeTCd3UTyTN1Jelditk=";
+    }
+  ];
+};
 
   security.sudo.extraConfig = ''
     Defaults pwfeedback

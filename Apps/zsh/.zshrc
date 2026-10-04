@@ -20,3 +20,4 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=183'
 
 # Comments
 ZSH_HIGHLIGHT_STYLES[comment]='fg=97'
+

@@ -116,8 +116,11 @@ in
   home.file.".local/share/wallpaper".source =
     themePath + "/wallpaper";
 
-   home.file.".local/share/fonts/Waycat.ttf".source =
-    themePath + fonts/Waycat.ttf;
+  home.file.".local/share/fonts/Waycat.ttf".source =
+    themePath + /waybar/scripts/fonts/Waycat.ttf;
+
+  home.file.".config/btop/btop.conf".source =
+    themePath + /btop/btop.conf;
     
 
 
