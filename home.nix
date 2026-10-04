@@ -119,8 +119,8 @@ in
   home.file.".local/share/fonts/Waycat.ttf".source =
     themePath + /waybar/scripts/fonts/Waycat.ttf;
 
-  home.file.".config/btop/btop.conf".source =
-    themePath + /btop/btop.conf;
+  home.file.".config/gotop/gotop.conf".source =
+    themePath + /gotop/gotop.conf;
     
 
 

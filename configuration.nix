@@ -96,7 +96,7 @@
     kitty
     rofi
     waybar
-    btop 
+    gotop 
 
     (stdenvNoCC.mkDerivation {
       pname = "qylock-themes";
@@ -139,6 +139,7 @@
     cmatrix
     nyancat
     genact
+    fastfetch
 
     qt6.qtmultimedia
     qt6.qtbase
