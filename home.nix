@@ -87,6 +87,20 @@ in
   home.homeDirectory = "/home/t";
   home.stateVersion = "25.11";
 
+    gtk = {
+    enable = true;
+
+    font = {
+      name = "Chivo";
+      size = 11;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+  };
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -119,9 +133,11 @@ in
   home.file.".local/share/fonts/Waycat.ttf".source =
     themePath + /waybar/scripts/fonts/Waycat.ttf;
 
-  home.file.".config/gotop".source =
-    themePath + /gotop;
+  home.file.".config/btop".source =
+    themePath + /btop;
     
+  home.file.".local/share/fonts/Chivo-Regular.ttf".source =
+    themePath + /fonts/Chivo-Regular.ttf;
 
 
   home.file.".config/quickshell".source =
