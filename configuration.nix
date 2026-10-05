@@ -90,7 +90,6 @@
   environment.systemPackages = with pkgs; [
     adwaita-icon-theme
 
-    quickshell
     hyprpaper
     hyprlock
     hyprpicker
@@ -131,10 +130,6 @@
     genact
     fastfetch
 
-    qt6.qtmultimedia
-    qt6.qtbase
-    qt6.qt5compat
-
     chromium
     zapzap
     telegram-desktop
@@ -142,11 +137,6 @@
     timeshift
     discord
   ];
-
-  environment.variables = {
-    QML2_IMPORT_PATH = "/run/current-system/sw/lib/qt-6/qml";
-    QML_IMPORT_PATH = "/run/current-system/sw/lib/qt-6/qml";
-  };
 
     programs.hyprlock.enable = true;
 
@@ -160,11 +150,6 @@
 
     settings = {
       initial_session = {
-        command = "${pkgs.uwsm}/bin/uwsm start -e -D Hyprland hyprland.desktop";
-        user = "t";
-      };
-
-      default_session = {
         command = "${pkgs.uwsm}/bin/uwsm start -e -D Hyprland hyprland.desktop";
         user = "t";
       };
