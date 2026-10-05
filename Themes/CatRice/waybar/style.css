@@ -1,5 +1,5 @@
 * {
-    font-family: "Chivo", "MaterialIcons", monospace;
+    font-family: "Chivo", "Symbols Nerd Font", monospace;
     font-weight: 800;
     font-size: 13px;
     color: #C4A7E7;
@@ -43,6 +43,16 @@ window#waybar > box {
     padding: 0 4px;
 }
 
+/* Space between the right-side modules */
+#backlight,
+#wireplumber,
+#battery {
+    margin-right: 24px;
+
+    margin-left: 12px;
+}
+
+/* Battery states */
 #battery.warning {
     background: rgba(246, 193, 119, 0.15);
     padding: 1px 4px;
@@ -78,3 +88,11 @@ tooltip label {
     padding-left: 8px;
     padding-right: 8px;
 }
+
+
+#backlight,
+#wireplumber,
+#battery {
+    margin-left: 12px;
+}
+
