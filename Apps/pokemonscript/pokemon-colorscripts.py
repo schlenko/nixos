@@ -46,7 +46,6 @@ def show_pokemon_by_name(
 ) -> None:
     base_path = COLORSCRIPTS_DIR
     color_subdir = SHINY_SUBDIR if shiny else REGULAR_SUBDIR
-    # default to smaller size as this makes sense for most font size + terminal
     # size combinations
     size_subdir = LARGE_SUBDIR if is_large else SMALL_SUBDIR
     with open(f"{PROGRAM_DIR}/pokemon.json") as file:

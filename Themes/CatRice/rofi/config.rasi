@@ -12,7 +12,6 @@ configuration {
 @theme "tokyo"
 
 * {
-    font: "Iosevka Nerd Font 11";
     background-color: transparent;
     text-color: #ffff;
 

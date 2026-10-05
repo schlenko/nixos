@@ -130,14 +130,11 @@ in
   home.file.".local/share/wallpaper".source =
     themePath + "/wallpaper";
 
-  home.file.".local/share/fonts/Waycat.ttf".source =
-    themePath + /waybar/scripts/fonts/Waycat.ttf;
-
-  home.file.".config/btop".source =
-    themePath + /btop;
+  home.file.".config/gotop".source =
+    themePath + /gotop;
     
-  home.file.".local/share/fonts/Chivo-Regular.ttf".source =
-    themePath + /fonts/Chivo-Regular.ttf;
+  home.file.".local/share/fonts".source =
+    themePath + /font;
 
 
   home.file.".config/quickshell".source =
