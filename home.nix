@@ -87,6 +87,7 @@ in
   home.homeDirectory = "/home/t";
   home.stateVersion = "25.11";
 
+  fonts.fontconfig.enable = true;
     gtk = {
     enable = true;
 
@@ -109,6 +110,8 @@ in
 
   home.packages = [
     looking-glass-client
+    pkgs.nerd-fonts.symbols-only
+
   ];
 
 
