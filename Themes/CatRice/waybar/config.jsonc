@@ -2,12 +2,17 @@
   "layer": "top",
   "position": "top",
   "spacing": 3,
+
   "margin-top": 5,
   "margin-bottom": -11,
   "margin-left": 10,
   "margin-right": 10,
 
-  "modules-left": ["hyprland/workspaces","custom/cpucat"],
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/cpucat"
+  ],
+
   "modules-right": [
     "wireplumber",
     "backlight",
@@ -16,10 +21,12 @@
     "clock",
     "custom/power"
   ],
+
   "custom/tab": {
-  "format": "[Z]",
-  "on-click": "rofi -show drun",
-},
+    "format": "[Z]",
+    "on-click": "rofi -show drun"
+  },
+
   "hyprland/workspaces": {
     "format": "{name}",
     "on-click": "activate",
@@ -38,19 +45,25 @@
     "icon-size": 16,
     "spacing": 6
   },
-"custom/cpucat": {
-        "exec":"~/.config/waybar/scripts/catloop.sh",
-        "spacing": 1,
-        "format": "{}",
-        "tooltip": true
-    },
+
+  "custom/cpucat": {
+    "exec": "~/.config/waybar/scripts/catloop.sh",
+    "spacing": 1,
+    "format": "{}",
+    "tooltip": true
+  },
+
   "wireplumber": {
     "scroll-step": 5,
     "format": " {icon} {volume}%",
     "format-muted": "󰝟 muted",
     "on-click": "pavucontrol",
     "format-icons": {
-      "default": ["󰕿", "󰖀", "󰕾"],
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ],
       "headphones": "󰋋",
       "headset": "󰋎"
     }
@@ -59,22 +72,38 @@
   "backlight": {
     "device": "intel_backlight",
     "format": " {icon} {percent}% ",
-    "format-icons": ["󰃞", "󰃟", "󰃠"]
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ]
   },
 
   "battery": {
-    "states": { "warning": 30, "critical": 15 },
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
     "format": "{icon} {capacity}% ",
     "format-charging": "󰂄 {capacity}% ",
     "format-plugged": "󱟦 {capacity}% ",
     "format-full": "󰁹 {capacity}% ",
     "format-icons": [
-      "󰂎", "󰁺", "󰁻", "󰁼", "󰁽",
-      "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
     ]
   },
 
   "clock": {
-    "format": "{:%m-%d-%Y %H:%M} "
+    "format": "{:%m-%d-%Y    %H:%M} "
   }
 }

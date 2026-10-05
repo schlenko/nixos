@@ -11,11 +11,26 @@ window#waybar {
 }
 
 window#waybar > box {
+    background: transparent;
+    border: none;
+    margin: 5px 10px 0px 10px;
+    padding: 0;
+}
+
+.modules-left,
+.modules-right {
     background: rgba(0, 0, 0, 0.1);
     border: 2px solid #3f3f42;
     border-radius: 20px;
-    margin: 5px 10px 0px 10px;
     padding: 0px 8px;
+}
+
+.modules-left {
+    margin-right: 25px;
+}
+
+.modules-right {
+    margin-left: 25px;
 }
 
 #workspaces button {
@@ -43,16 +58,12 @@ window#waybar > box {
     padding: 0 4px;
 }
 
-/* Space between the right-side modules */
 #backlight,
 #wireplumber,
 #battery {
-    margin-right: 24px;
-
     margin-left: 12px;
 }
 
-/* Battery states */
 #battery.warning {
     background: rgba(246, 193, 119, 0.15);
     padding: 1px 4px;
@@ -88,11 +99,3 @@ tooltip label {
     padding-left: 8px;
     padding-right: 8px;
 }
-
-
-#backlight,
-#wireplumber,
-#battery {
-    margin-left: 12px;
-}
-
