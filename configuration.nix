@@ -92,24 +92,13 @@
 
     quickshell
     hyprpaper
+    hyprlock
     hyprpicker
     thunar
     kitty
     rofi
     waybar
     gotop 
-
-    (stdenvNoCC.mkDerivation {
-      pname = "qylock-themes";
-      version = "1.0";
-
-      src = ./Apps/qylock/theme;
-
-      installPhase = ''
-        mkdir -p $out/share/sddm/themes/current
-        cp -r ./* $out/share/sddm/themes/current/
-      '';
-    })
 
     git
     gh
@@ -159,31 +148,27 @@
     QML_IMPORT_PATH = "/run/current-system/sw/lib/qt-6/qml";
   };
 
-  services.displayManager.sddm = {
-    enable = true;
-    theme = "current";
-
-    wayland = {
-      enable = true;
-      compositor = "kwin";
-    };
-
-    extraPackages = with pkgs.kdePackages; [
-      qtmultimedia
-      qt5compat
-    ];
-
-    settings = {
-      Theme = {
-        CursorTheme = "Adwaita";
-        CursorSize = 24;
-      };
-    };
-  };
+    programs.hyprlock.enable = true;
 
   programs.hyprland = {
     enable = true;
     withUWSM = true;
+  };
+
+  services.greetd = {
+    enable = true;
+
+    settings = {
+      initial_session = {
+        command = "${pkgs.uwsm}/bin/uwsm start -e -D Hyprland hyprland.desktop";
+        user = "t";
+      };
+
+      default_session = {
+        command = "${pkgs.uwsm}/bin/uwsm start -e -D Hyprland hyprland.desktop";
+        user = "t";
+      };
+    };
   };
 
   programs.vscode = {

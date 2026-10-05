@@ -62,6 +62,7 @@ window#waybar > box {
 #wireplumber,
 #battery {
     margin-left: 12px;
+    margin-right: 16px;
 }
 
 #battery.warning {

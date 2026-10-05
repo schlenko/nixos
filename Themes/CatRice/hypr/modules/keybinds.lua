@@ -14,7 +14,7 @@ section("binds.apps", function()
     hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("xdg-open https://"),
         { description = "Open default browser" })
 
-    hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("/etc/nixos/Apps/qylock/quickshell-lockscreen/lock.sh"),
+    hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"),
     { description = "Lock screen" })
 
 end)

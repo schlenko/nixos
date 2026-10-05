@@ -140,12 +140,6 @@ in
     themePath + /font;
 
 
-  home.file.".config/quickshell".source =
-    ./Apps/quickshell;
-
-  home.file.".config/qylock".source =
-    ./Apps/qylock;
-
   home.file.".config/looking-glass".source =
     ./Apps/looking-glass;
 
