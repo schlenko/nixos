@@ -1,0 +1,102 @@
+Config(
+    loaded_modules: [
+        "MusicModule",
+        "PowerModule",
+        "ClockModule",
+        "SystrayModule",
+    ],
+    layout: "DynamicLayout",
+    general_style_config: (
+        minimal_height: 34,
+        minimal_width: 100,
+        blur_radius: 6.0,
+        enable_drag_stretch: false,
+    ),
+    layout_configs: {
+        "DynamicLayout": (
+            window_position: (
+                layer: (
+                    Layer: "Top",
+                ),
+                h_anchor: (
+                    Alignment: "Center",
+                ),
+                v_anchor: (
+                    Alignment: "Start",
+                ),
+                margin_x: 0,
+                margin_y: 10,
+                exclusive_zone: -1,
+                monitor: "",
+                layer_shell: true,
+            ),
+            auto_minimize_timeout: 5000,
+            max_activities: 3,
+            max_active: 1,
+            reorder_on_add: true,
+            reorder_on_reload: true,
+            windows: {
+                "": (
+                    activity_order: [],
+                ),
+            },
+        ),
+        "FallbackLayout": (
+            orientation_horizontal: true,
+            window_position: (
+                layer: (
+                    Layer: "Top",
+                ),
+                h_anchor: (
+                    Alignment: "Center",
+                ),
+                v_anchor: (
+                    Alignment: "Start",
+                ),
+                margin_x: 0,
+                margin_y: 10,
+                exclusive_zone: -1,
+                monitor: "",
+                layer_shell: true,
+            ),
+            auto_minimize_timeout: 5000,
+            windows: {},
+        ),
+    },
+    module_config: {
+        "MusicModule": (
+            preferred_player: "spotify",
+            default_album_art_url: "",
+            scrolling_label_speed: 30.0,
+            cava_visualizer_script: "echo 0,0,0,0,0,0",
+            use_fallback_player: true,
+            windows: {},
+        ),
+        "PowerModule": (
+            battery: "",
+            name: "",
+            hide_if_missing: true,
+            percentage_pango_markup: "<span font_desc=\"Chivo ExtraBold 11\" foreground=\"#C4A7E7\">{}</span>",
+            charging_color: "#2EE81AFF",
+            normal_color: "#C4A7E7",
+            low_color: "#F6C177",
+            background_color: "#3f3f42",
+            max_duration_secs: 36000,
+            draw_bars: true,
+            windows: {},
+        ),
+        "ClockModule": (
+            format_24h: true,
+            hour_hand_color: "#C4A7E7",
+            minute_hand_color: "#C4A7E7",
+            tick_color: "#5b4950",
+            circle_color: "#3f3f42",
+            windows: {},
+        ),
+        "SystrayModule": (
+            menu_height_mode: "2-step",
+            windows: {},
+        ),
+    },
+    debug: None,
+)

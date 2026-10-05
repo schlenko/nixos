@@ -97,6 +97,7 @@
     kitty
     rofi
     waybar
+    dynisland
     gotop 
 
     git
@@ -149,7 +150,7 @@
     enable = true;
 
     settings = {
-      initial_session = {
+      default_session = {
         command = "${pkgs.uwsm}/bin/uwsm start -e -D Hyprland hyprland.desktop";
         user = "t";
       };

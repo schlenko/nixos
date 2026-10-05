@@ -127,6 +127,9 @@ in
   home.file.".config/waybar".source =
     themePath + "/waybar";
 
+  home.file.".config/dynisland".source =
+    themePath + "/dynisland";
+
   home.file.".config/gtk-3.0".source =
     themePath + "/gtk-3.0";
 
