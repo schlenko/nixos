@@ -97,7 +97,6 @@
     kitty
     rofi
     waybar
-    dynisland
     gotop 
 
     git
