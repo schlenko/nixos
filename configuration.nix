@@ -119,6 +119,7 @@
     bettercap
     bc
     kdePackages.kcolorchooser
+    playerctl
 
     sl
     asciiquarium

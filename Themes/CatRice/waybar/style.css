@@ -17,7 +17,9 @@ window#waybar > box {
     padding: 0;
 }
 
+/* ---- the three floating islands ---- */
 .modules-left,
+.modules-center,
 .modules-right {
     background: rgba(0, 0, 0, 0.1);
     border: 2px solid #3f3f42;
@@ -25,14 +27,10 @@ window#waybar > box {
     padding: 0px 8px;
 }
 
-.modules-left {
-    margin-right: 25px;
-}
+.modules-left  { margin-right: 25px; }
+.modules-right { margin-left: 25px; }
 
-.modules-right {
-    margin-left: 25px;
-}
-
+/* ---- workspaces ---- */
 #workspaces button {
     padding: 0px 1px;
     margin: 3px 2px;
@@ -53,18 +51,45 @@ window#waybar > box {
     background: #5b4950;
 }
 
-#mpris {
-    font-weight: 700;
-    padding: 0 4px;
+/* ---- left side ---- */
+#custom-cpucat {
+    font-family: "Waycat";
+    font-weight: normal;
+    font-size: 32px;
+    color: #ffffff;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
-#backlight,
+/* ---- uniform spacing for every module in the center and right islands ---- */
+#network,
+#bluetooth,
+#mpris,
 #wireplumber,
-#battery {
-    margin-left: 12px;
-    margin-right: 24px;
+#backlight,
+#battery,
+#clock {
+    margin: 0 18px;
+    padding: 0;
 }
 
+/* ---- center island ---- */
+#network.disconnected,
+#network.disabled,
+#bluetooth.off,
+#bluetooth.disabled {
+    opacity: 0.5;
+}
+
+#mpris.playing {
+    color: #c4a7e7;
+}
+
+#mpris.paused {
+    opacity: 0.5;
+}
+
+/* ---- right side ---- */
 #battery.warning {
     background: rgba(246, 193, 119, 0.15);
     padding: 1px 4px;
@@ -79,6 +104,11 @@ window#waybar > box {
     opacity: 0.6;
 }
 
+#custom-power {
+    padding: 0 6px;
+}
+
+/* ---- tooltips ---- */
 tooltip {
     background: #111111;
     border: 1px solid #333333;
@@ -87,16 +117,4 @@ tooltip {
 tooltip label {
     color: #e0def4;
     font-size: 11px;
-}
-
-#custom-launcher {
-}
-
-#custom-cpucat {
-    font-family: "Waycat";
-    font-weight: normal;
-    font-size: 32px;
-    color: #ffffff;
-    padding-left: 8px;
-    padding-right: 8px;
 }

@@ -13,37 +13,24 @@
     "custom/cpucat"
   ],
 
+  "modules-center": [
+    "network",
+    "bluetooth",
+    "mpris"
+  ],
+
   "modules-right": [
     "wireplumber",
     "backlight",
     "battery",
-    "mpris",
     "clock",
     "custom/power"
   ],
-
-  "custom/tab": {
-    "format": "[Z]",
-    "on-click": "rofi -show drun"
-  },
 
   "hyprland/workspaces": {
     "format": "{name}",
     "on-click": "activate",
     "sort-by-number": true
-  },
-
-  "mpris": {
-    "format": "  {artist} - {title} ",
-    "format-paused": " 󰐊 {artist} - {title} ",
-    "max-length": 37,
-    "tooltip": true,
-    "player": "spotify"
-  },
-
-  "tray": {
-    "icon-size": 16,
-    "spacing": 6
   },
 
   "custom/cpucat": {
@@ -53,17 +40,63 @@
     "tooltip": true
   },
 
+  "network": {
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󰈀 wired",
+    "format-disconnected": "󰤭 offline",
+    "format-disabled": "󰀝 airplane",
+    "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nIP: {ipaddr}\n󰁅 {bandwidthDownBytes}  󰁝 {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "{ifname}\nIP: {ipaddr}",
+    "tooltip-format-disconnected": "No connection",
+    "max-length": 22,
+    "interval": 5,
+    "on-click": "kitty -e nmtui"
+  },
+
+  "bluetooth": {
+    "format": "󰂯 on",
+    "format-off": "󰂲 off",
+    "format-disabled": "󰂲 off",
+    "format-connected": "󰂱 {device_alias}",
+    "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}  {device_battery_percentage}%",
+    "max-length": 24,
+    "on-click": "kitty -e bluetuith",
+    "on-click-right": "bluetoothctl power toggle"
+  },
+
+  "mpris": {
+  "format": "{player_icon} {artist} - {title}",
+  "format-paused": "{status_icon} {artist} - {title}",
+  "max-length": 30,
+  "player-icons": {
+    "default": "󰝚",
+    "spotify": "󰓇",
+    "firefox": "󰈹",
+    "chromium": "",
+    "mpv": "󰐹",
+    "vlc": "󰕼"
+  },
+  "status-icons": {
+    "paused": "󰏤"
+  },
+  "tooltip-format": "{player}: {artist} - {title}\n{album}",
+  "tooltip-format-paused": "{player} (paused): {artist} - {title}\n{album}",
+  "on-scroll-up": "sh -c 'find /tmp/mskip -mmin -0.013 2>/dev/null | grep -q . || { touch /tmp/mskip; playerctl next; }'",
+  "on-scroll-down": "sh -c 'find /tmp/mskip -mmin -0.013 2>/dev/null | grep -q . || { touch /tmp/mskip; playerctl previous; }'",
+},
+
   "wireplumber": {
-    "scroll-step": 5,
-    "format": " {icon} {volume}%",
+    "scroll-step": 1,
+    "format": "{icon} {volume}%",
     "format-muted": "󰝟 muted",
-    "on-click": "pavucontrol",
+    "on-click": "~/.config/waybar/scripts/volume-slider.sh",
+    "on-click-right": "pavucontrol",
     "format-icons": {
-      "default": [
-        "󰕿",
-        "󰖀",
-        "󰕾"
-      ],
+      "default": ["󰕿", "󰖀", "󰕾"],
       "headphones": "󰋋",
       "headset": "󰋎"
     }
@@ -71,12 +104,10 @@
 
   "backlight": {
     "device": "intel_backlight",
-    "format": " {icon} {percent}% ",
-    "format-icons": [
-      "󰃞",
-      "󰃟",
-      "󰃠"
-    ]
+    "scroll-step": 1,
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-click": "~/.config/waybar/scripts/brightness-slider.sh"
   },
 
   "battery": {
@@ -84,26 +115,20 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon} {capacity}% ",
-    "format-charging": "󰂄 {capacity}% ",
-    "format-plugged": "󱟦 {capacity}% ",
-    "format-full": "󰁹 {capacity}% ",
-    "format-icons": [
-      "󰂎",
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
-    ]
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󱟦 {capacity}%",
+    "format-full": "󰁹 {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
 
   "clock": {
-    "format": "{:%m-%d-%Y    %H:%M} "
+    "format": "{:%m-%d-%Y    %H:%M}"
+  },
+
+  "custom/power": {
+    "format": "󰐥",
+    "tooltip": false,
+    "on-click": "wlogout"
   }
 }
