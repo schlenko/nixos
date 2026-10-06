@@ -97,8 +97,8 @@
     hyprlock
     hyprpicker
     thunar
-    tumbler
-    ffmpegthumbnailer
+      tumbler
+      ffmpegthumbnailer
     kitty
     rofi
     waybar
@@ -123,7 +123,6 @@
     cmake
     bettercap
     bc
-    kdePackages.kcolorchooser
     playerctl
 
     sl
@@ -140,7 +139,6 @@
     zapzap
     telegram-desktop
     spotify
-    timeshift
     discord
   ];
 

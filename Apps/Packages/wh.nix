@@ -29,7 +29,7 @@ pkgs.writeShellApplication {
     echo "Searching Wallhaven for '$query' ($res, $sorting)..."
     curl -fsS -G "https://wallhaven.cc/api/v1/search" \
       --data-urlencode "q=$query" \
-      --data-urlencode "categories=111" \
+      --data-urlencode "categories=100" \
       --data-urlencode "purity=100" \
       --data-urlencode "sorting=$sorting" \
       --data-urlencode "topRange=1y" \
