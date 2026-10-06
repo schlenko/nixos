@@ -24,8 +24,8 @@
       pwr = "cat /sys/class/power_supply/BAT1/capacity";
       wintonix = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
       nixtowin = "sudo scp -r ~/shared twin@192.168.122.4:/C:/Users/";
-      pipes = "pipes.sh 
-      -f 100 -r 0 -B -c 1 -c 2 -c 3 -c 4 -c 5 -c 6 -c 7";
+      pipes = "pipes.sh -f 100 -r 0 -B -c 1 -c 2 -c 3 -c 4 -c 5 -c 6 -c 7";
+      wp = "awtwall";
     };
 
     interactiveShellInit = ''
@@ -97,6 +97,8 @@
     hyprlock
     hyprpicker
     thunar
+    tumbler
+    ffmpegthumbnailer
     kitty
     rofi
     waybar

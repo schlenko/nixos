@@ -3,6 +3,8 @@
     font-weight: 800;
     font-size: 13px;
     color: #C4A7E7;
+    min-height: 0;
+
 }
 
 window#waybar {
@@ -17,18 +19,24 @@ window#waybar > box {
     padding: 0;
 }
 
-/* ---- the three floating islands ---- */
-.modules-left,
-.modules-center,
-.modules-right {
+/* ---- one big floating bar ---- */
+window#waybar > box {
     background: rgba(0, 0, 0, 0.1);
     border: 2px solid #3f3f42;
     border-radius: 20px;
-    padding: 0px 8px;
+    padding: 0px 20px;
+    margin: 3px 10px 0px 10px;
 }
 
-.modules-left  { margin-right: 25px; }
-.modules-right { margin-left: 25px; }
+.modules-left,
+.modules-center,
+.modules-right {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
 
 /* ---- workspaces ---- */
 #workspaces button {
@@ -55,10 +63,12 @@ window#waybar > box {
 #custom-cpucat {
     font-family: "Waycat";
     font-weight: normal;
-    font-size: 26px;
+    font-size: 32px;
     color: #ffffff;
-    padding-left: 8px;
-    padding-right: 8px;
+
+    padding: 0 8px;
+    margin-top: -6px;
+    margin-bottom: -6px;
 }
 
 /* ---- uniform spacing for every module in the center and right islands ---- */
@@ -69,7 +79,7 @@ window#waybar > box {
 #backlight,
 #battery,
 #clock {
-    margin: 0 18px;
+    margin: 0 8px;
     padding: 0;
 }
 
@@ -91,13 +101,13 @@ window#waybar > box {
 
 /* ---- right side ---- */
 #battery.warning {
-    background: rgba(246, 193, 119, 0.15);
-    padding: 1px 4px;
+    background: rgba(244, 246, 119, 0.293);
+    padding: 1px 8px;
 }
 
 #battery.critical {
-    background: rgba(235, 111, 146, 0.18);
-    padding: 1px 4px;
+    background: rgba(255, 0, 72, 0.534);
+    padding: 1px 8px;
 }
 
 #wireplumber.muted {

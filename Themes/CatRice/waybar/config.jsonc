@@ -1,10 +1,10 @@
 {
   "layer": "top",
   "position": "top",
-  "spacing": 3,
+  "spacing": 2,
 
-  "margin-top": 5,
-  "margin-bottom": -11,
+  "margin-top": 3,
+  "margin-bottom": -13,
   "margin-left": 10,
   "margin-right": 10,
 
@@ -23,8 +23,7 @@
     "wireplumber",
     "backlight",
     "battery",
-    "clock",
-    "custom/power"
+    "clock"
   ],
 
   "hyprland/workspaces": {
@@ -113,7 +112,7 @@
   "battery": {
     "states": {
       "warning": 30,
-      "critical": 15
+      "critical": 10
     },
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
@@ -124,11 +123,6 @@
 
   "clock": {
     "format": "{:%m-%d-%Y    %H:%M}"
-  },
-
-  "custom/power": {
-    "format": "󰐥",
-    "tooltip": false,
-    "on-click": "wlogout"
   }
+  
 }
