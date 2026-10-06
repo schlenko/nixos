@@ -20,6 +20,7 @@
   ],
 
   "modules-right": [
+    "pulseaudio#microphone",
     "wireplumber",
     "backlight",
     "battery",
@@ -123,6 +124,22 @@
 
   "clock": {
     "format": "{:%m-%d-%Y    %H:%M}"
-  }
+  },
+
+  "pulseaudio#microphone": {
+  "format": "{format_source}",
+  "format-source": "󰍬 {volume}%",
+  "format-source-muted": "󰍭 muted",
+
+  "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+
+  "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+  "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+
+  "tooltip-format": "Microphone: {source_desc}\nVolume: {volume}%",
+  "tooltip-format-source-muted": "Microphone muted",
+
+  "scroll-step": 5
+}
   
 }

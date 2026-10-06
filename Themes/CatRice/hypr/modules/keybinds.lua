@@ -78,6 +78,8 @@ end)
 
 
 
+
+
 section("binds.workspace.numbers", function()
     local workspaceKeys = {
         { "code:10", 1 },
@@ -107,4 +109,33 @@ section("binds.workspace.numbers", function()
             hl.dsp.window.move({ workspace = ws }),
             { description = "Move to workspace " .. ws })
     end
+end)
+
+section("binds.media", function()
+    -- Volume
+    hl.bind("XF86AudioMute",
+        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+        { description = "Mute volume" })
+
+    hl.bind("XF86AudioLowerVolume",
+        hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+        { description = "Volume down" })
+
+    hl.bind("XF86AudioRaiseVolume",
+        hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),
+        { description = "Volume up" })
+
+    -- Microphone
+    hl.bind("XF86Launch6",
+        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+        { description = "Mute microphone" })
+
+    -- Brightness
+    hl.bind("XF86MonBrightnessDown",
+        hl.dsp.exec_cmd("brightnessctl set 5%-"),
+        { description = "Brightness down" })
+
+    hl.bind("XF86MonBrightnessUp",
+        hl.dsp.exec_cmd("brightnessctl set 5%+"),
+        { description = "Brightness up" })
 end)
