@@ -25,7 +25,7 @@
       wintonix = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
       nixtowin = "sudo scp -r ~/shared twin@192.168.122.4:/C:/Users/";
       pipes = "pipes.sh -f 100 -r 0 -B -c 1 -c 2 -c 3 -c 4 -c 5 -c 6 -c 7";
-      wp = "awtwall##";
+      wp = "awtwall";
     };
 
     interactiveShellInit = ''
