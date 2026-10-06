@@ -124,6 +124,7 @@
     bettercap
     bc
     playerctl
+    lazygit
 
     sl
     asciiquarium
