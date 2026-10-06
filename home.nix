@@ -133,9 +133,6 @@ in
   home.file.".local/share/wallpaper".source =
     themePath + "/wallpaper";
 
-  home.file.".config/gotop".source =
-    themePath + /gotop;
-    
   home.file.".local/share/fonts".source =
     themePath + /font;
 

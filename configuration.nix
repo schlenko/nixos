@@ -3,9 +3,12 @@
 {
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
-  console.keyMap = "de"; 
-  
-  
+
+  console = {
+  keyMap = "de";
+  font = "Lat2-Terminus16";
+  };
+
   services.xserver.xkb = {
     layout = "de";
   };
@@ -97,7 +100,7 @@
     kitty
     rofi
     waybar
-    gotop 
+    mission-center 
 
     git
     gh
