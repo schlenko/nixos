@@ -41,7 +41,7 @@ in
     looking-glass-client
     awtwall
     wh
-    pkgs.awww                      
+    pkgs.swww                      
     pkgs.nerd-fonts.symbols-only
   ];
 
