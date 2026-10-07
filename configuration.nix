@@ -19,7 +19,6 @@
     autosuggestions.enable = true;
 
     shellAliases = {
-      ll = "ls -lah";
       pkmn = "python3 /etc/nixos/Apps/pokemonscript/pokemon-colorscripts.py --random";
       pwr = "cat /sys/class/power_supply/BAT1/capacity";
       wintonix = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
