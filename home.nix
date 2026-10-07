@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 let
   # Change this to switch themes
@@ -9,6 +9,8 @@ let
   wh = pkgs.callPackage ./Apps/Packages/wh.nix { };
   looking-glass-client = pkgs.callPackage ./Apps/Packages/looking-glass-client.nix { };
   awtwall = pkgs.callPackage ./Apps/Packages/awtwall { };
+
+  hyprtasking = inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking;
 in
 {
   home.username = "t";
@@ -42,6 +44,7 @@ in
     awtwall
     wh
     pkgs.swww                      
+    pkgs.swww
     pkgs.nerd-fonts.symbols-only
   ];
 
@@ -74,6 +77,9 @@ in
 
   home.file.".oh-my-zsh/custom/themes".source =
     ./Apps/zsh/themes;
+
+  home.file.".local/share/hypr-plugins/libhyprtasking.so".source =
+    "${hyprtasking}/lib/libhyprtasking.so";
 
   programs.home-manager.enable = true;
 }

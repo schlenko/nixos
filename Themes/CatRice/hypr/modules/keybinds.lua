@@ -111,6 +111,16 @@ section("binds.workspace.numbers", function()
     end
 end)
 
+
+hl.exec_cmd("hyprctl plugin load /home/t/.local/share/hypr-plugins/libhyprtasking.so")
+hl.bind("SUPER + code:49", function() hl.plugin.hyprtasking.toggle("cursor") end)
+
+hl.bind("Escape", function()
+  if hl.plugin.hyprtasking.is_active() then
+    hl.plugin.hyprtasking.toggle("cursor")
+  end
+end)
+
 section("binds.media", function()
     -- Volume
     hl.bind("XF86AudioMute",

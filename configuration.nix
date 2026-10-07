@@ -1,5 +1,4 @@
-{ config, lib, pkgs, ... }:
-
+{ config, lib, pkgs, inputs, ... }:
 {
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -38,6 +37,11 @@
       plugins = [ "git" ];
     };
   };
+
+      nix.settings.substituters = [ "https://hyprland.cachix.org" ];
+      nix.settings.trusted-public-keys = [
+    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
 
   swapDevices = [
     {
@@ -144,11 +148,13 @@
     discord
   ];
 
-    programs.hyprlock.enable = true;
+  programs.hyprlock.enable = true;
 
   programs.hyprland = {
     enable = true;
     withUWSM = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
   services.greetd = {
