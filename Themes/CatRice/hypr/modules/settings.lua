@@ -190,12 +190,6 @@ section("config.gestures", function()
         },
     })
 end)
-local plugin_dir = "/home/t/.local/share/hypr-plugins/"
-
-section("plugins.load", function()
-    safe(hl.plugin.load, plugin_dir .. "libhyprtasking.so")
-    safe(hl.plugin.load, plugin_dir .. "libhyprbars.so")
-end)
 
 section("config.hyprtasking", function()
     hl.config({
