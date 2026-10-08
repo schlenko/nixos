@@ -205,6 +205,8 @@ section("config.hyprtasking", function()
                     enabled = false,
                 },
                 exit_on_hovered = true,
+                border_size = 0,
+                gap_size = 0,
             },
         },
     })
@@ -253,30 +255,42 @@ section("config.hyprbars", function()
 end)
 
 
-section("config.hyprbars.overview_fix", function()
-    local function set_bars(on)
-        hl.config({ plugin = { hyprbars = { enabled = on } } })
+section("config.overview_fix", function()
+    local hidden = false
+
+    local function waybar_toggle()
+        hl.dispatch(hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
+    end
+
+    local function set_ui(visible)
+        hl.config({ plugin = { hyprbars = { enabled = visible } } })
+
+        -- Only signal waybar when its state actually needs to change
+        if visible == hidden then
+            waybar_toggle()
+            hidden = not visible
+        end
     end
 
     -- Use this in your keybinds instead of calling hyprtasking.toggle directly
     function toggle_overview(mode)
         if hl.plugin.hyprtasking.is_active() then
             hl.plugin.hyprtasking.toggle(mode)
-            set_bars(true)
+            set_ui(true)
         else
-            set_bars(false)
+            set_ui(false)
             hl.plugin.hyprtasking.toggle(mode)
         end
     end
 
-    -- Safety net: any exit that bypasses the wrapper (clicking a window,
-    -- switching workspace) turns the bars back on once the overview is closed.
-    local function restore_bars()
+    -- Safety net for exits that bypass the wrapper (clicking a window,
+    -- switching workspace)
+    local function restore_ui()
         if not hl.plugin.hyprtasking.is_active() then
-            set_bars(true)
+            set_ui(true)
         end
     end
 
-    hl.on("window.active", restore_bars)
-    hl.on("workspace.active", restore_bars)
+    hl.on("window.active", restore_ui)
+    hl.on("workspace.active", restore_ui)
 end)
