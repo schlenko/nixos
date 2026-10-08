@@ -64,9 +64,11 @@ section("animations", function()
         { leaf = "fadeLayersIn",  enabled = true, speed = 3.2,  bezier = "almostLinear" },
         { leaf = "fadeLayersOut", enabled = true, speed = 3,    bezier = "almostLinear" },
 
-        { leaf = "workspaces",    enabled = true, speed = 2, bezier = "easeOutQuint", style = "slide" },
-        { leaf = "workspacesIn",  enabled = true, speed = 2, bezier = "easeOutQuint", style = "slide" },
-        { leaf = "workspacesOut", enabled = true, speed = 2, bezier = "easeOutQuint", style = "slide" },
+        { leaf = "workspaces",    enabled = true, speed = 2,    bezier = "easeOutQuint", style = "slide" },
+        { leaf = "workspacesIn",  enabled = true, speed = 3.5,  bezier = "easeOutQuint", style = "slide" },
+        { leaf = "workspacesOut", enabled = true, speed = 4,    bezier = "easeOutQuint", style = "slide" },
+
+        { leaf = "zoomFactor",    enabled = true, speed = 8,    bezier = "quick" },
     }
 
     for _, anim in ipairs(animations) do
