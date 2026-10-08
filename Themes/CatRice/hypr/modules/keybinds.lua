@@ -147,3 +147,12 @@ section("binds.media", function()
         hl.dsp.exec_cmd("brightnessctl set 5%+"),
         { description = "Brightness up" })
 end)
+
+
+section("binds.wayscriber", function()
+hl.bind("SUPER + D",
+hl.dsp.exec_cmd("wayscriber --active"),
+{ description = "Show Wayscriber" })
+
+end)
+

@@ -131,6 +131,7 @@
     playerctl
     lazygit
     fzf
+    wayscriber
 
     sl
     asciiquarium
@@ -154,9 +155,8 @@
     "cdnlfphfngnfhjcnoikfhaomaaflaiie"  
   ];
     extraOpts = {
-     BrowserColorScheme = "dark";
-      BrowserThemeColor = "#181818";
-      BookmarkBarEnabled = false; 
+      BrowserColorScheme = "dark";
+      BrowserThemeColor = "#0D0D12";   
     };
   };
 
