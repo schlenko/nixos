@@ -154,8 +154,9 @@
     "cdnlfphfngnfhjcnoikfhaomaaflaiie"  
   ];
     extraOpts = {
-      BrowserColorScheme = "dark";
-      BrowserThemeColor = "#0D0D12";   
+     BrowserColorScheme = "dark";
+      BrowserThemeColor = "#181818";
+      BookmarkBarEnabled = false; 
     };
   };
 
