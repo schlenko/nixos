@@ -1,0 +1,190 @@
+/* Nemo, styled like the CatRice waybar */
+
+.nemo-window,
+.nemo-window * {
+    font-family: "Chivo", "Symbols Nerd Font", monospace;
+    font-weight: 800;
+    font-size: 13px;
+    color: #C4A7E7;
+}
+
+/* transparent window, so Hyprland blur shows through */
+window.nemo-window,
+.nemo-window .background,
+.nemo-window .view,
+.nemo-window iconview,
+.nemo-window treeview,
+.nemo-window scrolledwindow,
+.nemo-window paned,
+.nemo-window box,
+.nemo-window .sidebar,
+.nemo-window .nemo-places-sidebar {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: none;
+}
+
+/* the one big floating bar look */
+.nemo-window headerbar,
+.nemo-window toolbar,
+.nemo-window .primary-toolbar,
+.nemo-window .path-bar-box {
+    background: rgba(0, 0, 0, 0.1);
+    background-image: none;
+    border: 2px solid #3f3f42;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 3px 10px 3px 10px;
+    padding: 0 12px;
+}
+
+/* buttons (like workspace buttons) */
+.nemo-window button,
+.nemo-window .path-bar button {
+    background: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0 6px;
+    margin: 3px 2px;
+    color: #5b4950;
+}
+
+.nemo-window button:hover {
+    background: #1e1e1e;
+    color: #C4A7E7;
+}
+
+.nemo-window button:checked,
+.nemo-window .path-bar button:last-child {
+    background: transparent;
+    border-bottom: 2px solid #C4A7E7;
+    color: #C4A7E7;
+}
+
+/* sidebar */
+.nemo-window .sidebar {
+    border: 2px solid #3f3f42;
+    border-radius: 0;
+    margin: 3px 0 3px 10px;
+    padding: 6px;
+}
+
+.nemo-window .sidebar row {
+    border-radius: 0;
+    padding: 4px 8px;
+}
+
+.nemo-window .sidebar row:hover {
+    background: #1e1e1e;
+}
+
+.nemo-window .sidebar row:selected {
+    background: transparent;
+    border-bottom: 2px solid #C4A7E7;
+}
+
+/* file view */
+.nemo-window .view:selected,
+.nemo-window iconview:selected,
+.nemo-window treeview:selected {
+    background-color: rgba(196, 167, 231, 0.18);
+    color: #ffffff;
+    border-radius: 0;
+}
+
+.nemo-window .view:hover {
+    background-color: rgba(30, 30, 30, 0.6);
+}
+
+.nemo-window header button,
+.nemo-window treeview header button {
+    background: transparent;
+    border-bottom: 2px solid #3f3f42;
+    color: #C4A7E7;
+}
+
+/* entries (path / search) */
+.nemo-window entry {
+    background: rgba(0, 0, 0, 0.2);
+    border: 2px solid #3f3f42;
+    border-radius: 0;
+    box-shadow: none;
+    color: #C4A7E7;
+}
+
+.nemo-window entry:focus {
+    border-color: #C4A7E7;
+}
+
+/* status bar */
+.nemo-window statusbar,
+.nemo-window .nemo-statusbar {
+    background: transparent;
+    border: none;
+    color: #5b4950;
+}
+
+/* scrollbars */
+.nemo-window scrollbar slider {
+    background: #3f3f42;
+    border-radius: 0;
+    min-width: 6px;
+}
+
+.nemo-window scrollbar slider:hover {
+    background: #C4A7E7;
+}
+
+/* menus + tooltips */
+.nemo-window menu,
+.nemo-window .popup,
+tooltip.background {
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 0;
+}
+
+.nemo-window menuitem:hover {
+    background: rgba(196, 167, 231, 0.18);
+}
+
+tooltip label {
+    color: #e0def4;
+    font-size: 11px;
+}
+
+/* hide the buttons in the status bar (tree/places toggle) */
+.nemo-window statusbar button,
+.nemo-window .nemo-statusbar button {
+    opacity: 0;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    -gtk-icon-source: none;
+}
+
+
+/* no rounded corners anywhere in Nemo */
+window.nemo-window *,
+.nemo-window scrollbar,
+.nemo-window scrollbar slider,
+.nemo-window progressbar,
+.nemo-window progressbar trough,
+.nemo-window progressbar progress,
+.nemo-window switch,
+.nemo-window switch slider,
+.nemo-window check,
+.nemo-window radio,
+.nemo-window notebook tab,
+menu,
+menuitem,
+popover,
+popover.background,
+tooltip.background,
+window.csd,
+decoration {
+    border-radius: 0;
+}

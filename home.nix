@@ -31,15 +31,23 @@ in
     };
   };
 
+  imports = [
+    (themePath + "/gtk-3.0/nemo.nix")
+  ];
+
   qt = {
     enable = true;
     platformTheme.name = "gtk";
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications."inode/directory" = "nemo.desktop";
+  };
+
   dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
+    "org/gnome/desktop/interface".color-scheme = "prefer-dark";   # you already have this one
+    "org/cinnamon/desktop/applications/terminal".exec = "kitty";
   };
 
   home.packages = [
