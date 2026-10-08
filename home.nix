@@ -10,7 +10,10 @@ let
   looking-glass-client = pkgs.callPackage ./Apps/Packages/looking-glass-client.nix { };
   awtwall = pkgs.callPackage ./Apps/Packages/awtwall { };
 
+  # Unpatched. For the SUPER+click patch, wrap this in .overrideAttrs (old: { ... })
   hyprtasking = inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking;
+
+  hasPlugins = inputs ? hyprland-plugins;
 in
 {
   home.username = "t";
@@ -43,7 +46,6 @@ in
     looking-glass-client
     awtwall
     wh
-    pkgs.swww                      
     pkgs.swww
     pkgs.nerd-fonts.symbols-only
   ];
@@ -80,6 +82,10 @@ in
 
   home.file.".local/share/hypr-plugins/libhyprtasking.so".source =
     "${hyprtasking}/lib/libhyprtasking.so";
+
+    home.file.".local/share/hypr-plugins/libhyprbars.so".source =
+  "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars}/lib/libhyprbars.so";
+
 
   programs.home-manager.enable = true;
 }

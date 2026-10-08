@@ -1,5 +1,15 @@
 local section = require("modules.util").section
 
+local util = require("modules.util")
+local section, safe = util.section, util.safe
+
+local plugin_dir = "/home/t/.local/share/hypr-plugins/"
+
+section("plugins.load", function()
+    safe(hl.plugin.load, plugin_dir .. "libhyprtasking.so")
+    safe(hl.plugin.load, plugin_dir .. "libhyprbars.so")
+end)
+
 section("config.general", function()
     hl.config({
         general = {
@@ -180,24 +190,21 @@ section("config.gestures", function()
         },
     })
 end)
+local plugin_dir = "/home/t/.local/share/hypr-plugins/"
+
+section("plugins.load", function()
+    safe(hl.plugin.load, plugin_dir .. "libhyprtasking.so")
+    safe(hl.plugin.load, plugin_dir .. "libhyprbars.so")
+end)
 
 section("config.hyprtasking", function()
     hl.config({
         plugin = {
             hyprtasking = {
-                 gap_size = 0,
-                border_size = 0,
-                bg_color = 0xff000000,
-                exit_on_hovered = true,
                 gestures = {
                     enabled = false,
                 },
-                grid = {
-                    rows = 3,
-                    cols = 3,
-                },
-                border_size = 0,
-
+                exit_on_hovered = true,
             },
         },
     })
@@ -246,43 +253,30 @@ section("config.hyprbars", function()
 end)
 
 
-section("config.overview_fix", function()
-    local hidden = false
-
-    local function waybar_toggle()
-        hl.dispatch(hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
-    end
-
-    local function set_ui(visible)
-        hl.config({ plugin = { hyprbars = { enabled = visible } } })
-
-        -- Only signal waybar when its state actually needs to change
-        if visible == hidden then
-            waybar_toggle()
-            hidden = not visible
-        end
+section("config.hyprbars.overview_fix", function()
+    local function set_bars(on)
+        hl.config({ plugin = { hyprbars = { enabled = on } } })
     end
 
     -- Use this in your keybinds instead of calling hyprtasking.toggle directly
     function toggle_overview(mode)
         if hl.plugin.hyprtasking.is_active() then
             hl.plugin.hyprtasking.toggle(mode)
-            set_ui(true)
+            set_bars(true)
         else
-            set_ui(false)
+            set_bars(false)
             hl.plugin.hyprtasking.toggle(mode)
         end
     end
 
-    -- Safety net for exits that bypass the wrapper (clicking a window,
-    -- switching workspace)
-    local function restore_ui()
+    -- Safety net: any exit that bypasses the wrapper (clicking a window,
+    -- switching workspace) turns the bars back on once the overview is closed.
+    local function restore_bars()
         if not hl.plugin.hyprtasking.is_active() then
-            set_ui(true)
+            set_bars(true)
         end
     end
 
-    hl.on("window.active", restore_ui)
-    hl.on("workspace.active", restore_ui)
+    hl.on("window.active", restore_bars)
+    hl.on("workspace.active", restore_bars)
 end)
-

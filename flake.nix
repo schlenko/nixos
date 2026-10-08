@@ -14,8 +14,13 @@
     hyprtasking = {
       url = "github:raybbian/hyprtasking";
       inputs.hyprland.follows = "hyprland";
-     };
     };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins/v0.56.0";
+      inputs.hyprland.follows = "hyprland";
+    };
+  };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     {
