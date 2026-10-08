@@ -99,11 +99,10 @@
     hyprpaper
     hyprlock
     hyprpicker
-    thunar
+    nemo
       tumbler
       ffmpegthumbnailer
     kitty
-    ghostty
     rofi
     waybar
     mission-center 
