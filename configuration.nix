@@ -106,6 +106,8 @@
     rofi
     waybar
     mission-center 
+   (callPackage ./Apps/Packages/chromium-themed.nix { })
+
 
     git
     gh
@@ -140,12 +142,22 @@
     genact
     fastfetch
 
-    chromium
     zapzap
     telegram-desktop
     spotify
     discord
   ];
+
+   programs.chromium = {
+    enable = true;
+    extensions = [
+    "cdnlfphfngnfhjcnoikfhaomaaflaiie"  
+  ];
+    extraOpts = {
+      BrowserColorScheme = "dark";
+      BrowserThemeColor = "#0D0D12";   
+    };
+  };
 
   programs.hyprlock.enable = true;
 
