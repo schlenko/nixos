@@ -180,3 +180,87 @@ section("config.gestures", function()
         },
     })
 end)
+
+section("config.hyprtasking", function()
+    hl.config({
+        plugin = {
+            hyprtasking = {
+                gestures = {
+                    enabled = false,
+                },
+                exit_on_hovered = true,
+            },
+        },
+    })
+end)
+
+section("config.hyprbars", function()
+    hl.config({
+        plugin = {
+            hyprbars = {
+                bar_height = 24,
+                bar_padding = 4,
+                bar_button_padding = 6,
+                bar_precedence_over_border = true,
+                bar_part_of_window = true,
+
+                bar_color = "rgba(0000001a)",
+                bar_blur = true,
+
+                bar_buttons_alignment = "left",
+
+                bar_text_font = "Chivo",
+                bar_text_weight = 800,
+                bar_text_size = 13,
+                col = { text = "rgba(c4a7e7ff)" },
+
+                icon_on_hover = false,
+            },
+        },
+    })
+
+    hl.plugin.hyprbars.add_button({
+        bg_color = "rgba(00000000)",
+        fg_color = "rgba(c4a7e7ff)",
+        size = 18,
+        icon = "×",
+        action = [[hyprctl dispatch 'hl.dsp.window.close()']],
+    })
+
+    hl.plugin.hyprbars.add_button({
+        bg_color = "rgba(00000000)",
+        fg_color = "rgba(c4a7e7ff)",
+        size = 18,
+        icon = "□",
+        action = [[hyprctl dispatch 'hl.dsp.window.fullscreen()']],
+    })
+end)
+
+
+section("config.hyprbars.overview_fix", function()
+    local function set_bars(on)
+        hl.config({ plugin = { hyprbars = { enabled = on } } })
+    end
+
+    -- Use this in your keybinds instead of calling hyprtasking.toggle directly
+    function toggle_overview(mode)
+        if hl.plugin.hyprtasking.is_active() then
+            hl.plugin.hyprtasking.toggle(mode)
+            set_bars(true)
+        else
+            set_bars(false)
+            hl.plugin.hyprtasking.toggle(mode)
+        end
+    end
+
+    -- Safety net: any exit that bypasses the wrapper (clicking a window,
+    -- switching workspace) turns the bars back on once the overview is closed.
+    local function restore_bars()
+        if not hl.plugin.hyprtasking.is_active() then
+            set_bars(true)
+        end
+    end
+
+    hl.on("window.active", restore_bars)
+    hl.on("workspace.active", restore_bars)
+end)
