@@ -207,6 +207,8 @@ section("config.hyprtasking", function()
                 exit_on_hovered = true,
                 border_size = 0,
                 gap_size = 0,
+                bg_color = 0xff000000,
+
             },
         },
     })
