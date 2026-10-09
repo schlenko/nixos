@@ -22,7 +22,6 @@
       wintonix = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
       nixtowin = "sudo scp -r ~/shared twin@192.168.122.4:/C:/Users/";
       pipes = "pipes.sh -f 100 -r 0 -B -c 1 -c 2 -c 3 -c 4 -c 5 -c 6 -c 7";
-      wp = ''dir="$HOME/Pictures/Best"; choice="$(find "$dir" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' -o -iname '*.jpeg' \) | shuf -n 1)"; [ -n "$choice" ] && awww img "$choice" --transition-type wipe --transition-angle 135 --transition-duration 0.8 --transition-fps 60'';
     };
 
     interactiveShellInit = ''
