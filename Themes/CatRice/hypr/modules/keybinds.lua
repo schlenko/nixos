@@ -30,6 +30,17 @@ section("binds.window", function()
         { description = "Toggle fullscreen" })
 
 
+    section("binds.wayscriber", function()
+        hl.bind("SUPER + D",
+        hl.dsp.exec_cmd("wayscriber --active"),
+        { description = "Show Wayscriber" })
+
+        end)
+
+    hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("rofi-wall"),
+        { description = "Wallpaper picker" })
+
+
     hl.bind(mainMod .. " + LEFT",  hl.dsp.focus({ direction = "left" }),  { description = "Focus left" })
     hl.bind(mainMod .. " + RIGHT", hl.dsp.focus({ direction = "right" }), { description = "Focus right" })
     hl.bind(mainMod .. " + UP",    hl.dsp.focus({ direction = "up" }),    { description = "Focus up" })
@@ -155,4 +166,7 @@ hl.dsp.exec_cmd("wayscriber --active"),
 { description = "Show Wayscriber" })
 
 end)
+
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("rofi-wall"),
+    { description = "Wallpaper picker" })
 

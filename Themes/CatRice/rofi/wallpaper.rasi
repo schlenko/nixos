@@ -1,0 +1,63 @@
+@import "tokyo"
+
+* {
+    background-color: transparent;
+    text-color: @fg0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    location: center;
+    width: 900px;
+    border: 2px;
+    border-color: #C3A5E6;
+    background-color: #1B1D2E;
+}
+
+mainbox {
+    padding: 12px;
+    spacing: 10px;
+    children: [ inputbar, listview ];
+    background-color: transparent;
+}
+
+inputbar {
+    padding: 8px 16px;
+    spacing: 8px;
+    background-color: #302037;
+    children: [ prompt, entry ];
+}
+
+prompt { text-color: @cyan; }
+entry  { placeholder: "search"; placeholder-color: @cyan; }
+
+listview {
+    columns: 3;
+    lines: 3;
+    spacing: 10px;
+    fixed-height: true;
+    background-color: transparent;
+}
+
+element {
+    orientation: vertical;
+    padding: 8px;
+    spacing: 6px;
+    background-color: transparent;
+}
+
+element selected.normal {
+    background-color: rgba(138, 120, 170, 0.30);
+}
+
+element-icon {
+    size: 200px;
+    horizontal-align: 0.5;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    text-color: inherit;
+}

@@ -9,8 +9,9 @@ let
   wh = pkgs.callPackage ./Apps/Packages/wh.nix { };
   looking-glass-client = pkgs.callPackage ./Apps/Packages/looking-glass-client.nix { };
   awtwall = pkgs.callPackage ./Apps/Packages/awtwall { };
+  rofi-wall = pkgs.callPackage ./Apps/Packages/rofi-wall.nix { };
 
-  # Unpatched. For the SUPER+click patch, wrap this in .overrideAttrs (old: { ... })
+
   hyprtasking = inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking;
 
   hasPlugins = inputs ? hyprland-plugins;
@@ -52,9 +53,9 @@ in
 
   home.packages = [
     looking-glass-client
-    awtwall
+    rofi-wall
     wh
-    pkgs.swww
+    pkgs.awww
     pkgs.nerd-fonts.symbols-only
   ];
 
