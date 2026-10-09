@@ -46,9 +46,19 @@ in
   };
 
   dconf.settings = {
-    "org/gnome/desktop/interface".color-scheme = "prefer-dark";   # you already have this one
-    "org/cinnamon/desktop/applications/terminal".exec = "kitty";
+  "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
+  "org/cinnamon/desktop/default-applications/terminal" = {
+      exec = "kitty";
+      exec-arg = "";
+    };
+
+    "org/nemo/preferences" = {
+      show-image-thumbnails = "always";
+      thumbnail-limit = lib.hm.gvariant.mkUint64 104857600;  # 100 MB
+      enable-delete = true;
   };
+};
 
   home.packages = [
     looking-glass-client

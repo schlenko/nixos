@@ -27,7 +27,7 @@ end)
 section("config.decoration", function()
     hl.config({
         decoration = {
-            rounding = 3,
+            rounding = 5,
             active_opacity = 1.0,
             inactive_opacity = 1.0,
             blur = {
