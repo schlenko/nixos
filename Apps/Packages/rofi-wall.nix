@@ -48,7 +48,8 @@ choice=$(menu | rofi -dmenu -i -show-icons \
 awww img "$dir/$choice" \
   --transition-type wipe \
   --transition-angle 135 \
-  --transition-duration 0.8
+  --transition-duration 0.8 \
+  --transition-fps 60
 
 '';
 }
