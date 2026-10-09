@@ -15,7 +15,9 @@
 
     "org/nemo/preferences" = {
       default-folder-viewer = "list-view";   # always list view
-      show-location-entry = true;            # editable path, no breadcrumbs
+      show-location-entry = true; 
+        show-hidden-files = true;   # always show dotfiles
+                 # editable path, no breadcrumbs
 
       # remove toolbar buttons
       show-icon-view-icon-toolbar = false;
@@ -29,5 +31,6 @@
         start-with-menu-bar = false;
         side-pane-view = "places";   # always Places, never Tree
     };
+    
   };
 }
