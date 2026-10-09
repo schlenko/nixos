@@ -8,7 +8,6 @@ let
 
   wh = pkgs.callPackage ./Apps/Packages/wh.nix { };
   looking-glass-client = pkgs.callPackage ./Apps/Packages/looking-glass-client.nix { };
-  awtwall = pkgs.callPackage ./Apps/Packages/awtwall { };
   rofi-wall = pkgs.callPackage ./Apps/Packages/rofi-wall.nix { };
 
 
