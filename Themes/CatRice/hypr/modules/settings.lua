@@ -24,18 +24,28 @@ section("config.general", function()
     })
 end)
 
+
 section("config.decoration", function()
     hl.config({
         decoration = {
             rounding = 5,
             active_opacity = 1.0,
             inactive_opacity = 1.0,
+
             blur = {
                 enabled = true,
                 size = 5,
-                passes = 4,
+                passes = 3,
                 new_optimizations = true,
                 xray = false,
+                ignore_opacity = true,
+                noise = 0.02,
+                contrast = 1.0,
+                brightness = 0.5,
+                vibrancy = 1.1,
+                vibrancy_darkness = 0.1,
+                popups = true,
+                special = false,
             },
         },
     })
