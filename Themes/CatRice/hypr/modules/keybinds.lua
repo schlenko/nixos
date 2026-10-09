@@ -51,7 +51,7 @@ section("binds.mouse", function()
     hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),
         { description = "Move window", mouse = true })
 
-    hl.bind(mainMod .. " + SHIFT + mouse:272", hl.dsp.window.resize(),
+    hl.bind(mainMod .. " + ALT + mouse:272", hl.dsp.window.resize(),
         { description = "Resize window", mouse = true })
 end)
 

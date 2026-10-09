@@ -46,7 +46,8 @@ choice=$(menu | rofi -dmenu -i -show-icons \
 [ -n "$choice" ] || exit 0
 
 awww img "$dir/$choice" \
-  --transition-type grow \
+  --transition-type wipe \
+  --transition-angle 135 \
   --transition-duration 0.8
 
 '';
