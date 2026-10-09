@@ -6,6 +6,7 @@ configuration {
     drun-match-fields: "name";
     display-run: "menu:";
     display-drun: "Launch:";
+
 }
 
 * {
