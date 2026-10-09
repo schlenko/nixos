@@ -124,12 +124,6 @@ end)
 
 hl.bind("SUPER + code:49", function() toggle_overview("cursor") end)
 
-hl.bind("Escape", function()
-  if hl.plugin.hyprtasking.is_active() then
-    toggle_overview("cursor")
-  end
-end)
-
 section("binds.media", function()
     -- Volume
     hl.bind("XF86AudioMute",
