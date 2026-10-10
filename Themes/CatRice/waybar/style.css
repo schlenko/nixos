@@ -78,6 +78,7 @@ window#waybar > box {
 #wireplumber,
 #backlight,
 #battery,
+#custom-notification,
 #clock {
     margin: 0 8px;
     padding: 0;

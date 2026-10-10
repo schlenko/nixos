@@ -1,0 +1,44 @@
+{
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+  "control-center-layer": "top",
+  "control-center-width": 400,
+  "control-center-margin-top": 10,
+  "control-center-margin-right": 10,
+  "control-center-margin-bottom": 40,
+  "notification-window-width": 360,
+  "timeout": 6,
+  "timeout-low": 3,
+  "timeout-critical": 0,
+  "fit-to-screen": false,
+  "hide-on-clear": false,
+  "hide-on-action": true,
+  "script-fail-notify": false,
+  "transition-time": 0,
+
+  "scripts": {
+    "log": {
+      "exec": "bash ~/.config/swaync/scripts/log-notif.sh",
+      "app-name": ".*"
+    }
+  },
+
+  "widgets": ["title", "dnd", "buttons-grid", "notifications"],
+  "widget-config": {
+    "title": {
+      "text": "Notifications",
+      "clear-all-button": true,
+      "button-text": "Clear all"
+    },
+    "dnd": {
+      "text": "Do not disturb"
+    },
+    "buttons-grid": {
+      "actions": [
+        { "label": "󰆏  History", "command": "notif-history" },
+        { "label": "󰅍  Copy last", "command": "copy-notif" }
+      ]
+    }
+  }
+}

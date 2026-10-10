@@ -12,7 +12,7 @@ section("layer rules", function()
         { match = { namespace = "com.aurora.keybinds_help" },   blur = true, ignore_alpha = 0 },
         { match = { namespace = "logout_dialog" },              blur = true, ignore_alpha = 0 },
         { match = { namespace = "waybar" },                     blur = true, ignore_alpha = 0 },
-
+        { match = { namespace = "swaync-notification-window" }, blur = true, ignore_alpha = 0, animation = "slide right" },
     }
     for _, rule in ipairs(rules) do
         safe(hl.layer_rule, rule)

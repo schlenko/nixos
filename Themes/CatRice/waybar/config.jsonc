@@ -19,11 +19,12 @@
     "mpris"
   ],
 
-  "modules-right": [
+   "modules-right": [
     "pulseaudio#microphone",
     "wireplumber",
     "backlight",
     "battery",
+    "custom/notification",
     "clock"
   ],
 
@@ -140,6 +141,22 @@
   "tooltip-format-source-muted": "Microphone muted",
 
   "scroll-step": 5
-}
+},
+
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂛",
+      "dnd-none": "󰪑"
+    },
+    "return-type": "json",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
   
 }
