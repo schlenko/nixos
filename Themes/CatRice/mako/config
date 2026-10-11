@@ -1,0 +1,82 @@
+# Font / text (same as waybar)
+font=Chivo ExtraBold 10
+text-color=#C4A7E7
+markup=1
+format=<b>%s</b>\n%b
+
+# Box: matches waybar's floating bar
+background-color=#0000001a
+border-color=#3f3f42
+border-size=2
+border-radius=20
+padding=12,18
+width=340
+height=150
+
+# Placement: top right, below the bar
+anchor=top-right
+margin=45,10,0,10
+layer=overlay
+outer-margin=0
+
+# Icons
+icons=1
+max-icon-size=40
+icon-border-radius=10
+
+# Behaviour
+default-timeout=5000
+ignore-timeout=0
+group-by=app-name
+max-visible=5
+sort=-time
+
+# Progress bars (volume/brightness notifications)
+progress-color=over #C4A7E7
+
+# Plasma sound on every notification
+on-notify=exec notify-sound message-new-instant
+
+[urgency=low]
+text-color=#C4A7E755
+border-color=#3f3f4288
+default-timeout=3000
+
+[urgency=critical]
+border-color=#ff5577
+text-color=#ff5577
+default-timeout=0
+on-notify=exec notify-sound dialog-warning
+
+[app-name=Spotify]
+border-color=#C3A5E6
+
+# Rebuild: the script plays its own sounds
+[app-name=rebuild]
+border-color=#57e389
+default-timeout=8000
+on-notify=none
+
+# Must come after the section above so failures stay red
+[app-name=rebuild urgency=critical]
+border-color=#ff5577
+text-color=#ff5577
+default-timeout=0
+on-notify=none
+
+# Battery: the script plays its own sounds
+[app-name=battery]
+border-color=#C4A7E7
+default-timeout=6000
+on-notify=none
+
+# Must come after the section above so critical battery alerts stay red
+[app-name=battery urgency=critical]
+border-color=#ff5577
+text-color=#ff5577
+default-timeout=0
+on-notify=none
+
+[mode=do-not-disturb]
+invisible=1
+on-notify=none

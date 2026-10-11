@@ -168,3 +168,5 @@ hl.bind(mainMod .. "+ SHIFT + W",
     hl.dsp.exec_cmd([[dir="$HOME/Pictures/Best"; choice="$(find "$dir" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' -o -iname '*.jpeg' \) | shuf -n 1)"; [ -n "$choice" ] && awww img "$choice" --transition-type wipe --transition-angle 135 --transition-duration 0.8 --transition-fps 60]]),
     { description = "Random wallpaper" })
 
+hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"),
+    { description = "Switch keyboard layout" })

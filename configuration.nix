@@ -88,6 +88,8 @@
     "flakes"
   ];
 
+    services.upower.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "25.11";
@@ -103,11 +105,13 @@
         libavif                # avif
         libheif                # heic/heif
         libjxl                 # jxl
-      ffmpegthumbnailer
+        ffmpegthumbnailer
     kitty
     rofi
     waybar
     mission-center 
+    mako
+    libnotify
    (callPackage ./Apps/Packages/chromium-themed.nix { })
 
 

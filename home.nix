@@ -3,13 +3,14 @@
 let
   # Change this to switch themes
   theme = "CatRice";
-
   themePath = ./Themes + "/${theme}";
 
   wh = pkgs.callPackage ./Apps/Packages/wh.nix { };
   looking-glass-client = pkgs.callPackage ./Apps/Packages/looking-glass-client.nix { };
   rofi-wall = pkgs.callPackage ./Apps/Packages/rofi-wall.nix { };
 
+  mako-tools = pkgs.callPackage ./Themes/CatRice/mako/tools.nix { };
+   inherit (mako-tools) notify-sound battery-notify nixos-rebuild-notify;
 
   hyprtasking = inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking;
 
@@ -46,27 +47,47 @@ in
   };
 
   dconf.settings = {
-  "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    "org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
-  "org/cinnamon/desktop/default-applications/terminal" = {
+    "org/cinnamon/desktop/default-applications/terminal" = {
       exec = "kitty";
       exec-arg = "";
     };
 
     "org/nemo/preferences" = {
       show-image-thumbnails = "always";
-      thumbnail-limit = lib.hm.gvariant.mkUint64 104857600;  # 100 MB
+      thumbnail-limit = lib.hm.gvariant.mkUint64 104857600; # 100 MB
       enable-delete = true;
+    };
   };
-};
 
   home.packages = [
     looking-glass-client
-    rofi-wall
     wh
+    rofi-wall
+    notify-sound
+    battery-notify
+    nixos-rebuild-notify
+    pkgs.mako
+    pkgs.libnotify
     pkgs.awww
     pkgs.nerd-fonts.symbols-only
   ];
+
+  # Battery notifications: event-driven script run as a user service
+  systemd.user.services.battery-notify = {
+    Unit = {
+      Description = "Battery notifications";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${battery-notify}/bin/battery-notify";
+      Restart = "on-failure";
+      RestartSec = 3;
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
 
   home.file.".config/hypr".source =
     themePath + "/hypr";
@@ -89,6 +110,9 @@ in
   home.file.".local/share/fonts".source =
     themePath + /font;
 
+  home.file.".config/mako".source =
+    themePath + "/mako";
+
   home.file.".config/looking-glass".source =
     ./Apps/looking-glass;
 
@@ -101,9 +125,8 @@ in
   home.file.".local/share/hypr-plugins/libhyprtasking.so".source =
     "${hyprtasking}/lib/libhyprtasking.so";
 
-    home.file.".local/share/hypr-plugins/libhyprbars.so".source =
-  "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars}/lib/libhyprbars.so";
-
+  home.file.".local/share/hypr-plugins/libhyprbars.so".source =
+    "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars}/lib/libhyprbars.so";
 
   programs.home-manager.enable = true;
 }

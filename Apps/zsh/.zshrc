@@ -21,3 +21,13 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=183'
 # Comments
 ZSH_HIGHLIGHT_STYLES[comment]='fg=97'
 
+# Notify on `sudo nixos-rebuild ...`; everything else goes to the real sudo
+sudo() {
+  if [[ "$1" == nixos-rebuild ]]; then
+    shift
+    nixos-rebuild-notify "$@"
+  else
+    command sudo "$@"
+  fi
+}
+
