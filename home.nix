@@ -1,15 +1,12 @@
 { config, pkgs, lib, inputs, ... }:
 
 let
-  # Change this to switch themes
-  theme = "CatRice";
-  themePath = ./Themes + "/${theme}";
+  appsPath = ./Apps;
 
-  wh = pkgs.callPackage ./Apps/Packages/wh.nix { };
-  looking-glass-client = pkgs.callPackage ./Apps/Packages/looking-glass-client.nix { };
-  rofi-wall = pkgs.callPackage ./Apps/Packages/rofi-wall.nix { };
-
-  mako-tools = pkgs.callPackage ./Themes/CatRice/mako/tools.nix { };
+  wh = pkgs.callPackage (appsPath + "/Packages/wh.nix") { };
+  looking-glass-client = pkgs.callPackage (appsPath + "/Packages/looking-glass-client.nix") { };
+  rofi-wall = pkgs.callPackage (appsPath + "/Packages/rofi-wall.nix") { };
+  mako-tools = pkgs.callPackage (appsPath + "/mako/tools.nix") { };
    inherit (mako-tools) notify-sound battery-notify nixos-rebuild-notify;
 
   hyprtasking = inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking;
@@ -33,7 +30,7 @@ in
   };
 
   imports = [
-    (themePath + "/gtk-3.0/nemo.nix")
+    (appsPath + "/gtk-3.0/nemo.nix")
   ];
 
   qt = {
@@ -90,40 +87,40 @@ in
   };
 
   home.file.".config/hypr".source =
-    themePath + "/hypr";
+    appsPath + "/hypr";
 
   home.file.".config/kitty".source =
-    themePath + "/kitty";
+    appsPath + "/kitty";
 
   home.file.".config/rofi".source =
-    themePath + "/rofi";
+    appsPath + "/rofi";
 
   home.file.".config/waybar".source =
-    themePath + "/waybar";
+    appsPath + "/waybar";
 
   home.file.".config/gtk-3.0".source =
-    themePath + "/gtk-3.0";
+    appsPath + "/gtk-3.0";
 
   home.file.".local/share/wallpaper".source =
-    themePath + "/wallpaper";
+    appsPath + "/wallpaper";
 
   home.file.".local/share/fonts".source =
-    themePath + /font;
+    appsPath + /font;
 
   home.file.".config/mako".source =
-    themePath + "/mako";
+    appsPath + "/mako";
 
   home.file.".config/looking-glass".source =
-    ./Apps/looking-glass;
+    appsPath + /looking-glass;
 
   home.file.".config/eww".source =
-    ./Apps/eww;
+    appsPath + /eww;
 
   home.file.".zshrc".source =
-    ./Apps/zsh/.zshrc;
+    appsPath + /zsh/.zshrc;
 
   home.file.".oh-my-zsh/custom/themes".source =
-    ./Apps/zsh/themes;
+    appsPath + /zsh/themes;
 
   home.file.".local/share/hypr-plugins/libhyprtasking.so".source =
     "${hyprtasking}/lib/libhyprtasking.so";
