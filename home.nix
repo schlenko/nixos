@@ -116,6 +116,9 @@ in
   home.file.".config/looking-glass".source =
     ./Apps/looking-glass;
 
+  home.file.".config/eww".source =
+    ./Apps/eww;
+
   home.file.".zshrc".source =
     ./Apps/zsh/.zshrc;
 

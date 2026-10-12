@@ -109,6 +109,7 @@
     kitty
     rofi
     waybar
+    eww
     mission-center 
     mako
     libnotify
