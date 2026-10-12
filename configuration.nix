@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, pkgs-unstable, inputs, ... }:
 {
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -18,6 +18,7 @@
     autosuggestions.enable = true;
 
     shellAliases = {
+      apps = "/etc/nixos/Apps/chromium-wrapper/launch.sh";
       pkmn = "python3 /etc/nixos/Apps/pokemonscript/pokemon-colorscripts.py --random";
       wintonix = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
       nixtowin = "sudo scp -r ~/shared twin@192.168.122.4:/C:/Users/";
@@ -45,7 +46,8 @@
   swapDevices = [
     {
       device = "/var/lib/swapfile";
-      size = 16 * 1024;
+      size = 8 * 1024;
+      priority = 0;
     }
   ];
 
@@ -139,6 +141,8 @@
     lazygit
     fzf
     wayscriber
+    imagemagick 
+    papirus-icon-theme
     awww
 
 
@@ -150,12 +154,9 @@
     cmatrix
     nyancat
     genact
-    fastfetch
+    pkgs-unstable.fastfetch
+    pkgs-unstable.fetch
 
-    zapzap
-    telegram-desktop
-    spotify
-    discord
   ];
 
    programs.chromium = {

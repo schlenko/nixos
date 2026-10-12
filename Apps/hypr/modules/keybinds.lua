@@ -170,3 +170,6 @@ hl.bind(mainMod .. "+ SHIFT + W",
 
 hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"),
     { description = "Switch keyboard layout" })
+
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("/etc/nixos/Apps/chromium-wrapper/launch.sh"),
+    { description = "Chromium Apps Sidebar" })

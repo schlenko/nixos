@@ -1,5 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
-
+{ config, lib, pkgs, pkgs-unstable, inputs, ... }:
 let
   appsPath = ./Apps;
 
@@ -112,9 +111,6 @@ in
 
   home.file.".config/looking-glass".source =
     appsPath + /looking-glass;
-
-  home.file.".config/eww".source =
-    appsPath + /eww;
 
   home.file.".zshrc".source =
     appsPath + /zsh/.zshrc;
