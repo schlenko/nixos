@@ -69,5 +69,4 @@ section("gestures", function()
             end,
         },
     })
-
 end)
