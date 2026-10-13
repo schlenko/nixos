@@ -3,7 +3,7 @@ local section, safe, exec = util.section, util.safe, util.exec
 
 section("gestures", function()
 
-    -- 3 fingers left/right: switch workspace (native swipe, follows fingers)
+    -- 3 fingers left/right: switch workspace
     safe(hl.gesture, {
         fingers = 3,
         direction = "horizontal",
@@ -26,28 +26,48 @@ section("gestures", function()
         end,
     })
 
-    -- 4 fingers up/down: volume
-    safe(hl.gesture, {
-        fingers = 4,
-        direction = "up",
-        action = function()
-            exec("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+")
-        end,
-    })
+    -- 4 fingers: smooth, continuous volume control
+    -- Move up to increase volume; move down to decrease it.
+    local sensitivity = 5
+    local movement = 0
 
     safe(hl.gesture, {
         fingers = 4,
-        direction = "down",
-        action = function()
-            exec("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
-        end,
-    })
+        direction = "vertical",
 
-    -- 4 finger pinch in: close window
-    safe(hl.gesture, {
-        fingers = 4,
-        direction = "pinchin",
-        action = "close",
+        action = {
+            start = function(e)
+                movement = 0
+            end,
+
+            update = function(e)
+                -- Up is negative delta.y; down is positive.
+                movement = movement - e.delta.y
+
+                -- Convert movement into small volume increments.
+                local steps = math.floor(movement / sensitivity)
+
+                if steps ~= 0 then
+                    movement = movement - steps * sensitivity
+
+                    if steps > 0 then
+                        exec(
+                            "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ "
+                            .. steps .. "%+"
+                        )
+                    else
+                        exec(
+                            "wpctl set-volume @DEFAULT_AUDIO_SINK@ "
+                            .. math.abs(steps) .. "%-"
+                        )
+                    end
+                end
+            end,
+
+            finish = function(e)
+                movement = 0
+            end,
+        },
     })
 
 end)
