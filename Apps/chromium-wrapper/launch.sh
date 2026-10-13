@@ -45,8 +45,11 @@ choice="$(
   done | rofi -dmenu -i -show-icons -format i -p "Apps" -theme "$THEME"
 )" || exit 0
 
+
 exec chromium \
   --user-data-dir="$PROFILE" \
-  --no-first-run --no-default-browser-check \
+  --no-first-run \
+  --no-default-browser-check \
   --ozone-platform-hint=auto \
+  --enable-features=WebNotifications \
   --app="${urls[$choice]}"

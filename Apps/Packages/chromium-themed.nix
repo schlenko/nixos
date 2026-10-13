@@ -27,6 +27,8 @@ let
   });
 in
 pkgs.chromium.override {
+  enableWideVine = true;
+
   commandLineArgs = [
     "--ozone-platform=wayland"
     "--load-extension=${theme}"

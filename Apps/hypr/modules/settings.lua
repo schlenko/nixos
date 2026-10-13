@@ -214,6 +214,11 @@ section("config.hyprtasking", function()
                 gap_size = 0,
                 bg_color = 0xff000000,
 
+               grid = {
+                    rows = 2,
+                    cols = 2,
+                },
+
             },
         },
     })
