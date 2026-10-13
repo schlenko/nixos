@@ -1,21 +1,24 @@
-local section = require("modules.util").section
-
 local util = require("modules.util")
 local section, safe = util.section, util.safe
 
 local plugin_dir = "/home/t/.local/share/hypr-plugins/"
 
+
+-- Plugins
 section("plugins.load", function()
     safe(hl.plugin.load, plugin_dir .. "libhyprtasking.so")
     safe(hl.plugin.load, plugin_dir .. "libhyprbars.so")
 end)
 
+
+-- General
 section("config.general", function()
     hl.config({
         general = {
             border_size = 2,
             resize_on_border = true,
             layout = "dwindle",
+
             col = {
                 active_border = "rgb(C3A5E6)",
                 inactive_border = "rgb(3F3F42)",
@@ -25,6 +28,7 @@ section("config.general", function()
 end)
 
 
+-- Decoration
 section("config.decoration", function()
     hl.config({
         decoration = {
@@ -51,6 +55,8 @@ section("config.decoration", function()
     })
 end)
 
+
+-- Input
 section("config.input", function()
     hl.config({
         input = {
@@ -88,6 +94,8 @@ section("config.input", function()
     })
 end)
 
+
+-- Dwindle layout
 section("config.dwindle", function()
     hl.config({
         dwindle = {
@@ -103,6 +111,8 @@ section("config.dwindle", function()
     })
 end)
 
+
+-- Master layout
 section("config.master", function()
     hl.config({
         master = {
@@ -120,6 +130,8 @@ section("config.master", function()
     })
 end)
 
+
+-- Miscellaneous
 section("config.misc", function()
     hl.config({
         misc = {
@@ -141,6 +153,8 @@ section("config.misc", function()
     })
 end)
 
+
+-- Binds behavior
 section("config.binds", function()
     hl.config({
         binds = {
@@ -151,6 +165,8 @@ section("config.binds", function()
     })
 end)
 
+
+-- XWayland
 section("config.xwayland", function()
     hl.config({
         xwayland = {
@@ -160,6 +176,8 @@ section("config.xwayland", function()
     })
 end)
 
+
+-- Rendering
 section("config.render", function()
     hl.config({
         render = {
@@ -168,6 +186,8 @@ section("config.render", function()
     })
 end)
 
+
+-- Cursor
 section("config.cursor", function()
     hl.config({
         cursor = {
@@ -191,17 +211,21 @@ section("config.cursor", function()
     })
 end)
 
+
+-- Gestures
 section("config.gestures", function()
     hl.config({
         gestures = {
             workspace_swipe_invert = false,
-            workspace_swipe_forever = true,   
-            workspace_swipe_distance = 100,   
-            workspace_swipe_create_new = false, 
+            workspace_swipe_forever = true,
+            workspace_swipe_distance = 100,
+            workspace_swipe_create_new = false,
         },
     })
 end)
 
+
+-- Hyprtasking
 section("config.hyprtasking", function()
     hl.config({
         plugin = {
@@ -209,21 +233,23 @@ section("config.hyprtasking", function()
                 gestures = {
                     enabled = false,
                 },
+
                 exit_on_hovered = true,
                 border_size = 0,
                 gap_size = 0,
                 bg_color = 0xff000000,
 
-               grid = {
+                grid = {
                     rows = 2,
                     cols = 2,
                 },
-
             },
         },
     })
 end)
 
+
+-- Hyprbars
 section("config.hyprbars", function()
     hl.config({
         plugin = {
@@ -236,19 +262,22 @@ section("config.hyprbars", function()
 
                 bar_color = "rgba(0000001a)",
                 bar_blur = true,
-
                 bar_buttons_alignment = "left",
 
                 bar_text_font = "Chivo",
                 bar_text_weight = 800,
                 bar_text_size = 13,
-                col = { text = "rgba(c4a7e7ff)" },
+
+                col = {
+                    text = "rgba(c4a7e7ff)",
+                },
 
                 icon_on_hover = false,
             },
         },
     })
 
+    -- Close button
     hl.plugin.hyprbars.add_button({
         bg_color = "rgba(00000000)",
         fg_color = "rgba(c4a7e7ff)",
@@ -257,6 +286,7 @@ section("config.hyprbars", function()
         action = [[hyprctl dispatch 'hl.dsp.window.close()']],
     })
 
+    -- Fullscreen button
     hl.plugin.hyprbars.add_button({
         bg_color = "rgba(00000000)",
         fg_color = "rgba(c4a7e7ff)",
@@ -267,24 +297,31 @@ section("config.hyprbars", function()
 end)
 
 
+-- Overview UI synchronization
 section("config.overview_fix", function()
     local hidden = false
 
     local function waybar_toggle()
-        hl.dispatch(hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
+        hl.dispatch(
+            hl.dsp.exec_cmd("pkill -SIGUSR1 waybar")
+        )
     end
 
     local function set_ui(visible)
-        hl.config({ plugin = { hyprbars = { enabled = visible } } })
+        hl.config({
+            plugin = {
+                hyprbars = {
+                    enabled = visible,
+                },
+            },
+        })
 
-        -- Only signal waybar when its state actually needs to change
         if visible == hidden then
             waybar_toggle()
             hidden = not visible
         end
     end
 
-    -- Use this in your keybinds instead of calling hyprtasking.toggle directly
     function toggle_overview(mode)
         if hl.plugin.hyprtasking.is_active() then
             hl.plugin.hyprtasking.toggle(mode)
@@ -295,8 +332,6 @@ section("config.overview_fix", function()
         end
     end
 
-    -- Safety net for exits that bypass the wrapper (clicking a window,
-    -- switching workspace)
     local function restore_ui()
         if not hl.plugin.hyprtasking.is_active() then
             set_ui(true)
