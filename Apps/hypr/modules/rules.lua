@@ -3,7 +3,7 @@ local section, safe = util.section, util.safe
 
 section("layer rules", function()
     local rules = {
-        { match = { namespace = "rofi" },                       blur = true, ignore_alpha = 0, animation = "popin" },
+        { match = { namespace = "rofi" },                       blur = true, ignore_alpha = 0, animation = "slide" },
         { match = { namespace = "notifications" },              blur = true, ignore_alpha = 0, animation = "slide" },
         { match = { namespace = "wallpaper" },                  blur = true, ignore_alpha = 0 },
         { match = { namespace = "swaync-notification-window" }, blur = true, ignore_alpha = 0 },

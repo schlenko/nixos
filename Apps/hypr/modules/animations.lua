@@ -49,6 +49,20 @@ section("curves", function()
     stiffness = 1600,
     dampening = 62,
     })
+
+    safe(hl.curve, "snapnobounce", {
+    type = "spring",
+    mass = 1,
+    stiffness = 1600,
+    dampening = 80,   -- 2*sqrt(1600): no overshoot
+    })
+
+    safe(hl.curve, "silk", {
+    type = "spring",
+    mass = 1,
+    stiffness = 220,
+    dampening = 26,   -- lower = a tiny settle at the end, higher = no bounce
+    })
     
 end)
 
@@ -67,16 +81,14 @@ section("animations", function()
         { leaf = "fadeOut",       enabled = true, speed = 3,    bezier = "almostLinear" },
         { leaf = "fade",          enabled = true, speed = 4.5,  bezier = "quick" },
 
-        { leaf = "layers",        enabled = true, speed = 4.5,  bezier = "easeOutQuint" },
-        { leaf = "layersIn",      enabled = true, speed = 5,    bezier = "easeOutQuint", style = "fade" },
-        { leaf = "layersOut",     enabled = true, speed = 3,    bezier = "linear", style = "fade" },
-        { leaf = "fadeLayersIn",  enabled = true, speed = 3.2,  bezier = "almostLinear" },
-        { leaf = "fadeLayersOut", enabled = true, speed = 3,    bezier = "almostLinear" },
-
-        { leaf = "workspaces",    enabled = true, speed = 2,    bezier = "easeOutQuint", style = "fade" },
-        { leaf = "workspacesIn",  enabled = true, speed = 3.5,  bezier = "easeOutQuint", style = "fade" },
-        { leaf = "workspacesOut", enabled = true, speed = 4,    bezier = "easeOutQuint", style = "fade" },
-
+        { leaf = "layers",        enabled = true, speed = 3,    bezier = "easeOutQuint" },
+        { leaf = "layersIn",      enabled = true, speed = 1,   spring = "snappy", style = "slidefade 8%" },
+        { leaf = "layersOut",     enabled = true, speed = 1,   spring = "snappy", style = "slidefade 8%" },
+        { leaf = "fadeLayersIn",  enabled = true, speed = 2,   bezier = "quick" },
+        { leaf = "fadeLayersOut", enabled = true, speed = 1.5, bezier = "quick" },
+        { leaf = "workspaces",    enabled = true, speed = 1.2, bezier = "quick", style = "slidefade 20%" },
+        { leaf = "workspacesIn",  enabled = true, speed = 1.2, bezier = "quick", style = "slidefade 20%" },
+        { leaf = "workspacesOut", enabled = true, speed = 1,   bezier = "quick", style = "slidefade 20%" },
         { leaf = "zoomFactor",    enabled = true, speed = 8,    bezier = "quick" },
     }
 
