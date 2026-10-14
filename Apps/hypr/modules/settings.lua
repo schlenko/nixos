@@ -15,6 +15,12 @@ end)
 section("config.general", function()
     hl.config({
         general = {
+            gaps_out = {
+                top = 40,
+                right = 10,
+                bottom = 10,
+                left = 10,
+            },
             border_size = 2,
             resize_on_border = true,
             layout = "dwindle",
