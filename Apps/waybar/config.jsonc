@@ -20,14 +20,14 @@
     "mpris"
   ],
 
-"modules-right": [
-  "pulseaudio#microphone",
-  "wireplumber",
-  "backlight",
-  "battery",
-  "custom/updates",
-  "clock"
-],
+  "modules-right": [
+    "pulseaudio#microphone",
+    "wireplumber",
+    "backlight",
+    "battery",
+    "custom/updates",
+    "clock"
+  ],
 
   "hyprland/workspaces": {
     "format": "{name}",
@@ -71,25 +71,25 @@
   },
 
   "mpris": {
-  "format": "{player_icon} {artist} - {title}",
-  "format-paused": "{status_icon} {artist} - {title}",
-  "max-length": 30,
-  "player-icons": {
-    "default": "󰝚",
-    "spotify": "󰓇",
-    "firefox": "󰈹",
-    "chromium": "",
-    "mpv": "󰐹",
-    "vlc": "󰕼"
+    "format": "{player_icon} {artist} - {title}",
+    "format-paused": "{status_icon} {artist} - {title}",
+    "max-length": 30,
+    "player-icons": {
+      "default": "󰝚",
+      "spotify": "󰓇",
+      "firefox": "󰈹",
+      "chromium": "",
+      "mpv": "󰐹",
+      "vlc": "󰕼"
+    },
+    "status-icons": {
+      "paused": "󰏤"
+    },
+    "tooltip-format": "{player}: {artist} - {title}\n{album}",
+    "tooltip-format-paused": "{player} (paused): {artist} - {title}\n{album}",
+    "on-scroll-up": "sh -c 'find /tmp/mskip -mmin -0.013 2>/dev/null | grep -q . || { touch /tmp/mskip; playerctl next; }'",
+    "on-scroll-down": "sh -c 'find /tmp/mskip -mmin -0.013 2>/dev/null | grep -q . || { touch /tmp/mskip; playerctl previous; }'"
   },
-  "status-icons": {
-    "paused": "󰏤"
-  },
-  "tooltip-format": "{player}: {artist} - {title}\n{album}",
-  "tooltip-format-paused": "{player} (paused): {artist} - {title}\n{album}",
-  "on-scroll-up": "sh -c 'find /tmp/mskip -mmin -0.013 2>/dev/null | grep -q . || { touch /tmp/mskip; playerctl next; }'",
-  "on-scroll-down": "sh -c 'find /tmp/mskip -mmin -0.013 2>/dev/null | grep -q . || { touch /tmp/mskip; playerctl previous; }'",
-},
 
   "wireplumber": {
     "scroll-step": 1,
@@ -129,29 +129,28 @@
   },
 
   "pulseaudio#microphone": {
-  "format": "{format_source}",
-  "format-source": "󰍬 {volume}%",
-  "format-source-muted": "󰍭 muted",
+    "format": "{format_source}",
+    "format-source": "󰍬 {volume}%",
+    "format-source-muted": "󰍭 muted",
 
-  "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
 
-  "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
-  "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
 
-  "tooltip-format": "Microphone: {source_desc}\nVolume: {volume}%",
-  "tooltip-format-source-muted": "Microphone muted",
+    "tooltip-format": "Microphone: {source_desc}\nVolume: {volume}%",
+    "tooltip-format-source-muted": "Microphone muted",
 
-  "scroll-step": 5
-},
+    "scroll-step": 5
+  },
 
-"custom/updates": {
-  "exec": "bash ~/.config/waybar/scripts/updates.sh show",
-  "return-type": "json",
-  "interval": "once",
-  "signal": 8,
-  "format": "{}",
-  "on-click": "setsid bash ~/.config/waybar/scripts/updates.sh check >/dev/null 2>&1 &",
-  "on-click-right": "kitty -e sh -c 'cd /etc/nixos && nix flake update && sudo nixos-rebuild switch --flake /etc/nixos#nixos; read -p \"Done, press enter\"'"
-},
-  
+  "custom/updates": {
+    "exec": "bash ~/.config/waybar/scripts/updates.sh show",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 8,
+    "format": "{}",
+    "on-click": "setsid bash ~/.config/waybar/scripts/updates.sh check >/dev/null 2>&1 &",
+    "on-click-right": "kitty -e sh -c 'cd /etc/nixos && nix flake update && sudo nixos-rebuild switch --flake /etc/nixos#nixos; read -p \"Done, press enter\"'"
+  }
 }

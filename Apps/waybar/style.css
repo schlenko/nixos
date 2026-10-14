@@ -4,7 +4,6 @@
     font-size: 13px;
     color: #C4A7E7;
     min-height: 0;
-
 }
 
 window#waybar {
@@ -137,18 +136,10 @@ tooltip label {
     color: #ff5577;
 }
 
+/* ---- updates indicator (dimming is done in the script via pango alpha) ---- */
 #custom-updates {
     margin: 0 8px;
     padding: 0;
-}
-
-#custom-updates.failed,
-#custom-updates.scanning {
-    opacity: 0.5;
-}
-
-#custom-updates.uptodate {
-    opacity: 1;
 }
 
 #custom-updates.pending {

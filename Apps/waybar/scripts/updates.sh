@@ -12,7 +12,7 @@ show() {
   fi
 
   if [ -f "$DIR/scanning" ]; then
-    printf '{"text":"󰚰","tooltip":"Checking for updates...","class":"scanning"}\n'
+    printf '{"text":"<span alpha=\\"50%%\\">󰚰</span>","tooltip":"Checking for updates...","class":"scanning"}\n'
     return
   fi
 
@@ -21,7 +21,7 @@ show() {
     0)
       printf '{"text":"󰚰","tooltip":"System is up to date\\nLeft click: rescan","class":"uptodate"}\n' ;;
     '?')
-      printf '{"text":"󰚰","tooltip":"Check failed\\nLeft click: retry","class":"failed"}\n' ;;
+      printf '{"text":"<span alpha=\\"50%%\\">󰚰</span>","tooltip":"Check failed\\nLeft click: retry","class":"failed"}\n' ;;
     *)
       printf '{"text":"󰚰 %s","tooltip":"%s flake inputs have updates\\nLeft click: rescan\\nRight click: update","class":"pending"}\n' "$n" "$n" ;;
   esac
