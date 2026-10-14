@@ -136,3 +136,21 @@ tooltip label {
 #pulseaudio.microphone.source-muted {
     color: #ff5577;
 }
+
+#custom-updates {
+    margin: 0 8px;
+    padding: 0;
+}
+
+#custom-updates.failed,
+#custom-updates.scanning {
+    opacity: 0.5;
+}
+
+#custom-updates.uptodate {
+    opacity: 1;
+}
+
+#custom-updates.pending {
+    color: #ff5577;
+}
