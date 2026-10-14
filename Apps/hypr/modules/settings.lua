@@ -45,7 +45,7 @@ section("config.decoration", function()
                 ignore_opacity = true,
                 noise = 0.02,
                 contrast = 1.0,
-                brightness = 0.8,
+                brightness = 0.7,
                 vibrancy = 1.0,
                 vibrancy_darkness = 0.1,
                 popups = true,

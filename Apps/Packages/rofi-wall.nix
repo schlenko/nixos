@@ -12,7 +12,7 @@ findutils
 ];
 
 text = ''
-base="$HOME/Pictures"
+base="$HOME/Pictures/Wallpapers"
 
 dir=$(find "$base" -type d | sort | rofi -dmenu -i -p "Wallpaper folder") || exit 0
 [ -n "$dir" ] || exit 0
