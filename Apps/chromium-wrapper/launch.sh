@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+if pgrep -x rofi >/dev/null; then
+  pkill -x rofi
+  exit 0
+fi
+
 set -euo pipefail
 
 SRC="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
