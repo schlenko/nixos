@@ -26,8 +26,7 @@ section("gestures", function()
         end,
     })
 
-    -- 4 fingers: smooth, continuous volume control
-    -- Move up to increase volume; move down to decrease it.
+    -- 4 fingers: smooth volume control
     local sensitivity = 5
     local movement = 0
 
@@ -41,10 +40,8 @@ section("gestures", function()
             end,
 
             update = function(e)
-                -- Up is negative delta.y; down is positive.
                 movement = movement - e.delta.y
 
-                -- Convert movement into small volume increments.
                 local steps = math.floor(movement / sensitivity)
 
                 if steps ~= 0 then
@@ -69,4 +66,46 @@ section("gestures", function()
             end,
         },
     })
+
+    -- 4 fingers: smooth brightness control
+    -- Right increases brightness; left decreases it.
+    local brightness_sensitivity = 5
+    local brightness_movement = 0
+
+    safe(hl.gesture, {
+        fingers = 4,
+        direction = "horizontal",
+
+        action = {
+            start = function(e)
+                brightness_movement = 0
+            end,
+
+            update = function(e)
+                brightness_movement = brightness_movement + e.delta.x
+
+                local steps = math.floor(
+                    brightness_movement / brightness_sensitivity
+                )
+
+                if steps ~= 0 then
+                    brightness_movement =
+                        brightness_movement - steps * brightness_sensitivity
+
+                    if steps > 0 then
+                        exec("brightnessctl set " .. steps .. "%+")
+                    else
+                        exec(
+                            "brightnessctl set " .. math.abs(steps) .. "%-"
+                        )
+                    end
+                end
+            end,
+
+            finish = function(e)
+                brightness_movement = 0
+            end,
+        },
+    })
+
 end)

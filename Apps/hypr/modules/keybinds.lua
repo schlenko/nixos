@@ -32,7 +32,7 @@ section("binds.apps", function()
         hl.dsp.exec_cmd("rofi-wall"),
         { description = "Wallpaper picker" })
 
-    hl.bind(mainMod .. " + D",^
+    hl.bind(mainMod .. " + D",
         hl.dsp.exec_cmd("wayscriber --active"),
         { description = "Show Wayscriber" })
         
