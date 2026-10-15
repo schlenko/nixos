@@ -1,5 +1,18 @@
 { config, lib, pkgs, pkgs-unstable, inputs, ... }:
 {
+
+
+  users.users.t = {
+    isNormalUser = true;
+    shell = pkgs.zsh;
+
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+    ];
+  };
+
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -53,16 +66,6 @@
   zramSwap = {
     enable = true;
     memoryPercent = 50;
-  };
-
-  users.users.t = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
   };
 
   boot.loader.systemd-boot.enable = true;   
@@ -156,6 +159,7 @@
     pkgs-unstable.fastfetch
     pkgs-unstable.fetch
 
+    dbeaver-bin
   ];
 
    programs.chromium = {
