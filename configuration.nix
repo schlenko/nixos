@@ -102,12 +102,12 @@
     hyprpaper
     hyprlock
     hyprpicker
-        nemo-with-extensions   # if you actually want Nemo
-        webp-pixbuf-loader     # webp
-        libavif                # avif
-        libheif                # heic/heif
-        libjxl                 # jxl
-        ffmpegthumbnailer
+      nemo-with-extensions   # if you actually want Nemo
+      webp-pixbuf-loader     # webp
+      libavif                # avif
+      libheif                # heic/heif
+      libjxl                 # jxl
+      ffmpegthumbnailer
     pkgs-unstable.kitty
     rofi
     waybar

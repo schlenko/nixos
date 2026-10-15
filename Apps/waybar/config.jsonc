@@ -20,14 +20,16 @@
     "mpris"
   ],
 
-  "modules-right": [
-    "pulseaudio#microphone",
-    "wireplumber",
-    "backlight",
-    "battery",
-    "custom/updates",
-    "clock"
-  ],
+
+"modules-right": [
+  "pulseaudio#microphone",
+  "wireplumber",
+  "backlight",
+  "battery",
+  "custom/updates",
+  "clock"
+],
+
 
   "hyprland/workspaces": {
     "format": "{name}",
@@ -124,9 +126,12 @@
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
 
+
   "clock": {
-    "format": "{:%m-%d-%Y    %H:%M}"
+    "format": "{:%m-%d-%Y    %H:%M}",
+    "on-click": "bash -c 'if pgrep -u \"$USER\" -x waycal >/dev/null; then pkill -u \"$USER\" -x waycal; else waycal & fi'"
   },
+
 
   "pulseaudio#microphone": {
     "format": "{format_source}",
@@ -152,5 +157,14 @@
     "format": "{}",
     "on-click": "setsid bash ~/.config/waybar/scripts/updates.sh check >/dev/null 2>&1 &",
     "on-click-right": "kitty -e sh -c 'cd /etc/nixos && nix flake update && sudo nixos-rebuild switch --flake /etc/nixos#nixos; read -p \"Done, press enter\"'"
+  },
+
+
+  "custom/calendar": {
+    "format": "󰃭",
+    "tooltip": true,
+    "tooltip-format": "Open calendar",
+    "on-click": "waycal"
   }
+
 }

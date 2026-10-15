@@ -10,6 +10,7 @@ section("layer rules", function()
         { match = { namespace = "com.aurora.keybinds_help" },   blur = true, ignore_alpha = 0 },
         { match = { namespace = "logout_dialog" },              blur = true, ignore_alpha = 0 },
         { match = { namespace = "waybar" },                     blur = true, ignore_alpha = 0 },
+        { match = { namespace = "waycal" },                     blur = true, ignore_alpha = 0 },
 
     }
     for _, rule in ipairs(rules) do

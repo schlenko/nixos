@@ -5,6 +5,7 @@ let
   wh = pkgs.callPackage (appsPath + "/Packages/wh.nix") { };
   looking-glass-client = pkgs.callPackage (appsPath + "/Packages/looking-glass-client.nix") { };
   rofi-wall = pkgs.callPackage (appsPath + "/Packages/rofi-wall.nix") { };
+  waycal = pkgs.callPackage (appsPath + "/waybar/waycalender/waycal.nix") { };
   mako-tools = pkgs.callPackage (appsPath + "/mako/tools.nix") { };
    inherit (mako-tools) notify-sound battery-notify nixos-rebuild-notify;
 
@@ -61,6 +62,7 @@ in
     looking-glass-client
     wh
     rofi-wall
+    waycal
     notify-sound
     battery-notify
     nixos-rebuild-notify
