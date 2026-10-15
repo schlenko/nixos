@@ -108,7 +108,7 @@
         libheif                # heic/heif
         libjxl                 # jxl
         ffmpegthumbnailer
-    kitty
+    pkgs-unstable.kitty
     rofi
     waybar
     eww
