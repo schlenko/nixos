@@ -28,12 +28,13 @@ section("config.general", function()
             col = {
 
                  active_border = {
-        colors = {
-            "rgb(C3A5E6)",
-            "rgb(3F3F42)",
-            "rgb(C3A5E6)",
-            "rgb(3F3F42)",
-        },
+       
+            colors = {
+                "rgb(C3A5E6)",
+                "rgb(000000)",
+                "rgb(C3A5E6)",
+                "rgb(000000)",
+            },
         angle = 45,
     },
     inactive_border = "rgb(3F3F42)",
