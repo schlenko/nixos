@@ -1,19 +1,17 @@
-USE [master];
-GO
 
 
 RESTORE FILELISTONLY
-FROM DISK = N'/sql_import/dico_sport_lsb_hessen-tc-2026-08-30_12-35-40.bak';
+FROM DISK = N'/sql_import/FILENAME.bak';
 
 
 
 RESTORE DATABASE [YOURDATABASENAME]
-FROM DISK = N'/sql_import/Filename.bak
+FROM DISK = N'/sql_import/FILENAME.bak
 WITH
-    MOVE N'TABLENAME'
-        TO N'/var/opt/mssql/data/DBNAME.mdf',
-    MOVE N'TABLENAME'
-        TO N'/var/opt/mssql/data/LOGNAME.ldf',
+    MOVE N'TABLENAME1'
+        TO N'/var/opt/mssql/data/TABLENAME1.mdf',
+    MOVE N'TABLENAME2'
+        TO N'/var/opt/mssql/data/TABLENAME2.ldf',
     RECOVERY,
     STATS = 5;
 
