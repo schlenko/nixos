@@ -52,21 +52,6 @@
       ];
     };
 
-    portainer = {
-      image = "portainer/portainer-ce:lts";
-
-      autoStart = false;
-
-      ports = [
-        "127.0.0.1:9443:9443"
-      ];
-
-      volumes = [
-        "/var/run/docker.sock:/var/run/docker.sock"
-        "/var/lib/docker/portainer:/data"
-        "/var/lib/docker/sql_import:/sql_import"
-      ];
-    };
   };
 
   systemd.tmpfiles.rules = [

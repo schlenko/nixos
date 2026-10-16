@@ -153,6 +153,7 @@
     bc
     playerctl
     lazygit
+    lazydocker
     fzf
     wayscriber
     imagemagick 

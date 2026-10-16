@@ -58,7 +58,7 @@ section("config.decoration", function()
             shadow = {
                 enabled = true,
                 range = 1,
-                render_power = 3,
+                render_power = 2,
                 color = "rgb(C3A5E6)",
                 color_inactive = "rgba(0,0,0,0)",
             },
