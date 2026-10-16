@@ -75,17 +75,27 @@
   hardware.bluetooth.enable = true;
   security.polkit.enable = true;
 
+  # Dark polkit dialog
   systemd.user.services.polkit-gnome-agent = {
     description = "Polkit Authentication Agent";
-
+    environment.GTK_THEME = "Adwaita:dark";
     serviceConfig = {
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
       Restart = "on-failure";
       RestartSec = 2;
     };
-
     wantedBy = [ "default.target" ];
   };
+
+  # Dark GTK3 for root (GParted, anything run via sudo/pkexec)
+  systemd.tmpfiles.rules = [
+    "d /root/.config/gtk-3.0 0755 root root -"
+    "L+ /root/.config/gtk-3.0/settings.ini - - - - ${pkgs.writeText "root-gtk-settings.ini" ''
+      [Settings]
+      gtk-application-prefer-dark-theme=1
+      gtk-theme-name=Adwaita
+    ''}"
+  ];
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -160,6 +170,7 @@
     pkgs-unstable.fetch
 
     dbeaver-bin
+    gparted
   ];
 
    programs.chromium = {
