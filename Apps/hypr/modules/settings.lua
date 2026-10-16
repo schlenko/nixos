@@ -26,9 +26,20 @@ section("config.general", function()
             layout = "dwindle",
 
             col = {
-                active_border = "rgb(C3A5E6)",
-                inactive_border = "rgb(3F3F42)",
-            },
+
+                 active_border = {
+        colors = {
+            "rgb(C3A5E6)",
+            "rgb(3F3F42)",
+            "rgb(C3A5E6)",
+            "rgb(3F3F42)",
+            "rgb(C3A5E6)",
+            "rgb(3F3F42)",
+        },
+        angle = 45,
+    },
+    inactive_border = "rgb(3F3F42)",
+},
         },
     })
 end)
