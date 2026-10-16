@@ -57,7 +57,6 @@
   systemd.tmpfiles.rules = [
     "d /var/lib/docker/mssql 0750 10001 0 -"
     "d /var/lib/docker/mysql 0750 999 999 -"
-    "d /var/lib/docker/portainer 0750 root root -"
     "d /var/lib/docker/sql_import 0755 root root -"
     "d /var/lib/docker/secrets 0700 root root -"
   ];
