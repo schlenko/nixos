@@ -1,7 +1,12 @@
+
 { config, lib, pkgs, ... }:
 
 {
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+
+    enableOnBoot = false;
+  };
 
   virtualisation.oci-containers = {
     backend = "docker";
@@ -19,7 +24,7 @@
           "/var/lib/secrets/mssql.env"
         ];
         volumes = [ "/var/lib/mssql:/var/opt/mssql" ];
-        autoStart = true;
+        autoStart = false;
       };
 
       mysql = {
@@ -33,7 +38,7 @@
           "/var/lib/secrets/mysql.env"
         ];
         volumes = [ "/var/lib/mysql:/var/lib/mysql" ];
-        autoStart = true;
+        autoStart = false;
       };
     };
   };
@@ -46,6 +51,7 @@
 
   users.users.t.extraGroups = [ "docker" ];
 }
+
 
 #   sudo install -d -m 700 /var/lib/secrets
 

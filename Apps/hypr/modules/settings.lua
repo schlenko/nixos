@@ -33,8 +33,6 @@ section("config.general", function()
             "rgb(3F3F42)",
             "rgb(C3A5E6)",
             "rgb(3F3F42)",
-            "rgb(C3A5E6)",
-            "rgb(3F3F42)",
         },
         angle = 45,
     },
@@ -44,11 +42,25 @@ section("config.general", function()
     })
 end)
 
+hl.animation({
+    leaf = "borderangle",
+    enabled = true,
+    speed = 80,
+    bezier = "linear",
+    style = "loop",
+})
 
 -- Decoration
 section("config.decoration", function()
     hl.config({
         decoration = {
+            shadow = {
+                enabled = true,
+                range = 1,
+                render_power = 3,
+                color = "rgb(C3A5E6)",
+                color_inactive = "rgba(0,0,0,0)",
+            },
             rounding = 5,
             active_opacity = 1.0,
             inactive_opacity = 1.0,
