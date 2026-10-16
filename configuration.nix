@@ -144,6 +144,8 @@
     arp-scan
     nmap
     nodejs
+    dotnet-sdk_10
+
     wl-clipboard
     bluetui
     cmake
@@ -171,7 +173,8 @@
 
     dbeaver-bin
     gparted
-  ];
+    
+   ];
 
    programs.chromium = {
     enable = true;
