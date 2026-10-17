@@ -524,7 +524,8 @@
         "hyprland-plugins": "hyprland-plugins",
         "hyprtasking": "hyprtasking",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "tmog": "tmog"
       }
     },
     "systems": {
@@ -554,6 +555,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "tmog": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791073064,
+        "narHash": "sha256-Qe/LAsNDEItaSOrvlhdrgQz85pgtfHYeWyWjGbsELno=",
+        "owner": "ejb1123",
+        "repo": "tmog-nix",
+        "rev": "2cf43c57153254c237f65d277c119111fe6bd7a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ejb1123",
+        "repo": "tmog-nix",
         "type": "github"
       }
     },

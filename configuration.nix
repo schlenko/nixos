@@ -124,7 +124,6 @@
     rofi
     waybar
     eww
-    mission-center 
     mako
     libnotify
    (callPackage ./Apps/Packages/chromium-themed.nix { })
@@ -174,7 +173,7 @@
 
     dbeaver-bin
     gparted
-    
+    inputs.tmog.packages.${pkgs.stdenv.hostPlatform.system}.default    
    ];
 
    programs.chromium = {

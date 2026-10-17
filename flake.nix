@@ -21,6 +21,11 @@
       url = "github:hyprwm/hyprland-plugins/v0.56.0";
       inputs.hyprland.follows = "hyprland";
     };
+
+    tmog = {
+    url = "github:ejb1123/tmog-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
