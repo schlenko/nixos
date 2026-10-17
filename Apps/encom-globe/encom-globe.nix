@@ -1,15 +1,14 @@
+
 { pkgs, ... }:
 
 let
   globeFiles = pkgs.stdenvNoCC.mkDerivation {
     pname = "encom-globe-files";
     version = "1.0";
-
     src = ./.;
 
     installPhase = ''
       mkdir -p "$out/share/encom-globe"
-
       cp -r \
         index.html \
         build \
@@ -21,7 +20,6 @@ let
         "$out/share/encom-globe/"
     '';
   };
-
 in
 pkgs.writeShellApplication {
   name = "encom-globe";
@@ -39,23 +37,32 @@ pkgs.writeShellApplication {
     root="${globeFiles}/share/encom-globe"
     url="http://127.0.0.1:$port/"
 
-    # Create an isolated Chromium profile for this app.
     profile="$(mktemp -d)"
 
-    # Start the local web server.
-    python3 -m http.server "$port" \
-      --bind 127.0.0.1 \
-      --directory "$root" &
-    server_pid=$!
+    server_pid=""
+    chromium_pid=""
 
     cleanup() {
-      kill "$server_pid" 2>/dev/null || true
-      wait "$server_pid" 2>/dev/null || true
+      if [ -n "$chromium_pid" ]; then
+        kill "$chromium_pid" 2>/dev/null || true
+      fi
+
+      if [ -n "$server_pid" ]; then
+        kill "$server_pid" 2>/dev/null || true
+        wait "$server_pid" 2>/dev/null || true
+      fi
+
       rm -rf "$profile"
     }
 
     trap cleanup EXIT
     trap 'exit 0' INT TERM
+
+    # Start the local ENCOM Globe server.
+    python3 -m http.server "$port" \
+      --bind 127.0.0.1 \
+      --directory "$root" &
+    server_pid=$!
 
     # Wait for the server to become available.
     ready=0
@@ -81,11 +88,20 @@ pkgs.writeShellApplication {
       exit 1
     fi
 
-    # Open ENCOM Globe in its own Chromium app window.
+    # Launch ENCOM Globe with a black initial background.
     chromium \
       --user-data-dir="$profile" \
       --no-first-run \
       --no-default-browser-check \
-      --app="$url"
+      --disable-extensions \
+      --use-gl=angle \
+      --use-angle=swiftshader \
+      --force-dark-mode \
+      --default-background-color=000000 \
+      --app="$url" &
+    chromium_pid=$!
+
+    # Keep the launcher alive while the globe is running.
+    wait "$chromium_pid"
   '';
 }

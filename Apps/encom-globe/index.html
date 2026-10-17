@@ -4,10 +4,60 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
 
     <title>ENCOM Globe</title>
 
-    <link href="styles.css" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: dark;
+            background: #000;
+        }
+
+        html,
+        body,
+        #container,
+        #globe {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000 !important;
+        }
+
+        html,
+        body {
+            position: fixed;
+            inset: 0;
+        }
+
+        body {
+            opacity: 1;
+        }
+
+        #globe canvas {
+            display: block;
+            background: #000;
+        }
+    </style>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        // Set the font configuration before loading the WebFont loader.
+        window.WebFontConfig = {
+            google: {
+                families: ["Inconsolata"]
+            },
+            active: function () {
+                createGlobe();
+            },
+            inactive: function () {
+                createGlobe();
+            }
+        };
+    </script>
 
     <script src="include/Detector.js"></script>
     <script src="data.js"></script>
@@ -15,8 +65,9 @@
     <script src="build/encom-globe.js"></script>
 
     <script>
-        var globe;
+        var globe = null;
         var animationStarted = false;
+        var animationFrame = null;
 
         function palette(name) {
             return getComputedStyle(document.documentElement)
@@ -25,13 +76,7 @@
         }
 
         function createGlobe() {
-            if (globe) {
-                globe.destroy(function () {
-                    globe = null;
-                    createGlobe();
-                });
-                return;
-            }
+            if (globe) return;
 
             globe = new ENCOM.Globe(
                 window.innerWidth,
@@ -81,7 +126,7 @@
                 globe.tick();
             }
 
-            requestAnimationFrame(animate);
+            animationFrame = requestAnimationFrame(animate);
         }
 
         function start() {
@@ -90,7 +135,7 @@
 
             animate();
 
-            // Default satellite constellation.
+            // Add the satellite constellation after the intro.
             setTimeout(function () {
                 if (!globe) return;
 
@@ -114,7 +159,7 @@
                 globe.addConstellation(constellation, opts);
             }, 4000);
 
-            // Default globe markers.
+            // Default markers.
             setTimeout(function () {
                 if (!globe) return;
 
@@ -127,7 +172,7 @@
                 );
             }, 2000);
 
-            // Periodically add a random pin.
+            // Add a random pin every five seconds.
             setInterval(function () {
                 if (!globe) return;
 
@@ -147,18 +192,6 @@
             onWindowResize,
             false
         );
-
-        window.WebFontConfig = {
-            google: {
-                families: ["Inconsolata"]
-            },
-            active: function () {
-                createGlobe();
-            },
-            inactive: function () {
-                createGlobe();
-            }
-        };
     </script>
 
     <script
