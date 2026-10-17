@@ -156,7 +156,6 @@
     "signal": 8,
     "format": "{}",
     "on-click": "setsid bash ~/.config/waybar/scripts/updates.sh check >/dev/null 2>&1 &",
-    "on-click-right": "kitty -e sh -c 'cd /etc/nixos && nix flake update && sudo nixos-rebuild switch --flake /etc/nixos#nixos; read -p \"Done, press enter\"'"
   },
 
 

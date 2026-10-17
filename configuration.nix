@@ -150,6 +150,7 @@
     cmake
     bettercap
     bc
+    jq
     playerctl
     lazygit
     lazydocker

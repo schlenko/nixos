@@ -13,22 +13,18 @@ padding=12,18
 width=340
 height=150
 
-# Placement: top right, below the bar
 anchor=top-right
-margin=45,10,0,10
+outer-margin=45,10,0,10
+margin=0,0,8,0
 layer=overlay
-outer-margin=0
 
-# Icons
 icons=1
 max-icon-size=40
 icon-border-radius=10
 
-# Behaviour
-default-timeout=5000
-ignore-timeout=0
-group-by=app-name
-max-visible=5
+
+max-visible=4
+group-by=none
 sort=-time
 
 # Progress bars (volume/brightness notifications)
