@@ -6,6 +6,7 @@ let
   looking-glass-client = pkgs.callPackage (appsPath + "/Packages/looking-glass-client.nix") { };
   rofi-wall = pkgs.callPackage (appsPath + "/Packages/rofi-wall.nix") { };
   waycal = pkgs.callPackage (appsPath + "/waybar/waycalender/waycal.nix") { };
+  encom-globe = pkgs.callPackage (appsPath + "/encom-globe/encom-globe.nix") { };
   mako-tools = pkgs.callPackage (appsPath + "/mako/tools.nix") { };
    inherit (mako-tools) notify-sound battery-notify nixos-rebuild-notify;
 
@@ -59,6 +60,7 @@ in
   };
 
   home.packages = [
+    encom-globe
     looking-glass-client
     wh
     rofi-wall
