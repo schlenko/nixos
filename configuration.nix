@@ -10,6 +10,8 @@
       "wheel"
       "networkmanager"
       "docker"
+      "libvirtd" 
+      "kvm" 
     ];
   };
 
@@ -49,6 +51,14 @@
       plugins = [ "git" ];
     };
   };
+
+  virtualisation.libvirtd = {
+  enable = true;
+  qemu = {
+    swtpm.enable = true;
+  };
+};
+programs.virt-manager.enable = true;
 
       nix.settings.substituters = [ "https://hyprland.cachix.org" ];
       nix.settings.trusted-public-keys = [
