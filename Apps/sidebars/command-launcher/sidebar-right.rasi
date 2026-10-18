@@ -1,0 +1,82 @@
+configuration {
+  show-icons: true;
+  icon-theme: "Papirus";
+}
+
+* {
+  font: "Chivo ExtraBold 13";
+
+  bg: #000000;
+  text: #C4A7E7;
+  text-selected: #E0CFF7;
+  dim: rgba(196, 167, 231, 0.5);
+  hover: rgba(196, 167, 231, 0.22);
+  item-bg: rgba(0, 0, 0, 0.35);
+  border-col: #3F3F42;
+}
+
+window {
+  location: east;
+  anchor: east;
+  x-offset: -10px;
+  width: 250px;
+
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 2px;
+  border-color: @border-col;
+  border-radius: 20px;
+  padding: 8px 12px;
+}
+
+mainbox {
+  children: [ listview ];
+  spacing: 0;
+  background-color: transparent;
+}
+
+listview {
+  fixed-height: false;
+  lines: 20;
+  columns: 1;
+  spacing: 4px;
+  scrollbar: false;
+  background-color: transparent;
+}
+
+element {
+  orientation: horizontal;
+  padding: 8px 12px;
+  spacing: 14px;
+  border-radius: 12px;
+  background-color: @item-bg;
+  text-color: @text;
+}
+
+element normal.normal,
+element normal.urgent,
+element normal.active,
+element alternate.normal,
+element alternate.urgent,
+element alternate.active {
+  background-color: @item-bg;
+  text-color: @text;
+}
+
+element selected.normal,
+element selected.urgent,
+element selected.active {
+  background-color: @hover;
+  text-color: @text-selected;
+}
+
+element-icon {
+  size: 32px;
+  vertical-align: 0.5;
+  background-color: transparent;
+}
+
+element-text {
+  vertical-align: 0.5;
+  text-color: inherit;
+  background-color: transparent;
+}

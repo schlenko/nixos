@@ -33,7 +33,6 @@
     autosuggestions.enable = true;
 
     shellAliases = {
-      apps = "/etc/nixos/Apps/chromium-wrapper/launch.sh";
       pkmn = "python3 /etc/nixos/Apps/pokemonscript/pokemon-colorscripts.py --random";
       wintonix = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
       nixtowin = "sudo scp -r ~/shared twin@192.168.122.4:/C:/Users/";

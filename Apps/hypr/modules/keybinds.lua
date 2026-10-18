@@ -21,8 +21,12 @@ section("binds.apps", function()
         { description = "Lock screen" })
 
     hl.bind(mainMod .. " + A",
-        hl.dsp.exec_cmd("/etc/nixos/Apps/chromium-wrapper/launch.sh"),
+        hl.dsp.exec_cmd("/etc/nixos/Apps/sidebars/chromium-wrapper/launch.sh"),
         { description = "Chromium Apps Sidebar" })
+
+    hl.bind(mainMod .. " + SHIFT + A",
+        hl.dsp.exec_cmd("/etc/nixos/Apps/sidebars/command-launcher/launch.sh"),
+        { description = "Command launcher" })
 
     hl.bind(mainMod .. " + K",
         hl.dsp.exec_cmd("hyprctl switchxkblayout all next"),
