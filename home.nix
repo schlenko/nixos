@@ -122,6 +122,12 @@ in
   home.file.".oh-my-zsh/custom/themes".source =
     appsPath + /zsh/themes;
 
+  home.file.".config/fastfetch".source =
+    appsPath + "/fastfetch";
+  
+  home.file.".config/cava".source =
+    appsPath + "/cava";
+
   home.file.".local/share/hypr-plugins/libhyprtasking.so".source =
     "${hyprtasking}/lib/libhyprtasking.so";
 

@@ -37,6 +37,8 @@
       wintonix = "sudo scp -r twin@192.168.122.4:/C:/Users/shared ~/";
       nixtowin = "sudo scp -r ~/shared twin@192.168.122.4:/C:/Users/";
       pipes = "pipes.sh -f 100 -r 0 -B -c 1 -c 2 -c 3 -c 4 -c 5 -c 6 -c 7";
+      fetch = "reset; fastfetch -c ~/.config/fastfetch/nixos-01.jsonc; read -sk 1";
+      cavabar = "kitten panel --edge=bottom --layer=top --override-exclusive-zone --exclusive-zone=0 --focus-policy=not-allowed --lines=10 -o background_opacity=0 -o background=#000000 -o window_padding_width=0 cava";
     };
 
     interactiveShellInit = ''
@@ -176,6 +178,7 @@ programs.virt-manager.enable = true;
 
 
     sl
+    cava
     asciiquarium
     pipes
     cowsay
@@ -184,7 +187,6 @@ programs.virt-manager.enable = true;
     nyancat
     genact
     pkgs-unstable.fastfetch
-    pkgs-unstable.fetch
 
     dbeaver-bin
     gparted
