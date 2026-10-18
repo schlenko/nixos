@@ -139,6 +139,7 @@ programs.virt-manager.enable = true;
    (callPackage ./Apps/Packages/chromium-themed.nix { })
 
 
+
     git
     gh
     curl
@@ -153,6 +154,10 @@ programs.virt-manager.enable = true;
     arp-scan
     nmap
     nodejs
+    rustc
+    cargo
+    pkg-config
+    stdenv.cc
     dotnet-sdk_10
 
     wl-clipboard
