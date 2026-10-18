@@ -139,8 +139,6 @@ programs.virt-manager.enable = true;
     libnotify
    (callPackage ./Apps/Packages/chromium-themed.nix { })
 
-
-
     git
     gh
     curl
@@ -176,7 +174,6 @@ programs.virt-manager.enable = true;
     papirus-icon-theme
     awww
 
-
     sl
     cava
     asciiquarium
@@ -191,6 +188,7 @@ programs.virt-manager.enable = true;
     dbeaver-bin
     gparted
     inputs.tmog.packages.${pkgs.stdenv.hostPlatform.system}.default    
+    libreoffice
    ];
 
    programs.chromium = {

@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "top",
-  "exclusive": true,
+  "exclusive": false,
   "spacing": 2,
 
   "margin-top": 3,
