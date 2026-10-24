@@ -16,10 +16,10 @@ section("config.general", function()
     hl.config({
         general = {
             gaps_out = {
-                top = 40,
-                right = 20,
-                bottom = 30,
-                left = 20,
+                top = 47,
+                right = 18,
+                bottom = 28,
+                left = 18,
             },
             border_size = 2,
             resize_on_border = true,
@@ -62,7 +62,7 @@ section("config.decoration", function()
                 color = "rgb(C3A5E6)",
                 color_inactive = "rgba(0,0,0,0)",
             },
-            rounding = 5,
+            rounding = 0,
             active_opacity = 1.0,
             inactive_opacity = 1.0,
 
@@ -75,7 +75,7 @@ section("config.decoration", function()
                 ignore_opacity = true,
                 noise = 0,
                 contrast = 1.3,
-                brightness = 0.7,
+                brightness = 0.6,
                 vibrancy = 1.0,
                 vibrancy_darkness = 0.1,
                 popups = true,
