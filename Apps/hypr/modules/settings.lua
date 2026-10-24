@@ -17,9 +17,9 @@ section("config.general", function()
         general = {
             gaps_out = {
                 top = 40,
-                right = 10,
-                bottom = 10,
-                left = 10,
+                right = 20,
+                bottom = 30,
+                left = 20,
             },
             border_size = 2,
             resize_on_border = true,
