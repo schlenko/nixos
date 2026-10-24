@@ -21,7 +21,6 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=183'
 # Comments
 ZSH_HIGHLIGHT_STYLES[comment]='fg=97'
 
-# Notify on `sudo nixos-rebuild ...`; everything else goes to the real sudo
 sudo() {
   if [[ "$1" == nixos-rebuild ]]; then
     shift
@@ -31,3 +30,5 @@ sudo() {
   fi
 }
 
+# Bongo cat in the kitty title bar (only active inside kitty)
+source "$HOME/.config/zsh/bongocat.zsh"

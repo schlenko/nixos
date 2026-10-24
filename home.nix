@@ -3,6 +3,7 @@ let
   appsPath = ./Apps;
 
   wh = pkgs.callPackage (appsPath + "/Packages/wh.nix") { };
+  bongocat-font = pkgs.callPackage (appsPath + "/Packages/bongocat-font.nix") { };
   looking-glass-client = pkgs.callPackage (appsPath + "/Packages/looking-glass-client.nix") { };
   rofi-wall = pkgs.callPackage (appsPath + "/Packages/rofi-wall.nix") { };
   waycal = pkgs.callPackage (appsPath + "/waybar/waycalender/waycal.nix") { };
@@ -127,6 +128,9 @@ in
   
   home.file.".config/cava".source =
     appsPath + "/cava";
+
+  home.file.".config/zsh/bongocat.zsh".source =
+    appsPath + /zsh/bongocat.zsh;
 
   home.file.".local/share/hypr-plugins/libhyprtasking.so".source =
     "${hyprtasking}/lib/libhyprtasking.so";
