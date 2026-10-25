@@ -52,6 +52,12 @@ check() {
   fi
 }
 
+# run once at startup so thresholds apply immediately
+check
+
+# event-driven: block until the kernel announces a power_supply change
+# (stdbuf -oL forces line-by-line output so events aren't held in a buffer)
 while read -r _; do
+  sleep 0.3   # let sysfs settle after the event
   check
-done < <(upower --monitor)
+done < <(stdbuf -oL udevadm monitor --udev --subsystem-match=power_supply)
