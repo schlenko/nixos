@@ -9,7 +9,7 @@ let
   waycal = pkgs.callPackage (appsPath + "/waybar/waycalender/waycal.nix") { };
   tui-globe = pkgs.callPackage(appsPath + "/Packages/tui-globe/tui-globe.nix") { }; 
   mako-tools = pkgs.callPackage (appsPath + "/mako/tools.nix") { };
-   inherit (mako-tools) notify-sound battery-notify nixos-rebuild-notify;
+   inherit (mako-tools) notify-sound battery-notify nixos-rebuild-notify usb-notify;
 
   hyprtasking = inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking;
 
@@ -66,9 +66,12 @@ in
     tui-globe
     rofi-wall
     waycal
+
     notify-sound
     battery-notify
+    usb-notify
     nixos-rebuild-notify
+
     pkgs.mako
     pkgs.libnotify
     pkgs.awww
@@ -77,14 +80,28 @@ in
   ];
 
   # Battery notifications: event-driven script run as a user service
-  systemd.user.services.battery-notify = {
+    systemd.user.services.usb-notify = {
     Unit = {
-      Description = "Battery notifications";
+      Description = "USB / USB-C plug notifications";
       After = [ "graphical-session.target" ];
       PartOf = [ "graphical-session.target" ];
     };
     Service = {
-      ExecStart = "${battery-notify}/bin/battery-notify";
+      ExecStart = "${usb-notify}/bin/usb-notify usb";
+      Restart = "on-failure";
+      RestartSec = 3;
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
+  systemd.user.services.mount-notify = {
+    Unit = {
+      Description = "Mount / unmount notifications";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${usb-notify}/bin/usb-notify mount";
       Restart = "on-failure";
       RestartSec = 3;
     };

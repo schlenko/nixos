@@ -11,6 +11,11 @@ rec {
     ${builtins.readFile ./scripts/battery.sh}
   '';
 
+  usb-notify = pkgs.writeShellScriptBin "usb-notify" ''
+    export PATH=${pkgs.lib.makeBinPath [ pkgs.libnotify pkgs.systemd pkgs.util-linux pkgs.coreutils pkgs.gnused notify-sound ]}:$PATH
+    ${builtins.readFile ./scripts/usb.sh}
+  '';
+
     nixos-rebuild-notify = pkgs.writeShellScriptBin "nixos-rebuild-notify" ''
     set -o pipefail
     export PATH=${pkgs.lib.makeBinPath [ pkgs.libnotify pkgs.git pkgs.gnused pkgs.gnugrep pkgs.coreutils ]}:$PATH

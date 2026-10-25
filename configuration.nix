@@ -138,6 +138,7 @@ programs.virt-manager.enable = true;
     mako
       libnotify
    (callPackage ./Apps/Packages/chromium-themed.nix { })
+   mission-center
 
     git
     gh

@@ -77,3 +77,15 @@ on-notify=none
 [mode=do-not-disturb]
 invisible=1
 on-notify=none
+
+# USB plug/unplug: the script plays its own sounds
+[app-name=usb]
+border-color=#C4A7E7
+default-timeout=5000
+on-notify=none
+
+# Mount/unmount
+[app-name=mount]
+border-color=#57e389
+default-timeout=5000
+on-notify=none
