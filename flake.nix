@@ -25,6 +25,11 @@
     tmog = {
     url = "github:ejb1123/tmog-nix";
     inputs.nixpkgs.follows = "nixpkgs";
+   };
+
+   netextender-src = {
+    url = "https://software.sonicwall.com/NetExtender/NetExtender.Linux-10.2.850.x86_64.tgz";
+    flake = false;
   };
   };
 
@@ -46,9 +51,12 @@
         modules = [
           ./configuration.nix
           ./Apps/docker/docker-container.nix
+          ./Apps/Packages/netextender/netextender-module.nix
 
           ./Hardware/hardware-configuration.nix
           ./Hardware/VFIO_Swift.nix
+          
+
 
           home-manager.nixosModules.home-manager
 

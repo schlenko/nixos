@@ -279,6 +279,7 @@ section("config.hyprtasking", function()
 end)
 
 
+
 -- Hyprbars
 section("config.hyprbars", function()
     hl.config({

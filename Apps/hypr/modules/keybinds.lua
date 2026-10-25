@@ -32,7 +32,7 @@ section("binds.apps", function()
         hl.dsp.exec_cmd("hyprctl switchxkblayout all next"),
         { description = "Switch keyboard layout" })
 
-    hl.bind(mainMod .. " + W",
+    hl.bind(mainMod .. " + SHIFT + W",
         hl.dsp.exec_cmd("rofi-wall"),
         { description = "Wallpaper picker" })
 
@@ -40,7 +40,7 @@ section("binds.apps", function()
         hl.dsp.exec_cmd("wayscriber --active"),
         { description = "Show Wayscriber" })
         
-    hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd([[dir="$HOME/Pictures/Wallpapers/Best"; state="$HOME/.cache/wallpaper-shuffle"; mkdir -p "$state"; find "$dir" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) | sort > "$state/all"; if [ ! -s "$state/bag" ] || ! cmp -s "$state/all" "$state/previous"; then shuf "$state/all" > "$state/bag"; cp "$state/all" "$state/previous"; fi; choice="$(head -n 1 "$state/bag")"; tail -n +2 "$state/bag" > "$state/tmp"; mv "$state/tmp" "$state/bag"; last="$(cat "$state/last" 2>/dev/null)"; if [ "$choice" = "$last" ] && [ -s "$state/bag" ]; then next="$(head -n 1 "$state/bag")"; sed -i '1d' "$state/bag"; printf '%s\n' "$choice" >> "$state/bag"; choice="$next"; fi; if [ -n "$choice" ]; then printf '%s\n' "$choice" > "$state/last"; awww img "$choice" --transition-type wipe --transition-angle 135 --transition-duration 0.8 --transition-fps 60; fi]]), { description = "Random wallpaper" })
+    hl.bind(mainMod .. "+ W", hl.dsp.exec_cmd([[dir="$HOME/Pictures/Wallpapers/Best"; state="$HOME/.cache/wallpaper-shuffle"; mkdir -p "$state"; find "$dir" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) | sort > "$state/all"; if [ ! -s "$state/bag" ] || ! cmp -s "$state/all" "$state/previous"; then shuf "$state/all" > "$state/bag"; cp "$state/all" "$state/previous"; fi; choice="$(head -n 1 "$state/bag")"; tail -n +2 "$state/bag" > "$state/tmp"; mv "$state/tmp" "$state/bag"; last="$(cat "$state/last" 2>/dev/null)"; if [ "$choice" = "$last" ] && [ -s "$state/bag" ]; then next="$(head -n 1 "$state/bag")"; sed -i '1d' "$state/bag"; printf '%s\n' "$choice" >> "$state/bag"; choice="$next"; fi; if [ -n "$choice" ]; then printf '%s\n' "$choice" > "$state/last"; awww img "$choice" --transition-type wipe --transition-angle 135 --transition-duration 0.8 --transition-fps 60; fi]]), { description = "Random wallpaper" })
 end)
 
 

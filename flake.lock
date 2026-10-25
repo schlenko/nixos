@@ -447,6 +447,19 @@
         "type": "github"
       }
     },
+    "netextender-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1686129897,
+        "narHash": "sha256-29wrk3GIjL+iqNqzB7CcV3u/X7im+654lYl33EqobfU=",
+        "type": "tarball",
+        "url": "https://software.sonicwall.com/NetExtender/NetExtender.Linux-10.2.850.x86_64.tgz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://software.sonicwall.com/NetExtender/NetExtender.Linux-10.2.850.x86_64.tgz"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1784356753,
@@ -523,6 +536,7 @@
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "hyprtasking": "hyprtasking",
+        "netextender-src": "netextender-src",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "tmog": "tmog"

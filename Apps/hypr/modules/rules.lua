@@ -23,6 +23,7 @@ section("window rules", function()
         { match = { class = "^([Ff]irefox|org.mozilla.firefox|[Ff]irefox-esr|[Ff]irefox-bin)$" }, tag = "+browser" },
         { match = { class = "^(chromium)$" },                                                      tag = "+browser" },
         { match = { class = "^(kitty|kitty-dropterm)$" },                                          tag = "+terminal" },
+        { match = { class = "^(looking-glass-client)$" }, ["hyprbars:no_bar"] = true },
         { match = { class = "^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt)$" },                    tag = "+file-manager" },
 
         { match = { class = "^(mpv|com.github.rafostar.Clapper)$" },        float = true },
