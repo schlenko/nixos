@@ -28,7 +28,7 @@ fi
 
 sorting="''${WH_SORT:-toplist}"
 slug=$(printf '%s' "$query" | tr -cs 'A-Za-z0-9' '_')
-dir="$HOME/Pictures/$slug"
+dir="$HOME/Pictures/Wallpapers/$slug"
 mkdir -p "$dir"
 
 echo "Searching Wallhaven for '$query' ($res)..."

@@ -9,16 +9,19 @@ pkgs.runCommand "bongocat-font"
     export HOME=$TMPDIR
     mkdir -p $out/share/fonts/truetype traced
 
-    # PNG -> black/white bitmap -> vector outline
     for n in idle left right; do
-      # MODE "luma": dark pixels become the cat (transparent = white)
+      # brightness of the top-left pixel = background
+      lum=$(magick $src/$n.png -background white -alpha remove -alpha off \
+        -colorspace Gray -crop 1x1+0+0 +repage -format '%[fx:int(u*100)]' info:)
+
+      # dark background -> invert, so the cat is always the dark part
+      neg=""
+      if [ "$lum" -lt 50 ]; then neg="-negate"; fi
+
       magick $src/$n.png -background white -alpha remove -alpha off \
-        -colorspace Gray -threshold 50% traced/$n.pbm
+        -colorspace Gray $neg -auto-threshold OTSU traced/$n.pbm
 
-      # MODE "alpha" (swap in if "luma" gives a blank or inverted cat):
-      # magick $src/$n.png -alpha extract -negate -threshold 50% traced/$n.pbm
-
-      potrace -e -o traced/$n.eps traced/$n.pbm
+      potrace -s --flat -o traced/$n.svg traced/$n.pbm
     done
 
     cat > build.py <<'PY'
@@ -36,13 +39,15 @@ pkgs.runCommand "bongocat-font"
     font.ascent = 800
     font.descent = 200
 
-    H = 1400      # glyph height in font units (bigger = bigger cat)
-    BASE = -250   # vertical shift (negative = lower)
+    H = 700
+    BASE = 0      # vertical shift (negative = lower)
 
     for i, name in enumerate(["idle", "left", "right"]):
-        g = font.createChar(0xE000 + i)
-        g.importOutlines(src + "/" + name + ".eps")
+        g = font.createChar(0xE100 + i)
+        g.importOutlines(src + "/" + name + ".svg")
         bb = g.boundingBox()
+        if bb[3] - bb[1] == 0:
+            sys.exit("empty glyph for " + name)
         g.transform(psMat.translate(-bb[0], -bb[1]))
         s = H / (bb[3] - bb[1])
         g.transform(psMat.scale(s))

@@ -1,62 +1,114 @@
-# Bongo cat in the kitty/hyprbars title bar
+# Bongo cat drawn inside kitty (top right)
+# - types while you type
+# - types while a command is running
 [[ -n $KITTY_WINDOW_ID ]] || return 0
 
 zmodload zsh/datetime
 autoload -Uz add-zle-hook-widget
 
-# oh-my-zsh would overwrite the title
-precmd_functions=(${precmd_functions:#omz_termsupport_precmd})
-preexec_functions=(${preexec_functions:#omz_termsupport_preexec})
+# ---- settings ----
+typeset -g  _cat_dir=/etc/nixos/Apps/zsh/bongocat   # idle.png left.png right.png
+typeset -gi _cat_cols=24      # width in terminal columns
+typeset -gi _cat_rows=6       # height in terminal rows
+typeset -gi _cat_xpad=1       # columns of space from the right edge
+typeset -gF _cat_speed=0.05   # seconds per paw switch while a command runs
 
-# ---- calibration (tune these, see below) ----
-typeset -g _cat_cellw=10     # px per terminal column
-typeset -g _cat_spacew=4     # px width of one space in the bar font
-typeset -g _cat_catw=70      # px width of the cat text
-typeset -g _cat_margin=24    # px gap between the cat and the right edge
+# programs that take over the screen: the cat stays still for these
+typeset -ga _cat_noanim=(
+  vim nvim vi nano less more man htop btop top lazygit lazydocker
+  ssh tmux cava nmtui bluetuith bluetui cmatrix pipes pipes.sh sl
+  nyancat asciiquarium genact tui-globe wayscriber
+)
 
-typeset -g  _cat_frame=""    # current cat frame
-typeset -g  _cat_sent=""     # last title actually sent
+typeset -gi _cat_cur=1
 typeset -g  _cat_prev=""
-typeset -g  _cat_flip=0
+typeset -gi _cat_flip=0
 typeset -gF _cat_last=0
-typeset -g  _cat_idle_frame=$'\ue000'
-typeset -ga _cat_paws=($'\ue001' $'\ue002')
+typeset -g  _cat_pid=""
 
-# build "spaces + cat" so the centered string ends at the right edge
-_cat_send() {
-  _cat_frame=$1
-  local barw=$(( COLUMNS * _cat_cellw + 40 ))   # +40 = kitty window padding
-  local n=$(( (barw - 2 * _cat_margin - _cat_catw) / _cat_spacew ))
-  (( n < 0 )) && n=0
-  local title="${(l:$n:: :)}${_cat_frame}"
-  [[ $_cat_sent == $title ]] && return
-  _cat_sent=$title
-  print -n -- "\e]2;${title}\a"
+# send the three PNGs to kitty once (ids 101 idle, 102 left, 103 right)
+_cat_load() {
+  local -a names=(idle left right)
+  local i b64
+  for i in 1 2 3; do
+    b64=$(print -rn -- "${_cat_dir:A}/${names[i]}.png" | base64 -w0)
+    printf '\e_Ga=t,f=100,t=f,i=%d,q=2;%s\e\\' $(( 100 + i )) "$b64"
+  done
 }
 
-# every change of the typed line: alternate the paws
+# draw frame $1 (1-3) for a terminal that is $2 columns wide
+_cat_draw() {
+  local id=$(( 100 + $1 ))
+  local col=$(( $2 - _cat_cols - _cat_xpad + 1 ))
+  (( col < 1 )) && col=1
+  local o out
+  printf -v out '\e7\e[1;%dH\e_Ga=p,i=%d,p=1,c=%d,r=%d,C=1,z=-1,q=2\e\\' \
+    $col $id $_cat_cols $_cat_rows
+  for o in 101 102 103; do
+    (( o != id )) && out+=$'\e_Ga=d,d=i,i='$o$',p=1,q=2\e\\'
+  done
+  out+=$'\e8'
+  print -rn -- "$out"
+}
+
+_cat_show() { _cat_cur=$1; _cat_draw $1 $COLUMNS }
+
+# ---- typing at the prompt ----
 _cat_redraw() {
   [[ $BUFFER == $_cat_prev ]] && return
   _cat_prev=$BUFFER
   _cat_last=$EPOCHREALTIME
   (( _cat_flip = !_cat_flip ))
-  _cat_send $_cat_paws[_cat_flip+1]
+  _cat_show $(( 2 + _cat_flip ))
 }
 
-_cat_idle() { _cat_prev=""; _cat_send $_cat_idle_frame }
+# ---- while a command runs ----
+_cat_anim() {
+  local f=2 sz cols
+  while true; do
+    sz=$(stty size < /dev/tty 2>/dev/null)
+    cols=${sz##* }
+    [[ -n $cols ]] && _cat_draw $f $cols
+    (( f = (f == 2) ? 3 : 2 ))
+    sleep $_cat_speed
+  done
+}
 
-add-zle-hook-widget line-pre-redraw _cat_redraw
-precmd_functions+=(_cat_idle)
+_cat_stop() {
+  [[ -n $_cat_pid ]] && kill $_cat_pid 2>/dev/null
+  _cat_pid=""
+}
 
-# idle again after ~0.7s without typing
+_cat_preexec() {
+  _cat_stop
+  local -a w=(${(z)3})
+  local c=${w[1]:t}
+  [[ $c == (sudo|command|env|time|exec|nohup) ]] && c=${w[2]:t}
+  (( ${_cat_noanim[(Ie)$c]} )) && return
+  _cat_anim &!
+  _cat_pid=$!
+}
+
+# ---- back to idle ----
+_cat_idle() { _cat_prev=""; _cat_show 1 }
+
+TRAPWINCH() { _cat_show $_cat_cur }
+
 TMOUT=1
 TRAPALRM() {
-  (( EPOCHREALTIME - _cat_last > 0.7 )) && _cat_send $_cat_idle_frame
+  if (( EPOCHREALTIME - _cat_last > 0 && _cat_cur != 1 )); then
+    _cat_show 1
+  fi
   return 0
 }
 
-# window resized: recompute the padding
-TRAPWINCH() {
-  _cat_sent=""
-  _cat_send ${_cat_frame:-$_cat_idle_frame}
+zshexit() {
+  _cat_stop
+  local i
+  for i in 101 102 103; do printf '\e_Ga=d,d=i,i=%d,q=2\e\\' $i; done
 }
+
+_cat_load
+add-zle-hook-widget line-pre-redraw _cat_redraw
+preexec_functions+=(_cat_preexec)
+precmd_functions+=(_cat_stop _cat_idle)

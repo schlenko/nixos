@@ -73,6 +73,7 @@ in
     pkgs.libnotify
     pkgs.awww
     pkgs.nerd-fonts.symbols-only
+    bongocat-font
   ];
 
   # Battery notifications: event-driven script run as a user service
