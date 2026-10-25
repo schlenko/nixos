@@ -22,11 +22,6 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    tmog = {
-    url = "github:ejb1123/tmog-nix";
-    inputs.nixpkgs.follows = "nixpkgs";
-   };
-
    netextender-src = {
     url = "https://software.sonicwall.com/NetExtender/NetExtender.Linux-10.2.850.x86_64.tgz";
     flake = false;

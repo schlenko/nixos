@@ -136,7 +136,7 @@ programs.virt-manager.enable = true;
     waybar
     eww
     mako
-    libnotify
+      libnotify
    (callPackage ./Apps/Packages/chromium-themed.nix { })
 
     git
@@ -187,7 +187,6 @@ programs.virt-manager.enable = true;
 
     dbeaver-bin
     gparted
-    inputs.tmog.packages.${pkgs.stdenv.hostPlatform.system}.default    
     libreoffice
    ];
 
