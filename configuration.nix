@@ -174,6 +174,8 @@ programs.virt-manager.enable = true;
     imagemagick 
     papirus-icon-theme
     awww
+    grim
+    slurp
 
     sl
     cava
@@ -193,12 +195,9 @@ programs.virt-manager.enable = true;
 
    programs.chromium = {
     enable = true;
-    extensions = [
-    "cdnlfphfngnfhjcnoikfhaomaaflaiie"  
-  ];
+    extensions = [ "cdnlfphfngnfhjcnoikfhaomaaflaiie" ];
     extraOpts = {
       BrowserColorScheme = "dark";
-      BrowserThemeColor = "#0D0D12";   
     };
   };
 
