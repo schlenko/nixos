@@ -96,7 +96,7 @@ TRAPWINCH() { _cat_show $_cat_cur }
 
 TMOUT=1
 TRAPALRM() {
-  if (( EPOCHREALTIME - _cat_last > 0 && _cat_cur != 1 )); then
+  if (( EPOCHREALTIME - _cat_last > 0.7 && _cat_cur != 1 )); then
     _cat_show 1
   fi
   return 0

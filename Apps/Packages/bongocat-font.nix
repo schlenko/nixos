@@ -10,18 +10,28 @@ pkgs.runCommand "bongocat-font"
     mkdir -p $out/share/fonts/truetype traced
 
     for n in idle left right; do
-      # brightness of the top-left pixel = background
-      lum=$(magick $src/$n.png -background white -alpha remove -alpha off \
-        -colorspace Gray -crop 1x1+0+0 +repage -format '%[fx:int(u*100)]' info:)
+      # lowest alpha value in the image (0 = has transparent pixels)
+      amin=$(magick $src/$n.png -alpha extract -format '%[fx:int(minima*100)]' info:)
 
-      # dark background -> invert, so the cat is always the dark part
-      neg=""
-      if [ "$lum" -lt 50 ]; then neg="-negate"; fi
+      if [ "$amin" -lt 90 ]; then
+        # transparent background: use the alpha channel as the shape
+        # (opaque -> black, because potrace traces black)
+        magick $src/$n.png -alpha extract -negate -threshold 50% \
+          -type bilevel traced/$n.pbm
+      else
+        # opaque background: old brightness logic
+        lum=$(magick $src/$n.png -colorspace Gray \
+          -crop 1x1+0+0 +repage -format '%[fx:int(u*100)]' info:)
+        neg=""
+        if [ "$lum" -lt 50 ]; then neg="-negate"; fi
+        magick $src/$n.png -colorspace Gray $neg \
+          -auto-threshold OTSU -type bilevel traced/$n.pbm
+      fi
 
-      magick $src/$n.png -background white -alpha remove -alpha off \
-        -colorspace Gray $neg -auto-threshold OTSU traced/$n.pbm
+      # shows up in `nix log`: 1 = all white (empty), 0 = all black
+      magick identify -format "$n amin=$amin mean=%[fx:mean]\n" traced/$n.pbm
 
-      potrace -s --flat -o traced/$n.svg traced/$n.pbm
+      potrace -e --flat -t 10 -O 0.4 -o traced/$n.eps traced/$n.pbm
     done
 
     cat > build.py <<'PY'
@@ -44,7 +54,7 @@ pkgs.runCommand "bongocat-font"
 
     for i, name in enumerate(["idle", "left", "right"]):
         g = font.createChar(0xE100 + i)
-        g.importOutlines(src + "/" + name + ".svg")
+        g.importOutlines(src + "/" + name + ".eps")
         bb = g.boundingBox()
         if bb[3] - bb[1] == 0:
             sys.exit("empty glyph for " + name)

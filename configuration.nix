@@ -193,6 +193,8 @@ programs.virt-manager.enable = true;
     libreoffice
    ];
 
+   programs.steam.enable = true;
+
    programs.chromium = {
     enable = true;
     extensions = [ "cdnlfphfngnfhjcnoikfhaomaaflaiie" ];

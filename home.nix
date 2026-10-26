@@ -3,7 +3,6 @@ let
   appsPath = ./Apps;
 
   wh = pkgs.callPackage (appsPath + "/Packages/wh.nix") { };
-  bongocat-font = pkgs.callPackage (appsPath + "/Packages/bongocat-font.nix") { };
   looking-glass-client = pkgs.callPackage (appsPath + "/Packages/looking-glass-client.nix") { };
   rofi-wall = pkgs.callPackage (appsPath + "/Packages/rofi-wall.nix") { };
   waycal = pkgs.callPackage (appsPath + "/waybar/waycalender/waycal.nix") { };
@@ -76,7 +75,6 @@ in
     pkgs.libnotify
     pkgs.awww
     pkgs.nerd-fonts.symbols-only
-    bongocat-font
   ];
 
   # Battery notifications: event-driven script run as a user service
