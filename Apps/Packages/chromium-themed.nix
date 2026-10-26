@@ -16,7 +16,7 @@ let
         ntp_background      = [ 31 31 31 ];     # #1F1F1F
         ntp_text            = [ 204 204 204 ];
         ntp_link            = [ 77 170 252 ];   # #4DAAFC
-        omnibox_background  = [ 49 49 49 ];     # #313131
+        omnibox_background  = [ 24 24 24 ];     # #313131
         omnibox_text        = [ 204 204 204 ];
         toolbar_button_icon = [ 204 204 204 ];
       };
