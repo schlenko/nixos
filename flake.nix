@@ -55,7 +55,7 @@
 
           ./Hardware/hardware-configuration.nix
         #  ./Hardware/VFIO_Swift.nix
-        #  ./Nvidia.nix
+          ./Hardware/Nvidia.nix
 
           ./Hardware/display-scaling.nix
 
