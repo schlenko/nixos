@@ -1,5 +1,3 @@
-
-
 RESTORE FILELISTONLY
 FROM DISK = N'/sql_import/FILENAME.bak';
 

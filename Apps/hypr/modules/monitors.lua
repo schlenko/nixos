@@ -18,6 +18,15 @@ section("monitor", function()
     })
 end)
 
+section("monitor", function()
+    hl.monitor({
+        output = "HDMI-A-1",          -- your name from hyprctl monitors
+        mode = "3440x1440@74.98",       -- or "highrr" / "1920x1080@60"
+        position = "auto-up",     -- directly above the laptop
+        scale = 1,
+    })
+end)
+
 
 section("workspace rules", function()
     hl.workspace_rule({
