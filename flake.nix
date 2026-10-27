@@ -36,8 +36,14 @@
         inherit system;
         config.allowUnfree = true;
       };
-    in
+     in
     {
+      legacyPackages.${system} = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      lib = nixpkgs.lib;
+
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
 
@@ -46,13 +52,9 @@
         modules = [
           ./configuration.nix
           ./Apps/docker/docker-container.nix
-          ./Apps/Packages/netextender/netextender-module.nix
 
           ./Hardware/hardware-configuration.nix
-        #  ./Hardware/VFIO_Swift.nix
-          ./Hardware/Nvidia.nix
-          
-
+          ./Hardware/VFIO_Swift.nix
 
           home-manager.nixosModules.home-manager
 

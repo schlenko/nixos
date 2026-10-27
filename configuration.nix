@@ -108,12 +108,22 @@ programs.virt-manager.enable = true;
     ''}"
   ];
 
-  nix.settings.experimental-features = [
+  nixpkgs.flake.setFlakeRegistry = false;
+  nixpkgs.flake.setNixPath = false;
+
+  nix.registry.nixpkgs.to = {
+    type = "git";
+    url = "file:///etc/nixos";
+  };
+  
+    nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
-    services.upower.enable = true;
+  nix.nixPath = [ "nixpkgs=flake:nixpkgs" ];  
+
+  services.upower.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
