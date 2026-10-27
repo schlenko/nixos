@@ -49,7 +49,8 @@
           ./Apps/Packages/netextender/netextender-module.nix
 
           ./Hardware/hardware-configuration.nix
-          ./Hardware/VFIO_Swift.nix
+        #  ./Hardware/VFIO_Swift.nix
+          ./Hardware/Nvidia.nix
           
 
 
