@@ -6,7 +6,7 @@ let
 
     USER root
 
-    RUN apt-get updatne \
+    RUN apt-get update \
      && apt-get install -y --no-install-recommends curl gnupg ca-certificates \
      && curl -fsSL https://packages.microsoft.com/keys/microsoft.asc \
           | gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg \
@@ -100,23 +100,32 @@ in
       };
 
   # Builds the local image (cached after the first build)
-  systemd.services.build-mssql2022-fts = {
-    description = "Build SQL Server 2022 image with Full-Text Search";
-    after = [ "docker.service" "network-online.target" ];
-    requires = [ "docker.service" ];
-    wants = [ "network-online.target" ];
-    path = [ pkgs.docker ];
-    serviceConfig.Type = "oneshot";
-    script = ''
-      docker build -t mssql-2022-fts:16.0.4245.2 ${mssql2022Dockerfile}
-    '';
+  systemd.services.docker-prepare-db-images = {
+  description = "Prepare database Docker images";
+  wantedBy = [ "multi-user.target" ];
+  requires = [ "docker.service" ];
+  after = [ "docker.service" "network-online.target" ];
+  wants = [ "network-online.target" ];
+
+  path = [ pkgs.docker ];
+
+  serviceConfig = {
+    Type = "oneshot";
+    RemainAfterExit = true;
   };
 
-  # Make the container wait for the image build
-  systemd.services.docker-mssql2022 = {
-    requires = [ "build-mssql2022-fts.service" ];
-    after = [ "build-mssql2022-fts.service" ];
-  };
+  script = ''
+    set -euo pipefail
+
+    docker pull mcr.microsoft.com/mssql/server:2017-latest
+    docker pull mysql:8.4
+
+    docker build \
+      -t mssql-2022-fts:16.0.4245.2 \
+      ${mssql2022Dockerfile}
+  '';
+};
+
 
   systemd.tmpfiles.rules = [
     "d /var/lib/docker/mssql 0750 10001 0 -"
