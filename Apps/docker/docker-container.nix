@@ -31,7 +31,7 @@ in
 
   virtualisation.oci-containers.containers = {
 
-    mssql2017 = {
+  mssql2017 = {
           image = "mcr.microsoft.com/mssql/server:2017-latest";
 
           autoStart = false;
@@ -54,7 +54,7 @@ in
           ];
         };
 
-    mssql2022 = {
+  mssql2022 = {
           image = "mssql-2022-fts:16.0.4245.2";
 
           autoStart = false;
@@ -78,7 +78,7 @@ in
           ];
         };
 
-    mysql = {
+  mysql = {
           image = "mysql:8.4";
 
           autoStart = false;
