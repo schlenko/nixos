@@ -33,10 +33,10 @@ end)
 
 -- Default workspace layout
 section("workspace rules", function()
-    for i = 1, 4 do
+    for i = 5, 10 do
         hl.workspace_rule({ workspace = tostring(i), monitor = "HDMI-A-1" })
     end
-    for i = 5, 10 do
+    for i = 1, 4 do
         hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })
     end
 end)
