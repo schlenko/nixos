@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   toggleHidden = pkgs.writeShellScript "nemo-toggle-hidden" ''
@@ -9,9 +9,51 @@ let
       ${pkgs.glib}/bin/gsettings set $key true
     fi
   '';
+
+  # Shows everything ExifTool and MediaInfo know about the selected file
+  showFullInfo = pkgs.writeShellScript "nemo-full-info" ''
+    f="$1"
+    {
+      echo "==== ExifTool ===="
+      ${pkgs.exiftool}/bin/exiftool "$f"
+      echo
+      echo "==== MediaInfo ===="
+      ${pkgs.mediainfo}/bin/mediainfo "$f"
+    } | ${pkgs.less}/bin/less -R
+  '';
+
+  gstPlugins = with pkgs.gst_all_1; [
+    gstreamer
+    gst-plugins-base
+    gst-plugins-good
+    gst-plugins-bad
+    gst-plugins-ugly
+    gst-libav
+  ];
 in
 {
-  home.packages = [ pkgs.nemo-with-extensions ];
+  home.packages = with pkgs; [
+    nemo-with-extensions
+
+    # Metadata tools (used by the right-click action)
+    exiftool
+    mediainfo
+    ffmpeg          # provides ffprobe
+
+    # Codec support so Nemo can read video/audio info
+    gst_all_1.gstreamer
+    gst_all_1.gst-plugins-base
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-ugly
+    gst_all_1.gst-libav
+  ];
+
+  # Let GStreamer find its plugins (Nix has no global plugin path)
+  home.sessionVariables = {
+    GST_PLUGIN_SYSTEM_PATH_1_0 =
+      lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" gstPlugins;
+  };
 
   xdg.mimeApps = {
     enable = true;
@@ -48,6 +90,17 @@ in
     Exec=${toggleHidden}
     Icon-Name=view-reveal-symbolic
     Selection=none
+    Extensions=any;
+  '';
+
+  # right-click on a file -> "Show Full Metadata"
+  home.file.".local/share/nemo/actions/full-info.nemo_action".text = ''
+    [Nemo Action]
+    Name=Show Full Metadata
+    Comment=All metadata via ExifTool and MediaInfo
+    Exec=kitty --hold ${showFullInfo} "%F"
+    Icon-Name=document-properties
+    Selection=s
     Extensions=any;
   '';
 }

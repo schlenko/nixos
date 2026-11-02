@@ -54,9 +54,13 @@ section("binds.window", function()
         hl.dsp.window.close(),
         { description = "Close window" })
 
-    hl.bind(mainMod .. " + V",
+    hl.bind(mainMod .. " + SHIFT + V",
         hl.dsp.window.float({ action = "toggle" }),
         { description = "Toggle floating" })
+
+    hl.bind(mainMod .. "+ V",
+        hl.dsp.layout("togglesplit"),
+        { description = "Toggle split orientation" })
 
     hl.bind(mainMod .. " + F",
         hl.dsp.window.fullscreen(),

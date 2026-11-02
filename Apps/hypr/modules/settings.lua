@@ -1,5 +1,5 @@
 local util = require("modules.util")
-local section, safe = util.section, util.safe
+local section, safe, exec = util.section, util.safe, util.exec
 
 local plugin_dir = "/home/t/.local/share/hypr-plugins/"
 
