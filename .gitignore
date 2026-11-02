@@ -1,0 +1,3 @@
+
+# Ignore machine-specific NixOS hardware configuration
+/Hardware/hardware-configuration.nix
