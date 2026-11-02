@@ -176,6 +176,7 @@ programs.virt-manager.enable = true;
     bettercap
     bc
     jq
+    wev
     playerctl
     lazygit
     lazydocker

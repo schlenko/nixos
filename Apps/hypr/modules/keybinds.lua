@@ -45,6 +45,19 @@ section("binds.apps", function()
         { description = "Screenshot region" })
 
     hl.bind(mainMod .. "+ W", hl.dsp.exec_cmd([[dir="$HOME/Pictures/Wallpapers/Best"; state="$HOME/.cache/wallpaper-shuffle"; mkdir -p "$state"; find "$dir" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) | sort > "$state/all"; if [ ! -s "$state/bag" ] || ! cmp -s "$state/all" "$state/previous"; then shuf "$state/all" > "$state/bag"; cp "$state/all" "$state/previous"; fi; choice="$(head -n 1 "$state/bag")"; tail -n +2 "$state/bag" > "$state/tmp"; mv "$state/tmp" "$state/bag"; last="$(cat "$state/last" 2>/dev/null)"; if [ "$choice" = "$last" ] && [ -s "$state/bag" ]; then next="$(head -n 1 "$state/bag")"; sed -i '1d' "$state/bag"; printf '%s\n' "$choice" >> "$state/bag"; choice="$next"; fi; if [ -n "$choice" ]; then printf '%s\n' "$choice" > "$state/last"; awww img "$choice" --transition-type wipe --transition-angle 135 --transition-duration 0.8 --transition-fps 60; fi]]), { description = "Random wallpaper" })
+
+-- Media playback: SUPER + Y + Arrow keys
+    hl.bind(mainMod .. " + CTRL + DOWN",
+        hl.dsp.exec_cmd("playerctl play-pause"),
+        { description = "Play / Pause media" })
+
+    hl.bind(mainMod .. " + CTRL + RIGHT",
+        hl.dsp.exec_cmd("playerctl next"),
+        { description = "Next track" })
+
+    hl.bind(mainMod .. " + CTRL + LEFT",
+        hl.dsp.exec_cmd("playerctl previous"),
+        { description = "Previous track" })
 end)
 
 
@@ -123,26 +136,6 @@ section("binds.resize", function()
 end)
 
 
--- Move windows
-section("binds.move", function()
-    hl.bind(mainMod .. " + CTRL + LEFT",
-        hl.dsp.window.move({ direction = "l" }),
-        { description = "Move window left" })
-
-    hl.bind(mainMod .. " + CTRL + RIGHT",
-        hl.dsp.window.move({ direction = "r" }),
-        { description = "Move window right" })
-
-    hl.bind(mainMod .. " + CTRL + UP",
-        hl.dsp.window.move({ direction = "u" }),
-        { description = "Move window up" })
-
-    hl.bind(mainMod .. " + CTRL + DOWN",
-        hl.dsp.window.move({ direction = "d" }),
-        { description = "Move window down" })
-end)
-
-
 -- Swap windows
 section("binds.swap", function()
     hl.bind(mainMod .. " + ALT + LEFT",
@@ -217,9 +210,6 @@ section("binds.workspace.numbers", function()
             hl.dsp.window.move({ workspace = ws, follow = false }),
             { description = "Move silently to workspace " .. ws })
 
-        hl.bind(mainMod .. " + CTRL + " .. key,
-            hl.dsp.window.move({ workspace = ws }),
-            { description = "Move to workspace " .. ws })
     end
 end)
 
@@ -252,4 +242,6 @@ section("binds.media", function()
     hl.bind("XF86MonBrightnessUp",
         hl.dsp.exec_cmd("brightnessctl set 5%+"),
         { description = "Brightness up" })
+
+    
 end)
