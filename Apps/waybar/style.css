@@ -76,7 +76,11 @@ window#waybar > box {
 #mpris,
 #wireplumber,
 #backlight,
-#battery,
+#battery {
+    padding: 0 10px;
+    margin: 3px 4px;
+    border-radius: 10px;
+}
 #clock {
     margin: 0 8px;
     padding: 0;
@@ -145,5 +149,32 @@ tooltip label {
 #custom-updates.pending {
     color: #ff5577;
 }
+/* ---- plug / unplug flash ---- */
+@keyframes battery-plug {
+    0%   { color: #C4A7E7; background: transparent; }
+    20%  { color: #000000; background: #57e389; }
+    60%  { color: #000000; background: #57e389; }
+    100% { color: #C4A7E7; background: transparent; }
+}
 
+@keyframes battery-unplug {
+    0%   { color: #C4A7E7; background: transparent; }
+    20%  { color: #000000; background: #ff5577; }
+    60%  { color: #000000; background: #ff5577; }
+    100% { color: #C4A7E7; background: transparent; }
+}
 
+#battery.charging,
+#battery.plugged {
+    animation-name: battery-plug;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+
+#battery.discharging {
+    animation-name: battery-unplug;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
