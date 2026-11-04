@@ -51,6 +51,10 @@ section("binds.apps", function()
         hl.dsp.exec_cmd("playerctl play-pause"),
         { description = "Play / Pause media" })
 
+    hl.bind(mainMod .. " + CTRL + UP",
+        hl.dsp.exec_cmd("playerctl position 5+"),
+        { description = "Seek forward 5 seconds" })
+
     hl.bind(mainMod .. " + CTRL + RIGHT",
         hl.dsp.exec_cmd("playerctl next"),
         { description = "Next track" })
