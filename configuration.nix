@@ -26,7 +26,6 @@
   services.xserver.xkb = {
     layout = "de";
   };
-virtualisation.spiceUSBRedirection.enable = false;
 
 
   programs.zsh = {
@@ -62,6 +61,7 @@ virtualisation.spiceUSBRedirection.enable = false;
   };
 };
 programs.virt-manager.enable = true;
+virtualisation.spiceUSBRedirection.enable = false;
 
 
       nix.settings.substituters = [ "https://hyprland.cachix.org" ];
