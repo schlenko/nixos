@@ -1,6 +1,7 @@
 { config, lib, pkgs, pkgs-unstable, inputs, ... }:
 let
   appsPath = ./Apps;
+  link = path: config.lib.file.mkOutOfStoreSymlink "/etc/nixos/Apps/${path}";
 
   wh = pkgs.callPackage (appsPath + "/Packages/wh.nix") { };
   latto = pkgs.callPackage (appsPath + "/latto/latto.nix") {src = appsPath + "/latto"; };
@@ -20,15 +21,6 @@ in
   home.stateVersion = "25.11";
 
   fonts.fontconfig.enable = true;
-
-  gtk = {
-    enable = true;
-
-    font = {
-      name = "Chivo";
-      size = 11;
-    };
-  };
 
   imports = [
     (appsPath + "/gtk-3.0/nemo.nix")
@@ -106,50 +98,22 @@ in
     Install.WantedBy = [ "graphical-session.target" ];
   };
 
-  home.file.".config/hypr".source =
-    appsPath + "/hypr";
+  home.file.".config/hypr".source = link "hypr";
+  home.file.".config/kitty".source = link "kitty";
+  home.file.".config/rofi".source = link "rofi";
+  home.file.".config/waybar".source = link "waybar";
+  home.file.".config/gtk-3.0".source = link "gtk-3.0";
+  home.file.".local/share/wallpaper".source = link "wallpaper";
+  home.file.".local/share/fonts".source = link "font";
+  home.file.".config/mako".source = link "mako";
+  home.file.".config/looking-glass".source = link "looking-glass";
+  home.file.".config/fastfetch".source = link "fastfetch";
+  home.file.".config/cava".source = link "cava";
+  home.file.".config/latto/config.json".source = link "latto-config/config.json";
 
-  home.file.".config/kitty".source =
-    appsPath + "/kitty";
-
-  home.file.".config/rofi".source =
-    appsPath + "/rofi";
-
-  home.file.".config/waybar".source =
-    appsPath + "/waybar";
-
-  home.file.".config/gtk-3.0".source =
-    appsPath + "/gtk-3.0";
-
-  home.file.".local/share/wallpaper".source =
-    appsPath + "/wallpaper";
-
-  home.file.".local/share/fonts".source =
-    appsPath + /font;
-
-  home.file.".config/mako".source =
-    appsPath + "/mako";
-
-  home.file.".config/looking-glass".source =
-    appsPath + /looking-glass;
-
-  home.file.".zshrc".source =
-    appsPath + /zsh/.zshrc;
-
-  home.file.".oh-my-zsh/custom/themes".source =
-    appsPath + /zsh/themes;
-
-  home.file.".config/fastfetch".source =
-    appsPath + "/fastfetch";
-  
-  home.file.".config/cava".source =
-    appsPath + "/cava";
-
-  home.file.".config/zsh/bongocat.zsh".source =
-    appsPath + /zsh/bongocat.zsh;
-
-  home.file.".config/latto/config.json".source =
-    config.lib.file.mkOutOfStoreSymlink "/etc/nixos/Apps/latto/config.json";
+  home.file.".zshrc".source = link "zsh/.zshrc";
+  home.file.".oh-my-zsh/custom/themes".source = link "zsh/themes";
+  home.file.".config/zsh/bongocat.zsh".source = link "zsh/bongocat.zsh";
 
   home.file.".local/share/hypr-plugins/libhyprtasking.so".source =
     "${hyprtasking}/lib/libhyprtasking.so";
