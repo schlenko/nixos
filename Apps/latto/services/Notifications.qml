@@ -19,7 +19,7 @@ QtObject {
 
     // Newest first.
     readonly property var history: server ? server.trackedNotifications.values.slice().reverse() : []
-    readonly property int count: history.length
+    readonly property int count: history.length + mirrored.length
 
     readonly property bool doNotDisturb: stateAdapter.doNotDisturb
 
@@ -70,6 +70,7 @@ QtObject {
     function clearAll() {
         for (const notification of history)
             notification.dismiss();
+        mirrored = [];
     }
 
     // Body text without markup. Markup is not advertised, but some apps send it anyway.
@@ -189,6 +190,66 @@ QtObject {
                 if (entry.at <= now && entry.notification)
                     entry.notification.expire();
             }
+        }
+    }
+        // ---- Mirror of another daemon's (mako) notifications ----
+    // While latto is not the daemon itself, watch Notify calls on the session
+    // bus and keep a copy of each one in memory. Newest first.
+    property var mirrored: []
+    property int mirrorSeq: 0
+
+    function ageSince(at, now) {
+        const minutes = Math.floor((now - at) / 60000);
+        if (minutes < 1) return "now";
+        if (minutes < 60) return minutes + "m";
+        if (minutes < 1440) return Math.floor(minutes / 60) + "h";
+        return Math.floor(minutes / 1440) + "d";
+    }
+
+    function dismissMirrored(id) {
+        mirrored = mirrored.filter(entry => entry.id !== id);
+    }
+
+    // One JSON line from busctl. Notify's arguments are, in order:
+    // app_name, replaces_id, app_icon, summary, body, actions, hints, timeout.
+    function mirror(line) {
+        try {
+            const message = JSON.parse(line);
+            if (message.member !== "Notify" || !message.payload || !message.payload.data)
+                return;
+            const args = message.payload.data;
+            const summary = plainText(args[3]);
+            const body = plainText(args[4]);
+            if (summary === "" && body === "")
+                return;
+
+            let urgency = (args[6] || {}).urgency;
+            if (urgency && typeof urgency === "object")
+                urgency = urgency.data;
+
+            mirrorSeq = mirrorSeq + 1;
+            mirrored = [{
+                mirrored: true,
+                id: mirrorSeq,
+                appName: args[0] || "",
+                summary: summary,
+                body: body,
+                urgency: urgency === undefined ? 1 : urgency,
+                at: Date.now()
+            }].concat(mirrored).slice(0, 50);
+        } catch (error) {
+            // Not a Notify message we understand; ignore it.
+        }
+    }
+
+    property Process mirrorWatcher: Process {
+        running: !Settings.notificationsEnabled
+        command: [
+            "busctl", "--user", "--json=short", "monitor",
+            "--match", "type='method_call',interface='org.freedesktop.Notifications',member='Notify'"
+        ]
+        stdout: SplitParser {
+            onRead: line => root.mirror(line)
         }
     }
 

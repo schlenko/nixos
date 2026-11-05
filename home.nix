@@ -149,7 +149,7 @@ in
     appsPath + /zsh/bongocat.zsh;
 
   home.file.".config/latto/config.json".source =
-    config.lib.file.mkOutOfStoreSymlink "/etc/nixos/Apps/latto-config/config.json";
+    config.lib.file.mkOutOfStoreSymlink "/etc/nixos/Apps/latto/config.json";
 
   home.file.".local/share/hypr-plugins/libhyprtasking.so".source =
     "${hyprtasking}/lib/libhyprtasking.so";

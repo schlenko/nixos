@@ -94,11 +94,6 @@ Item {
         }
     }
 
-    SystemClock {
-        id: clock
-        precision: SystemClock.Minutes
-    }
-
     Layer {
         shown: root.mode === "idle"
 

@@ -21,7 +21,7 @@ PanelWindow {
     property color barColor: "#08080a"
     readonly property bool integrated: barComponent !== null
     readonly property real centerWidth: pill.width
-    readonly property int hostTopMargin: integrated ? 0 : Theme.topMargin
+    readonly property int hostTopMargin: integrated ? 0 : 40
     readonly property int hostCompactHeight: integrated ? 32 : Theme.compactHeight
     readonly property int hostNotificationWidth: integrated ? 320 : Theme.notificationWidth
 
@@ -64,6 +64,7 @@ PanelWindow {
     // `open` follows the pointer with a short delay each way: brushing past
     // does not open the island, and leaving it always closes it.
     property bool open: false
+    Component.onCompleted: if (Quickshell.env("LATTO_OPEN") === "1") open = true
 
     // A fullscreen window on this monitor hides the island; only notifications
     // bring it back, growing out of a dot and shrinking back into one.
@@ -71,7 +72,7 @@ PanelWindow {
     readonly property bool fullscreen: Settings.hideInFullscreen === true
         && !!(hyprMonitor && hyprMonitor.activeWorkspace && hyprMonitor.activeWorkspace.hasFullscreen)
 
-    readonly property bool expanded: open
+    readonly property bool expanded: true
     readonly property string mode: {
         if (expanded)
             return "expanded";
@@ -176,7 +177,7 @@ PanelWindow {
         blur: window.expanded ? 36 : 14
         offset.y: window.expanded ? 12 : 3
         color: Qt.rgba(0, 0, 0, window.expanded ? 0.55 : 0.35)
-        opacity: window.integrated && !window.fullscreen ? 0 : pill.opacity
+        opacity: 0
         scale: pill.scale
         transformOrigin: Item.Top
 
@@ -188,7 +189,8 @@ PanelWindow {
 
         anchors.top: parent.top
         anchors.topMargin: window.hostTopMargin
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.right: parent.right
+        anchors.rightMargin: 20
         transformOrigin: Item.Top
 
         width: window.integrated ? 156 : Theme.idleWidth
@@ -197,9 +199,9 @@ PanelWindow {
         // The top remains attached to the bar throughout the spring morph.
         topLeftRadius: window.integrated && !window.fullscreen ? 0 : radius
         topRightRadius: window.integrated && !window.fullscreen ? 0 : radius
-        color: window.integrated ? window.barColor : Theme.island
-        border.color: Theme.border
-        border.width: window.integrated && !window.fullscreen ? 0 : 1
+        color: Qt.rgba(0, 0, 0, 0.1)
+        border.color: "#3f3f42"
+        border.width: window.integrated && !window.fullscreen ? 0 : 1.5
         clip: true
 
         // 1 while shown; 0 shrinks the dot to nothing as the island hides.

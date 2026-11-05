@@ -13,6 +13,11 @@ QtObject {
     // [{ id, text }], newest first
     property var items: []
 
+    // Full text of the entry being edited (the list only has one-line previews).
+    property string editText: ""
+    property string loadingId: ""
+    signal editLoaded(string id)
+
     function isId(id) {
         return /^\d+$/.test(id);
     }
@@ -34,6 +39,32 @@ QtObject {
 
     function clear() {
         run("cliphist wipe");
+    }
+
+    // Load the full text of an entry for editing; emits editLoaded when ready.
+    function load(id) {
+        if (!isId(id))
+            return;
+        loadingId = id;
+        loader.running = false;
+        loader.command = ["cliphist", "decode", id];
+        loader.running = true;
+    }
+
+    // Replace an entry with edited text: drop the original, then copy the new
+    // text (wl-paste --watch stores it as a fresh entry). The text is passed as
+    // an argument, so quotes and newlines in it are safe.
+    function saveEdit(id, text) {
+        if (!isId(id))
+            return;
+        action.command = [
+            "sh", "-c",
+            "cliphist list | awk -F '\\t' '$1 == \"" + id + "\"' | cliphist delete; printf %s \"$1\" | wl-copy",
+            "sh",
+            text
+        ];
+        action.running = true;
+        refreshSoon.restart();
     }
 
     function run(script) {
@@ -64,7 +95,21 @@ QtObject {
         }
     }
 
+    property Process loader: Process {
+        stdout: StdioCollector {
+            onStreamFinished: {
+                root.editText = this.text;
+                root.editLoaded(root.loadingId);
+            }
+        }
+    }
+
     property Process action: Process {}
+
+    property Timer refreshSoon: Timer {
+        interval: 400
+        onTriggered: root.refresh()
+    }
 
     property Timer timer: Timer {
         interval: 2000
