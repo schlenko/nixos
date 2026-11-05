@@ -28,6 +28,32 @@ QtObject {
         recheck.restart();
     }
 
+    function setTemperature(kelvin) {
+        const temperature = Math.max(1000, Math.min(6500, Math.round(kelvin)));
+
+        Settings.nightLightTemperature = temperature;
+
+        if (active) {
+            temperatureRestart.restart();
+        }
+    }
+
+        property Timer temperatureRestart: Timer {
+        interval: 200
+        repeat: false
+
+        onTriggered: {
+            Quickshell.execDetached([
+                "sh", "-c",
+                "pkill -x hyprsunset; sleep 0.2; setsid -f hyprsunset -t \"$1\" >/dev/null 2>&1; true",
+                "sh",
+                String(Settings.nightLightTemperature)
+            ]);
+
+            root.recheck.restart();
+        }
+    }
+
     property Process probe: Process {
         command: ["pgrep", "-x", "hyprsunset"]
         onExited: code => root.active = code === 0

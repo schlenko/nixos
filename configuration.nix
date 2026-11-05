@@ -159,6 +159,7 @@ programs.virt-manager.enable = true;
     python3
     bluetuith
     brightnessctl
+    hyprsunset
     net-tools
     exploitdb
     arp-scan

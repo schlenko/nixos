@@ -13,7 +13,6 @@ let
     wl-clipboard
     khal
     playerctl
-    hyprsunset
     systemd
     coreutils
     procps
