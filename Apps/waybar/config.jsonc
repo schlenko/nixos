@@ -133,15 +133,15 @@
   },
 
 
-  "pulseaudio#microphone": {
+    "pulseaudio#microphone": {
     "format": "{format_source}",
     "format-source": "󰍬 {volume}%",
     "format-source-muted": "󰍭 muted",
 
-    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
 
-    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
-    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 1%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-",
 
     "tooltip-format": "Microphone: {source_desc}\nVolume: {volume}%",
     "tooltip-format-source-muted": "Microphone muted",
