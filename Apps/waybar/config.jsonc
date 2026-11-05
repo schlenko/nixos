@@ -127,9 +127,9 @@
   },
 
 
-  "clock": {
+    "clock": {
     "format": "{:%m-%d-%Y    %H:%M}",
-    "on-click": "bash -c 'if pgrep -u \"$USER\" -x waycal >/dev/null; then pkill -u \"$USER\" -x waycal; else waycal & fi'"
+    "on-click": "bash ~/.config/waybar/scripts/latto-toggle.sh"
   },
 
 
@@ -156,14 +156,6 @@
     "signal": 8,
     "format": "{}",
     "on-click": "setsid bash ~/.config/waybar/scripts/updates.sh check >/dev/null 2>&1 &",
-  },
-
-
-  "custom/calendar": {
-    "format": "󰃭",
-    "tooltip": true,
-    "tooltip-format": "Open calendar",
-    "on-click": "waycal"
   }
 
 }
