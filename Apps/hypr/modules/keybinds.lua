@@ -75,9 +75,20 @@ section("binds.window", function()
         hl.dsp.window.float({ action = "toggle" }),
         { description = "Toggle floating" })
 
-    hl.bind(mainMod .. "+ V",
-        hl.dsp.layout("togglesplit"),
-        { description = "Toggle split orientation" })
+    local rotate_step = 0
+
+    hl.bind(mainMod .. " + V",
+        function()
+            rotate_step = (rotate_step + 1) % 2
+
+            hl.dispatch(hl.dsp.layout("togglesplit"))
+
+            -- every second press, swap the two windows as well
+            if rotate_step == 0 then
+                hl.dispatch(hl.dsp.layout("swapsplit"))
+            end
+        end,
+        { description = "Rotate split (cycle window positions)" })
 
     hl.bind(mainMod .. " + F",
         hl.dsp.window.fullscreen(),
