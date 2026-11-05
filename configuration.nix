@@ -61,8 +61,7 @@
   };
 };
 programs.virt-manager.enable = true;
-virtualisation.spiceUSBRedirection.enable = false;
-
+virtualisation.spiceUSBRedirection.enable = true;
 
       nix.settings.substituters = [ "https://hyprland.cachix.org" ];
       nix.settings.trusted-public-keys = [

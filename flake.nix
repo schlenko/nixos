@@ -54,8 +54,8 @@
           ./Apps/docker/docker-container.nix
 
           ./Hardware/hardware-configuration.nix
-        #  ./Hardware/VFIO_Swift.nix
-          ./Hardware/Nvidia.nix
+          ./Hardware/VFIO_Swift.nix
+        #  ./Hardware/Nvidia.nix
 
           ./Hardware/display-scaling.nix
 
