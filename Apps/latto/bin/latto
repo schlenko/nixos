@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# latto: start and control the latto dynamic island.
+#
+#   latto [start]       start in the background (no-op if already running)
+#   latto stop          stop it
+#   latto restart       stop, then start
+#   latto status        say whether it is running, and the Do Not Disturb state
+#   latto dnd           toggle Do Not Disturb
+#   latto dnd on|off    set Do Not Disturb
+#   latto open [tab]    open the island, optionally on a tab (media,
+#                       notifications, stats, timers, clipboard, calendar, overview)
+#   latto close         close it
+#   latto logs          print its log
+#
+# latto is addressed by path (qs -p) so commands keep targeting the installed
+# named config even when another Quickshell config is active.
+
+set -euo pipefail
+
+# The repo this script lives in, following the ~/.local/bin symlink.
+SOURCE_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/quickshell/latto"
+if [ -z "${LATTO_DIR:-}" ] && [ -f "$CONFIG_DIR/.latto-install-source" ] \
+    && [ "$(cat "$CONFIG_DIR/.latto-install-source")" = "$SOURCE_DIR" ]; then
+    LATTO_DIR="$CONFIG_DIR"
+else
+    LATTO_DIR="${LATTO_DIR:-$SOURCE_DIR}"
+fi
+
+if ! command -v qs >/dev/null 2>&1; then
+    echo "latto: quickshell (qs) is not installed" >&2
+    exit 1
+fi
+
+is_running() {
+    qs list -p "$LATTO_DIR" 2>/dev/null | grep -q "Process ID"
+}
+
+start() {
+    qs -p "$LATTO_DIR" --no-duplicate --daemonize
+}
+
+stop() {
+    if is_running; then
+        qs kill -p "$LATTO_DIR" >/dev/null
+    fi
+}
+
+ipc() {
+    qs -p "$LATTO_DIR" ipc call notifications "$@"
+}
+
+case "${1:-start}" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        stop
+        sleep 0.3
+        start
+        ;;
+    status)
+        if is_running; then
+            echo "latto is running ($LATTO_DIR)"
+            echo "Do Not Disturb: $(ipc isDnd)"
+        else
+            echo "latto is not running"
+            exit 1
+        fi
+        ;;
+    dnd)
+        case "${2:-toggle}" in
+            toggle) ipc toggleDnd ;;
+            on) ipc setDnd true ;;
+            off) ipc setDnd false ;;
+            *) echo "usage: latto dnd [on|off]" >&2; exit 2 ;;
+        esac
+        ;;
+    open)
+        qs -p "$LATTO_DIR" ipc call island open "${2:-}"
+        ;;
+    close)
+        qs -p "$LATTO_DIR" ipc call island close
+        ;;
+    logs)
+        qs log -p "$LATTO_DIR"
+        ;;
+    -h|--help|help)
+        sed -n '2,15p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'
+        ;;
+    *)
+        echo "latto: unknown command '$1' (see latto help)" >&2
+        exit 2
+        ;;
+esac

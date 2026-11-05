@@ -3,6 +3,7 @@ let
   appsPath = ./Apps;
 
   wh = pkgs.callPackage (appsPath + "/Packages/wh.nix") { };
+  latto = pkgs.callPackage (appsPath + "/latto/latto.nix") {src = appsPath + "/latto"; };
   looking-glass-client = pkgs.callPackage (appsPath + "/Packages/looking-glass-client.nix") { };
   rofi-wall = pkgs.callPackage (appsPath + "/Packages/rofi-wall.nix") { };
   waycal = pkgs.callPackage (appsPath + "/waybar/waycalender/waycal.nix") { };
@@ -65,6 +66,7 @@ in
     tui-globe
     rofi-wall
     waycal
+    latto 
 
     notify-sound
     battery-notify
@@ -147,6 +149,9 @@ in
 
   home.file.".config/zsh/bongocat.zsh".source =
     appsPath + /zsh/bongocat.zsh;
+
+  home.file.".config/latto/config.json".source =
+    config.lib.file.mkOutOfStoreSymlink "/etc/nixos/Apps/latto-config/config.json";
 
   home.file.".local/share/hypr-plugins/libhyprtasking.so".source =
     "${hyprtasking}/lib/libhyprtasking.so";
