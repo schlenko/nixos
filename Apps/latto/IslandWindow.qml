@@ -38,10 +38,11 @@ PanelWindow {
     // exclusively for that moment and given straight back.
     // True when opened by your toggle script (LATTO_OPEN=1)
     readonly property bool keyboardOpen: Quickshell.env("LATTO_OPEN") === "1"
-
-    WlrLayershell.keyboardFocus: (keyboardOpen || IslandState.heldOpen)
+    
+    WlrLayershell.keyboardFocus: IslandState.heldOpen
     ? WlrKeyboardFocus.Exclusive
-    : WlrKeyboardFocus.None    
+    : (keyboardOpen ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None)
+
     color: "transparent"
     WlrLayershell.namespace: "latto-island"
     WlrLayershell.layer: WlrLayer.Overlay
