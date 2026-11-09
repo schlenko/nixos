@@ -4,19 +4,20 @@
   "exclusive": false,
   "spacing": 2,
 
-  "margin-top": 3,
+  "margin-top": 0,
   "margin-bottom": -13,
   "margin-left": 10,
   "margin-right": 10,
 
   "modules-left": [
-    "group/wsgroup"
+    "group/wsgroup",
+    "group/camera"
+
   ],
   "modules-center": [
       "group/connectivity"
   ],
   "modules-right": [
-      "group/camera",
       "group/system",
       "group/date"
   ],
