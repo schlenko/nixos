@@ -39,10 +39,18 @@ box#camera,
 box#system,
 box#date {
     background: rgba(0, 0, 0, 0.1);
-    border: 2px solid #3f3f42;
+    border: 2px solid #3F3F42;
     border-radius: 20px;
     padding: 0px 20px;
-    margin: 0px 6px;
+    margin: 0px;
+    min-height: 25px;
+}
+box#system,
+box#date {
+    margin-left: 120px;
+}
+box#camera{
+    margin-left: 120px;
 }
 
 .modules-left,
@@ -102,6 +110,7 @@ box#date {
     color: #ffffff;
 
     padding: 0 8px;
+    margin: 0px 0px 0px 8px;
     margin-top: -6px;
     margin-bottom: -6px;
 }
@@ -120,6 +129,9 @@ box#date {
 #clock {
     margin: 0 8px;
     padding: 0;
+}
+#network {
+    margin: 0 16px 0 8px;
 }
 
 /* ---- center island ---- */
@@ -178,7 +190,7 @@ tooltip label {
 
 /* ---- updates indicator (dimming is done in the script via pango alpha) ---- */
 #custom-updates {
-    margin: 0 8px;
+    margin: 0px 24px 0px 8px;
     padding: 0;
 }
 
@@ -217,7 +229,7 @@ tooltip label {
 
 #custom-camera.disabled {
     color: #ff5577;
-    margin: 0 10px 0px 10px;
+    margin: 0 20px 0px 16px;
 }
 
 #custom-camera.enabled {

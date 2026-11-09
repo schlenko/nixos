@@ -6,8 +6,8 @@
 
   "margin-top": 0,
   "margin-bottom": -13,
-  "margin-left": 10,
-  "margin-right": 10,
+  "margin-left": 18,
+  "margin-right": 18,
 
   "modules-left": [
     "group/wsgroup",
