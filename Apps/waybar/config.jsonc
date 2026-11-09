@@ -22,12 +22,13 @@
 
 
 "modules-right": [
-  "pulseaudio#microphone",
-  "wireplumber",
-  "backlight",
-  "battery",
-  "custom/updates",
-  "clock"
+    "custom/camera",
+    "pulseaudio#microphone",
+    "wireplumber",
+    "backlight",
+    "battery",
+    "custom/updates",
+    "clock"
 ],
 
 
@@ -154,7 +155,17 @@
     "interval": "once",
     "signal": 8,
     "format": "{}",
-    "on-click": "setsid bash ~/.config/waybar/scripts/updates.sh check >/dev/null 2>&1 &",
-  }
+    "on-click": "setsid bash ~/.config/waybar/scripts/updates.sh check >/dev/null 2>&1 &"
+  },
+
+  "custom/camera": {
+  "exec": "bash ~/.config/waybar/scripts/camera.sh",
+  "return-type": "json",
+  "interval": "once",
+  "signal": 9,
+  "format": "{}",
+  "tooltip": true,
+  "on-click": "bash ~/.config/waybar/scripts/camera.sh toggle"
+}
 
 }
