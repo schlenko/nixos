@@ -172,7 +172,6 @@ virtualisation.spiceUSBRedirection.enable = true;
     wl-clipboard
     bluetui
     cmake
-    bettercap
     bc
     jq
     wev
@@ -201,6 +200,16 @@ virtualisation.spiceUSBRedirection.enable = true;
     dbeaver-bin
     gparted
     libreoffice
+
+    bettercap
+    ghidra-bin
+    gdb
+    binutils
+    file
+    patchelf
+    strace
+    ltrace
+    python3
    ];
 
    programs.steam.enable = true;
@@ -244,6 +253,13 @@ virtualisation.spiceUSBRedirection.enable = true;
     };
   };
 
+  programs.nix-ld.enable = true;
+
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+  ];
+
   programs.vscode = {
   enable = true;
 
@@ -259,6 +275,9 @@ virtualisation.spiceUSBRedirection.enable = true;
     }
   ];
 };
+
+
+
 
   security.sudo.extraConfig = ''
     Defaults pwfeedback
