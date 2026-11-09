@@ -1,4 +1,6 @@
 import QtQuick
+import Quickshell
+import Quickshell.Io
 import "../../services"
 import "../../theme"
 import ".."
@@ -10,6 +12,26 @@ Item {
     readonly property bool hasPlayer: Media.player !== null
     readonly property string nextLyric: Lyrics.currentIndex + 1 < Lyrics.lines.length
         ? Lyrics.lines[Lyrics.currentIndex + 1].text : ""
+
+    // Cava visualizer data (runs only while media is playing)
+    property int cavaBars: 32
+    property int cavaSpacing: 2
+    property var cavaLevels: []
+
+    Process {
+        running: true
+        command: [
+            "cava", "-p",
+            Quickshell.env("HOME") + "/.config/cava/quickshell.conf"
+        ]
+        stdout: SplitParser {
+            onRead: data => {
+                root.cavaLevels = data.split(";")
+                    .filter(s => s.length > 0)
+                    .map(Number)
+            }
+        }
+    }
 
     // Empty state
     Column {
@@ -34,6 +56,34 @@ Item {
     Item {
         anchors.fill: parent
         visible: root.hasPlayer
+
+        // Cava bars, behind everything, full width of the tab
+        Row {
+            anchors.fill: parent
+            spacing: root.cavaSpacing
+            opacity: 0.2
+
+            Repeater {
+                model: root.cavaBars
+
+                Item {
+                    width: (root.width - root.cavaSpacing * (root.cavaBars - 1)) / root.cavaBars
+                    height: root.height
+
+                    Rectangle {
+                        width: parent.width
+                        height: Math.max(1, ((root.cavaLevels[index] || 0) / 100) * parent.height)
+                        anchors.bottom: parent.bottom
+                        radius: 2
+                        color: Theme.accent
+
+                        Behavior on height {
+                            NumberAnimation { duration: 80 }
+                        }
+                    }
+                }
+            }
+        }
 
         RoundedImage {
             id: art

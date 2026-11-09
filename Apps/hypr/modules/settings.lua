@@ -16,7 +16,7 @@ section("config.general", function()
     hl.config({
         general = {
             gaps_out = {
-                top = 36,
+                top = 38,
                 right = 18,
                 bottom = 24,
                 left = 18,
@@ -68,7 +68,7 @@ section("config.decoration", function()
 
             blur = {
                 enabled = true,
-                size = 4,
+                size = 5,
                 passes = 3,
                 new_optimizations = true,
                 xray = false,

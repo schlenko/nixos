@@ -36,7 +36,12 @@ PanelWindow {
     // The keyboard only while a field is being typed into (a Wi-Fi password);
     // Hyprland won't hand an "on demand" overlay the keyboard, so it is taken
     // exclusively for that moment and given straight back.
-    WlrLayershell.keyboardFocus: IslandState.heldOpen ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
+    // True when opened by your toggle script (LATTO_OPEN=1)
+    readonly property bool keyboardOpen: Quickshell.env("LATTO_OPEN") === "1"
+
+    WlrLayershell.keyboardFocus: (keyboardOpen || IslandState.heldOpen)
+    ? WlrKeyboardFocus.Exclusive
+    : WlrKeyboardFocus.None    
     color: "transparent"
     WlrLayershell.namespace: "latto-island"
     WlrLayershell.layer: WlrLayer.Overlay
@@ -101,6 +106,11 @@ PanelWindow {
         id: openTimer
         interval: Theme.hoverOpenDelay
         onTriggered: window.open = true
+    }
+
+    Shortcut {
+        sequence: "Escape"
+        onActivated: Qt.quit()
     }
 
     // When a view lets go, close if the pointer has already left. Opening on
