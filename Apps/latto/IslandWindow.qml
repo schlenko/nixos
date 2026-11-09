@@ -21,7 +21,7 @@ PanelWindow {
     property color barColor: "#08080a"
     readonly property bool integrated: barComponent !== null
     readonly property real centerWidth: pill.width
-    readonly property int hostTopMargin: integrated ? 0 : 40
+    readonly property int hostTopMargin: integrated ? 0 : 36
     readonly property int hostCompactHeight: integrated ? 32 : Theme.compactHeight
     readonly property int hostNotificationWidth: integrated ? 320 : Theme.notificationWidth
 
@@ -190,7 +190,7 @@ PanelWindow {
         anchors.top: parent.top
         anchors.topMargin: window.hostTopMargin
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 20
         transformOrigin: Item.Top
 
         width: window.integrated ? 156 : Theme.idleWidth

@@ -47,7 +47,7 @@ QtObject {
     }
 
     // Island geometry
-    readonly property int topMargin: 8
+    readonly property int topMargin: 10
     readonly property int compactHeight: 36
     readonly property int idleWidth: 210
     readonly property int activityWidth: 340
