@@ -10,26 +10,58 @@
   "margin-right": 10,
 
   "modules-left": [
-    "hyprland/workspaces",
-    "custom/cpucat"
+    "group/workspaces"
   ],
-
   "modules-center": [
-    "network",
-    "bluetooth",
-    "mpris"
+      "group/connectivity"
+  ],
+  "modules-right": [
+      "group/camera",
+      "group/system",
+      "group/date"
   ],
 
+  "group/workspaces": {
+    "orientation": "horizontal",
+    "modules": [
+        "hyprland/workspaces",
+        "custom/cpucat"
+    ]
+},
 
-"modules-right": [
-    "custom/camera",
-    "pulseaudio#microphone",
-    "wireplumber",
-    "backlight",
-    "battery",
-    "custom/updates",
-    "clock"
-],
+"group/connectivity": {
+    "orientation": "horizontal",
+    "modules": [
+        "mpris",
+        "bluetooth",
+        "network"
+    ]
+},
+
+"group/camera": {
+    "orientation": "horizontal",
+    "modules": [
+        "custom/camera",
+        "pulseaudio#microphone"
+    ]
+},
+
+"group/system": {
+    "orientation": "horizontal",
+    "modules": [
+        "battery",
+        "backlight",
+        "wireplumber"
+    ]
+},
+
+"group/date": {
+    "orientation": "horizontal",
+    "modules": [
+        "custom/updates",
+        "clock"
+    ]
+},
 
 
   "hyprland/workspaces": {
@@ -98,7 +130,8 @@
     "scroll-step": 1,
     "format": "{icon} {volume}%",
     "format-muted": "󰝟 muted",
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click": "~/.config/waybar/scripts/volume-slider.sh",
+    "on-click-right": "pavucontrol",
     "format-icons": {
       "default": ["󰕿", "󰖀", "󰕾"],
       "headphones": "󰋋",
@@ -111,7 +144,7 @@
     "scroll-step": 1,
     "format": "{icon} {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
-    "on-click": ""
+    "on-click": "~/.config/waybar/scripts/brightness-slider.sh"
   },
 
   "battery": {
@@ -159,13 +192,13 @@
   },
 
   "custom/camera": {
-  "exec": "bash ~/.config/waybar/scripts/camera.sh",
-  "return-type": "json",
-  "interval": "once",
-  "signal": 9,
-  "format": "{}",
-  "tooltip": true,
-  "on-click": "bash ~/.config/waybar/scripts/camera.sh toggle"
+    "exec": "bash ~/.config/waybar/scripts/camera.sh",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 9,
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "bash ~/.config/waybar/scripts/camera.sh toggle"
 }
 
 }

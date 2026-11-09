@@ -16,7 +16,7 @@ section("config.general", function()
     hl.config({
         general = {
             gaps_out = {
-                top = 47,
+                top = 40,
                 right = 18,
                 bottom = 28,
                 left = 18,

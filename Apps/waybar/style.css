@@ -18,13 +18,31 @@ window#waybar > box {
     padding: 0;
 }
 
-/* ---- one big floating bar ---- */
-window#waybar > box {
+
+
+/* ---- five separate islands ---- */
+#workspaces,
+#connectivity,
+#camera,
+#system,
+#date {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+box#workspaces,
+box#connectivity,
+box#camera,
+box#system,
+box#date {
     background: rgba(0, 0, 0, 0.1);
     border: 2px solid #3f3f42;
     border-radius: 20px;
     padding: 0px 20px;
-    margin: 3px 10px 0px 10px;
+    margin: 0px 6px;
 }
 
 .modules-left,
@@ -37,21 +55,39 @@ window#waybar > box {
     margin: 0;
 }
 
+#workspaces {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
 /* ---- workspaces ---- */
 #workspaces button {
     padding: 0px 1px;
     margin: 3px 2px;
+    border: none;
     border-radius: 0;
+    box-shadow: none;
     background: transparent;
     color: #5b4950;
 }
 
 #workspaces button.active {
+    border: none;
     border-bottom: 2px solid #C4A7E7;
+    background: transparent;
+    box-shadow: none;
 }
 
 #workspaces button:hover {
-    background: #1e1e1e;
+    background: transparent;
+    box-shadow: none;
+}
+
+#workspaces button.urgent {
+    background: transparent;
 }
 
 #workspaces button.urgent {
