@@ -111,7 +111,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             text: "Wi-Fi"
             font.pixelSize: Theme.fontBody + 1
-            font.weight: Font.DemiBold
+            font.weight: Font.ExtraBold
         }
 
         Row {
@@ -269,7 +269,7 @@ Item {
                 text: row.modelData.ssid
                 color: row.modelData.active ? Theme.blue : Theme.text
                 font.pixelSize: Theme.fontSmall + 1
-                font.weight: row.modelData.active ? Font.DemiBold : Font.Medium
+                font.weight: row.modelData.active ? Font.ExtraBold : Font.Medium
                 elide: Text.ElideRight
             }
 

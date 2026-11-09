@@ -59,7 +59,7 @@ Item {
             id: valueLabel
             text: metric.value
             font.pixelSize: Theme.fontTitle + 4
-            font.weight: Font.DemiBold
+            font.weight: Font.ExtraBold
         }
         Label {
             anchors.top: valueLabel.bottom

@@ -109,7 +109,7 @@ in
   home.file.".config/looking-glass".source = link "looking-glass";
   home.file.".config/fastfetch".source = link "fastfetch";
   home.file.".config/cava".source = link "cava";
-  home.file.".config/latto/config.json".source = link "latto-config/config.json";
+  home.file.".config/latto/config.json".source = link "latto/config.json";
 
   home.file.".zshrc".source = link "zsh/.zshrc";
   home.file.".oh-my-zsh/custom/themes".source = link "zsh/themes";

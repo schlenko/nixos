@@ -174,7 +174,7 @@ Item {
                     text: Notifications.count
                     color: Theme.indigo
                     font.pixelSize: Theme.fontSmall
-                    font.weight: Font.DemiBold
+                    font.weight: Font.ExtraBold
                 }
             }
             Icon {
@@ -230,7 +230,7 @@ Item {
                     text: Timers.countdownText
                     color: root.timerColor
                     font.pixelSize: Theme.fontSmall
-                    font.weight: Font.DemiBold
+                    font.weight: Font.ExtraBold
                 }
             }
             Row {
@@ -249,7 +249,7 @@ Item {
                     text: Downloads.count
                     color: Theme.cyan
                     font.pixelSize: Theme.fontSmall
-                    font.weight: Font.DemiBold
+                    font.weight: Font.ExtraBold
                 }
             }
         }
@@ -260,7 +260,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             text: Qt.formatDateTime(clock.date, "HH:mm")
             font.pixelSize: Theme.fontBody
-            font.weight: Font.DemiBold
+            font.weight: Font.ExtraBold
         }
     }
 
@@ -383,7 +383,7 @@ Item {
                 ? (claudeLayer.session.project || "Claude") + (Claude.count > 1 ? " +" + (Claude.count - 1) : "")
                 : ""
             font.pixelSize: Theme.fontSmall + 1
-            font.weight: Font.DemiBold
+            font.weight: Font.ExtraBold
             elide: Text.ElideRight
         }
         Label {
@@ -411,7 +411,7 @@ Item {
                 : ""
             color: claudeLayer.waiting ? claudeLayer.agentColor : Theme.textSecondary
             font.pixelSize: Theme.fontSmall
-            font.weight: Font.DemiBold
+            font.weight: Font.ExtraBold
             font.features: { "tnum": 1 }
         }
     }
@@ -465,7 +465,7 @@ Item {
             text: Math.round(root.alertValue * 100)
             color: Theme.textSecondary
             font.pixelSize: Theme.fontSmall
-            font.weight: Font.DemiBold
+            font.weight: Font.ExtraBold
         }
 
         // The icon pops each time a new alert replaces the previous one.

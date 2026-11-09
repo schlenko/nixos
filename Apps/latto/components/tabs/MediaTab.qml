@@ -55,7 +55,7 @@ Item {
                 width: parent.width
                 text: Media.title
                 font.pixelSize: Theme.fontTitle
-                font.weight: Font.DemiBold
+                font.weight: Font.ExtraBold
                 elide: Text.ElideRight
             }
             Label {

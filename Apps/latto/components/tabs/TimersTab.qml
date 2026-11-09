@@ -86,7 +86,7 @@ Row {
                 text: Timers.phaseLabel
                 color: root.countdownTint
                 font.pixelSize: Theme.fontSmall
-                font.weight: Font.DemiBold
+                font.weight: Font.ExtraBold
             }
             Row {
                 anchors.verticalCenter: parent.verticalCenter

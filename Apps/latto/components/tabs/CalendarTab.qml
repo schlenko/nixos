@@ -46,7 +46,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 text: Qt.formatDate(root.shownMonth, "MMMM yyyy")
                 font.pixelSize: Theme.fontBody + 1
-                font.weight: Font.DemiBold
+                font.weight: Font.ExtraBold
             }
             Row {
                 anchors.right: parent.right
@@ -85,7 +85,7 @@ Item {
                     text: modelData
                     color: Theme.textTertiary
                     font.pixelSize: Theme.fontCaption
-                    font.weight: Font.DemiBold
+                    font.weight: Font.ExtraBold
                 }
             }
 
@@ -111,7 +111,7 @@ Item {
                         width: 23
                         height: 23
                         radius: width / 2
-                        color: Theme.accent
+                        color: "#3B2D4B"
                         visible: cell.isToday
                     }
                     Label {
@@ -139,14 +139,14 @@ Item {
             text: Qt.formatDate(root.today, "dddd")
             color: Theme.accent
             font.pixelSize: Theme.fontSmall
-            font.weight: Font.DemiBold
+            font.weight: Font.ExtraBold
         }
         Label {
             id: dayNumber
             anchors.top: weekday.bottom
             text: Qt.formatDate(root.today, "d MMMM")
             font.pixelSize: Theme.fontTitle + 4
-            font.weight: Font.DemiBold
+            font.weight: Font.ExtraBold
         }
 
         Column {

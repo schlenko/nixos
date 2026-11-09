@@ -14,23 +14,25 @@ QtObject {
     readonly property int fontBody: 13
     readonly property int fontTitle: 16
     readonly property int fontDisplay: 34
+    readonly property int fontWeight: Font.ExtraBold
 
-    // Palette
+      // Palette
     readonly property color island: "#000000"
-    readonly property color surface: "#141416"
-    readonly property color surfaceRaised: "#26262a"
-    readonly property color border: Qt.rgba(1, 1, 1, 0.08)
-    readonly property color text: "#f5f5f7"
-    readonly property color textSecondary: "#a1a1a6"
-    readonly property color textTertiary: "#636366"
+    readonly property color surface: "#151516"
+    readonly property color surfaceRaised: "#262628"
+    readonly property color border: Qt.rgba(1, 1, 1, 0.07)
+    readonly property color text: "#C4A7E7"
+    readonly property color textSecondary: "#98989e"
+    readonly property color textTertiary: "#5a5a60"
     readonly property color accent: Settings.accentColor
-    readonly property color red: "#ff453a"
-    readonly property color orange: "#ff9f0a"
-    readonly property color yellow: "#ffd60a"
-    readonly property color green: "#30d158"
-    readonly property color cyan: "#64d2ff"
-    readonly property color blue: "#0a84ff"
-    readonly property color indigo: "#5e5ce6"
+    // Status colors as greys, from lightest (most attention) to darkest
+    readonly property color red: "#C4A7E7"
+    readonly property color orange: "#C4A7E7"
+    readonly property color yellow: "#C4A7E7"
+    readonly property color green: "#C4A7E7"
+    readonly property color cyan: "#C4A7E7"
+    readonly property color blue: "#C4A7E7"
+    readonly property color indigo: "#C4A7E7"
     // Agent identity colors; user overrides also support future adapters.
     readonly property color claude: agentColor("claude")
     function agentColor(agent) {
@@ -38,9 +40,9 @@ QtObject {
         const key = name === "claude code" ? "claude" : name;
         const overrides = Settings.agentColors || {};
         if (overrides[key]) return overrides[key];
-        if (key === "claude") return "#d97757";
-        if (key === "kiro") return "#9046ff";
-        if (key === "codex") return "#7a9dff";
+        if (key === "claude") return "#C4A7E7";
+        if (key === "kiro") return "#C4A7E7";
+        if (key === "codex") return "#C4A7E7";
         return accent;
     }
 

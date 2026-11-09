@@ -16,7 +16,6 @@ Item {
     // components/tabs.
     readonly property var tabs: ({
         media: { icon: "music", label: "Media", file: "MediaTab.qml" },
-        notifications: { icon: "bell", label: "Notifications", file: "NotificationsTab.qml" },
         stats: { icon: "barChart", label: "Stats", file: "StatsTab.qml" },
         timers: { icon: "timer", label: "Timers", file: "TimersTab.qml" },
         clipboard: { icon: "clipboard", label: "Clipboard", file: "ClipboardTab.qml" },

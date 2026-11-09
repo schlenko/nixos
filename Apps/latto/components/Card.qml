@@ -26,7 +26,7 @@ Rectangle {
         text: root.title.toUpperCase()
         color: Theme.textTertiary
         font.pixelSize: Theme.fontCaption
-        font.weight: Font.DemiBold
+        font.weight: Font.Bold
         font.letterSpacing: 0.6
         elide: Text.ElideRight
     }

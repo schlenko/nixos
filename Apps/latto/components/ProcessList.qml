@@ -69,7 +69,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             text: root.isCpu ? "CPU" : "Memory"
             font.pixelSize: Theme.fontBody + 1
-            font.weight: Font.DemiBold
+            font.weight: Font.ExtraBold
         }
         Label {
             anchors.right: parent.right
@@ -153,7 +153,7 @@ Item {
                         text: row.modelData.name.charAt(0).toUpperCase()
                         color: Theme.textSecondary
                         font.pixelSize: Theme.fontCaption + 1
-                        font.weight: Font.DemiBold
+                        font.weight: Font.ExtraBold
                     }
                 }
             }
@@ -201,7 +201,7 @@ Item {
                 horizontalAlignment: Text.AlignRight
                 text: root.amountOf(row.modelData)
                 font.pixelSize: Theme.fontSmall
-                font.weight: Font.DemiBold
+                font.weight: Font.ExtraBold
                 font.features: { "tnum": 1 }
             }
         }

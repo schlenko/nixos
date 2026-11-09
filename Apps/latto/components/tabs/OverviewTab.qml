@@ -127,7 +127,7 @@ Item {
                 anchors.topMargin: -2
                 text: tile.value
                 font.pixelSize: Theme.fontBody
-                font.weight: Font.DemiBold
+                font.weight: Font.ExtraBold
                 elide: Text.ElideRight
             }
 
