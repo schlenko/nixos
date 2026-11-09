@@ -319,19 +319,18 @@ Item {
                 icon: "nightLight"
                 tint: Theme.orange
 
-                value: Settings.nightLightTemperature + "K"
+                value: NightLight.temperature + " K"
 
                 level: Math.max(
                     0,
-                    Math.min(1, (Settings.nightLightTemperature - 1000) / 5500)
+                    Math.min(1, (NightLight.temperature - NightLight.minTemp)
+                                / (NightLight.maxTemp - NightLight.minTemp))
                 )
 
-                onLevelPicked: fraction => {
-                    console.log("WARMTH SLIDER:", fraction);
-                    console.log("NEW TEMPERATURE:", 1000 + fraction * 5500);
-
-                    NightLight.setTemperature(1000 + fraction * 5500);
-                }
+                onLevelPicked: fraction => NightLight.setTemperature(
+                    NightLight.minTemp
+                    + fraction * (NightLight.maxTemp - NightLight.minTemp)
+                )
             }
         }
     }

@@ -4,73 +4,57 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 
-// Night light through hyprsunset. On means a hyprsunset process is running at
-// nightLightTemperature; off resets the screen to its normal colours.
-// If ~/.cache/.hyprsunset_state exists (as used by some Hyprland setups'
-// Waybar modules), it is kept in step.
-QtObject {
+Singleton {
     id: root
 
+    readonly property int minTemp: 1000
+    readonly property int maxTemp: 6500
+
+    // Live value the UI binds to. Starts from the config default.
+    property int temperature: Settings.nightLightTemperature
     property bool active: false
-    readonly property string stateFile: Quickshell.env("HOME") + "/.cache/.hyprsunset_state"
-
-    function toggle() {
-        setActive(!active);
-    }
-
-    function setActive(on) {
-        active = on;
-        const script = on
-            ? "pkill -x hyprsunset; sleep 0.2; setsid -f hyprsunset -t \"$1\" >/dev/null 2>&1; [ -f \"$2\" ] && echo on > \"$2\"; true"
-            : "pkill -x hyprsunset; sleep 0.2; setsid -f hyprsunset -i >/dev/null 2>&1; sleep 0.4; pkill -x hyprsunset; [ -f \"$2\" ] && echo off > \"$2\"; true";
-        Quickshell.execDetached(["sh", "-c", script, "sh", String(Settings.nightLightTemperature), stateFile]);
-        Activities.show("nightLight", 70, { label: on ? "Night light on" : "Night light off", value: -1, off: !on }, 1800);
-        recheck.restart();
-    }
 
     function setTemperature(kelvin) {
-        const temperature = Math.max(1000, Math.min(6500, Math.round(kelvin)));
+        temperature = Math.max(minTemp, Math.min(maxTemp, Math.round(kelvin / 50) * 50));
+        active = true;
+        debounce.restart();
+    }
 
-        Settings.nightLightTemperature = temperature;
-
+    function toggle() {
         if (active) {
-            temperatureRestart.restart();
+            active = false;
+            run(["hyprctl", "hyprsunset", "identity"]);
+        } else {
+            active = true;
+            run(["hyprctl", "hyprsunset", "temperature", String(temperature)]);
         }
     }
 
-        property Timer temperatureRestart: Timer {
-        interval: 200
-        repeat: false
+    property var _pending: null
 
-        onTriggered: {
-            Quickshell.execDetached([
-                "sh", "-c",
-                "pkill -x hyprsunset; sleep 0.2; setsid -f hyprsunset -t \"$1\" >/dev/null 2>&1; true",
-                "sh",
-                String(Settings.nightLightTemperature)
-            ]);
-
-            root.recheck.restart();
-        }
+    function run(cmd) {
+        _pending = cmd;
+        if (!proc.running)
+            flush();
     }
 
-    property Process probe: Process {
-        command: ["pgrep", "-x", "hyprsunset"]
-        onExited: code => root.active = code === 0
+    function flush() {
+        if (!_pending)
+            return;
+        proc.command = _pending;
+        _pending = null;
+        proc.running = true;
     }
 
-    // Confirms the state after a toggle settles, and catches changes made
-    // elsewhere (a keybind or another bar).
-    property Timer recheck: Timer {
-        interval: 1200
-        onTriggered: root.probe.running = true
+    Timer {
+        id: debounce
+        interval: 80
+        onTriggered: root.run(["hyprctl", "hyprsunset", "temperature", String(root.temperature)])
     }
 
-    property Timer poll: Timer {
-        interval: 5000
-        repeat: true
-        running: true
-        triggeredOnStart: true
-        onTriggered: root.probe.running = true
+    Process {
+        id: proc
+        // If a newer value arrived while this one was running, send it now.
+        onRunningChanged: if (!running) root.flush()
     }
 }
