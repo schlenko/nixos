@@ -190,7 +190,7 @@ PanelWindow {
         anchors.top: parent.top
         anchors.topMargin: window.hostTopMargin
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 0
         transformOrigin: Item.Top
 
         width: window.integrated ? 156 : Theme.idleWidth

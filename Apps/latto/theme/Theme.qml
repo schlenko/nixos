@@ -53,14 +53,14 @@ QtObject {
     readonly property int activityWidth: 340
     readonly property int expandedWidth: 600
     readonly property int expandedHeight: 276
-    readonly property int expandedRadius: 34
+    readonly property int expandedRadius: 0
     readonly property int notificationWidth: 420
     readonly property int notificationHeight: 76
     readonly property int notificationRadius: 28
     // What the island shrinks to before disappearing in fullscreen.
     readonly property int dotSize: 12
     readonly property int padding: 18
-    readonly property int cardRadius: 18
+    readonly property int cardRadius: 0
 
     // Motion. Curves are cubic beziers in the [x1, y1, x2, y2, 1, 1] form that
     // Easing.BezierSpline expects.
