@@ -1,4 +1,40 @@
 /* Nemo, styled like the CatRice waybar */
+/* ---- transparent black base for every GTK3 app ---- */
+@define-color theme_bg_color rgba(0, 0, 0, 0.1);
+@define-color theme_base_color rgba(0, 0, 0, 0.1);
+@define-color theme_unfocused_bg_color rgba(0, 0, 0, 0.1);
+@define-color theme_unfocused_base_color rgba(0, 0, 0, 0.1);
+@define-color bg_color rgba(0, 0, 0, 0.1);
+@define-color base_color rgba(0, 0, 0, 0.1);
+@define-color insensitive_bg_color rgba(0, 0, 0, 0.1);
+@define-color theme_unfocused_selected_bg_color #1e1e1e;
+@define-color content_view_bg rgba(0, 0, 0, 0.1);
+
+/* fallback in case the theme hardcodes colors instead of using the names above */
+window,
+.background,
+dialog,
+messagedialog,
+headerbar,
+.titlebar,
+menu,
+.popup,
+popover.background,
+notebook > stack,
+treeview.view,
+textview text,
+.view {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: none;
+}
+
+/* menus and popovers stay mostly opaque so text remains readable */
+menu,
+.popup,
+popover.background {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: none;
+}
 
 .nemo-window,
 .nemo-window * {
