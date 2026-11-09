@@ -89,6 +89,7 @@ hl.on("hyprland.start", function()
     util.exec("awww-daemon")
     util.exec("mako")
     util.exec("hyprlock")
+    util.exec("hyprsunset -t 4500")
 
     local path = RUNTIME .. "/hypr-autostart.sh"
     local f = io.open(path, "w")
