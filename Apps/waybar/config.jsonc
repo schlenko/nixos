@@ -10,7 +10,7 @@
   "margin-right": 10,
 
   "modules-left": [
-    "group/workspaces"
+    "group/wsgroup"
   ],
   "modules-center": [
       "group/connectivity"
@@ -21,7 +21,7 @@
       "group/date"
   ],
 
-  "group/workspaces": {
+  "group/wsgroup": {
     "orientation": "horizontal",
     "modules": [
         "hyprland/workspaces",

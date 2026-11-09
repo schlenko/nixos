@@ -21,7 +21,7 @@ window#waybar > box {
 
 
 /* ---- five separate islands ---- */
-#workspaces,
+#wsgroup,
 #connectivity,
 #camera,
 #system,
@@ -33,7 +33,7 @@ window#waybar > box {
     margin: 0;
 }
 
-box#workspaces,
+box#wsgroup,
 box#connectivity,
 box#camera,
 box#system,
