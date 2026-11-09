@@ -204,13 +204,24 @@ virtualisation.spiceUSBRedirection.enable = true;
 
    programs.steam.enable = true;
 
-   programs.chromium = {
+   
+  
+  programs.chromium = {
     enable = true;
+
     extensions = [ "cdnlfphfngnfhjcnoikfhaomaaflaiie" ];
+
     extraOpts = {
       BrowserColorScheme = "dark";
+      PasswordManagerEnabled = false;
+    };
+
+    initialPrefs = {
+      bookmark_bar.visibility_state = 1;
     };
   };
+
+
 
   programs.hyprlock.enable = true;
 
