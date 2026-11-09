@@ -9,7 +9,7 @@ section("layer rules", function()
         { match = { namespace = "swaync-notification-window" }, blur = true, ignore_alpha = 0 },
         { match = { namespace = "com.aurora.keybinds_help" },   blur = true, ignore_alpha = 0 },
         { match = { namespace = "logout_dialog" },              blur = true, ignore_alpha = 0 },
-        { match = { namespace = "waybar" },                     blur = true, ignore_alpha = 0 },
+        { match = { namespace = "waybar" },                     blur = true, ignore_alpha = 0, animation = "slide" },
         { match = { namespace = "latto-island" },               blur = true, ignore_alpha = 0, animation = "slide" },
 
     }
@@ -31,7 +31,7 @@ section("window rules", function()
         { match = { class = "^(zoom|Zoom|onedriver|onedriver-launcher)$" }, float = true },
 
         -- All windows: focused = 1.0, unfocused = 0.88
-        { match = { class = ".*" }, opacity = "1.0 0.88" },
+        { match = { class = ".*" }, opacity = "1.0 1.0" },
 
         -- MPV/VLC: disable blur, but inherit the global opacity rule
         { match = { class = "^(mpv|vlc)$" }, no_blur = true },

@@ -12,7 +12,6 @@ window#waybar {
 }
 
 window#waybar > box {
-    opacity: 0.88;
     background: transparent;
     border: none;
     margin: 3px 0px 0px 0px;
@@ -39,7 +38,7 @@ box#connectivity,
 box#camera,
 box#system,
 box#date {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.01);
     background-clip: padding-box;
     border: 2px solid #3F3F42;
     border-radius: 100px;
