@@ -28,6 +28,41 @@ textview text,
     background-image: none;
 }
 
+/* file chooser (VS Code "Open Folder", save dialogs, etc.) */
+filechooser,
+filechooser box,
+filechooser paned,
+filechooser stack,
+filechooser grid,
+filechooser scrolledwindow,
+filechooser viewport,
+filechooser list,
+filechooser row,
+filechooser actionbar,
+filechooser toolbar,
+filechooser searchbar,
+filechooser placessidebar,
+filechooser placessidebar list,
+filechooser treeview,
+filechooser treeview.view,
+filechooser .view,
+filechooser .sidebar,
+filechooser .path-bar,
+filechooser .path-bar button,
+window.background.csd,
+window.background.csd > box,
+window.background.csd decoration,
+decoration {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: none;
+}
+
+/* keep the selection visible */
+filechooser treeview.view:selected,
+filechooser row:selected {
+    background-color: rgba(196, 167, 231, 0.18);
+}
+
 /* menus and popovers stay mostly opaque so text remains readable */
 menu,
 .popup,

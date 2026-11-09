@@ -156,6 +156,7 @@ virtualisation.spiceUSBRedirection.enable = true;
     python3
     bluetuith
     brightnessctl
+    quickshell
     hyprsunset
     net-tools
     exploitdb
