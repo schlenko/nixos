@@ -21,11 +21,6 @@
       url = "github:hyprwm/hyprland-plugins/v0.56.0";
       inputs.hyprland.follows = "hyprland";
     };
-
-   netextender-src = {
-    url = "https://software.sonicwall.com/NetExtender/NetExtender.Linux-10.2.850.x86_64.tgz";
-    flake = false;
-  };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
