@@ -97,8 +97,7 @@
     "scroll-step": 1,
     "format": "{icon} {volume}%",
     "format-muted": "󰝟 muted",
-    "on-click": "~/.config/waybar/scripts/volume-slider.sh",
-    "on-click-right": "pavucontrol",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "format-icons": {
       "default": ["󰕿", "󰖀", "󰕾"],
       "headphones": "󰋋",
@@ -111,7 +110,7 @@
     "scroll-step": 1,
     "format": "{icon} {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
-    "on-click": "~/.config/waybar/scripts/brightness-slider.sh"
+    "on-click": ""
   },
 
   "battery": {
