@@ -18,7 +18,7 @@ QtObject {
 
       // Palette
     readonly property color island: "#000000"
-    readonly property color surface: "#151516"
+    readonly property color surface: rgba(1, 1, 1, 0.05)
     readonly property color surfaceRaised: "#262628"
     readonly property color border: Qt.rgba(1, 1, 1, 0.07)
     readonly property color text: "#C4A7E7"
@@ -60,7 +60,7 @@ QtObject {
     // What the island shrinks to before disappearing in fullscreen.
     readonly property int dotSize: 12
     readonly property int padding: 18
-    readonly property int cardRadius: 0
+    readonly property int cardRadius: 10
 
     // Motion. Curves are cubic beziers in the [x1, y1, x2, y2, 1, 1] form that
     // Easing.BezierSpline expects.
