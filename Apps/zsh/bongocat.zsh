@@ -8,8 +8,8 @@ autoload -Uz add-zle-hook-widget
 
 # ---- settings ----
 typeset -g  _cat_dir=/etc/nixos/Apps/zsh/bongocat   # idle.png left.png right.png
-typeset -gi _cat_cols=24      # width in terminal columns
-typeset -gi _cat_rows=6       # height in terminal rows
+typeset -gi _cat_cols=20      # width in terminal columns
+typeset -gi _cat_rows=5       # height in terminal rows
 typeset -gi _cat_xpad=1       # columns of space from the right edge
 typeset -gF _cat_speed=0.05   # seconds per paw switch while a command runs
 

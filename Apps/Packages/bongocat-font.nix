@@ -49,7 +49,7 @@ pkgs.runCommand "bongocat-font"
     font.ascent = 800
     font.descent = 200
 
-    H = 700
+    H = 350
     BASE = 0      # vertical shift (negative = lower)
 
     for i, name in enumerate(["idle", "left", "right"]):
