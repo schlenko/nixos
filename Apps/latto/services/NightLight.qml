@@ -10,9 +10,12 @@ Singleton {
     readonly property int minTemp: 1000
     readonly property int maxTemp: 6500
 
-    // Live value the UI binds to. Starts from the config default.
     property int temperature: Settings.nightLightTemperature
     property bool active: false
+
+    Component.onCompleted: {
+        active = true;
+    }
 
     function setTemperature(kelvin) {
         temperature = Math.max(minTemp, Math.min(maxTemp, Math.round(kelvin / 50) * 50));
@@ -54,7 +57,6 @@ Singleton {
 
     Process {
         id: proc
-        // If a newer value arrived while this one was running, send it now.
         onRunningChanged: if (!running) root.flush()
     }
 }
