@@ -98,6 +98,10 @@ dialog:backdrop {
     color: #C4A7E7;
 }
 
+* {
+    border-color: #3f3f42;
+}
+
 notebook > header tab:checked {
     border-bottom: 2px solid #C4A7E7;
 }
@@ -309,6 +313,330 @@ cellview {
     background-color: transparent;
     color: #C4A7E7;
 }
+
+/* =========================================================
+   FIX: GTK dropdown menus and popups
+   ========================================================= */
+
+/* Give dropdowns an actual background, not transparent */
+menu,
+menu > *,
+menuitem,
+.menu,
+.popup,
+popover,
+popover.background,
+popover > contents,
+modelbutton,
+combobox window,
+combobox window.popup {
+    background-color: #111111;
+    background-image: none;
+    color: #C4A7E7;
+    border-color: #3f3f42;
+    box-shadow: none;
+}
+
+/* Menu items must remain visible BEFORE hovering */
+menu menuitem,
+menu menuitem label,
+menuitem label,
+modelbutton,
+modelbutton label {
+    background-color: #111111;
+    background-image: none;
+    color: #C4A7E7;
+}
+
+/* Hovered items */
+menu menuitem:hover,
+menuitem:hover,
+modelbutton:hover,
+modelbutton:focus {
+    background-color: #25202d;
+    background-image: none;
+    color: #ffffff;
+}
+
+/* Dropdown borders */
+menu,
+.popup,
+popover.background {
+    border: 1px solid #3f3f42;
+    border-radius: 0;
+}
+/* =========================================================
+   GTK CALENDAR - ROSE PINE
+   ========================================================= */
+
+calendar {
+    background-color: #111111;
+    color: #C4A7E7;
+}
+
+/* Normal dates */
+calendar grid > label,
+calendar grid > label.day-number {
+    color: #C4A7E7;
+    background-color: transparent;
+}
+
+/* Current date */
+calendar grid > label.today {
+    background-color: rgba(224, 196, 255, 0.35);
+    color: #ffffff;
+    border: 1px solid #E0C4FF;
+}
+
+/* Selected date */
+calendar grid > label:selected,
+calendar grid > label:checked {
+    background-color: rgba(196, 167, 231, 0.65);
+    color: #ffffff;
+    border: 1px solid #E0C4FF;
+}
+
+/* Hovered date */
+calendar grid > label:hover,
+calendar grid > label.day-number:hover {
+    background-color: rgba(196, 167, 231, 0.35);
+    color: #ffffff;
+    border: 1px solid #C4A7E7;
+}
+
+/* Other month */
+calendar grid > label.other-month {
+    color: #756b80;
+}
+
+/* Fix hover background covering only the text */
+menu menuitem label,
+menuitem label,
+modelbutton label {
+    background-color: transparent;
+    background-image: none;
+}
+
+menu menuitem,
+menuitem,
+modelbutton {
+    background-color: transparent;
+    background-image: none;
+    border-radius: 0;
+}
+
+menu menuitem:hover,
+menuitem:hover,
+modelbutton:hover {
+    background-color: #25202d;
+    background-image: none;
+    color: #ffffff;
+}
+/* ---- SLIDERS: Rose Pine ---- */
+
+/* Slider trough / background */
+scale trough {
+    background-color: #25202d;
+    background-image: none;
+    border: 1px solid #3f3f42;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Filled portion */
+scale highlight {
+    background-color: #C4A7E7;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* Slider handle */
+scale slider {
+    background-color: #C4A7E7;
+    background-image: none;
+    border: 1px solid #3f3f42;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Hover */
+scale slider:hover {
+    background-color: #E0C4FF;
+}
+
+/* Active */
+scale slider:active {
+    background-color: #ffffff;
+}
+
+/* Disabled */
+scale:disabled {
+    opacity: 0.5;
+}
+
+/* Remove blue focus glow */
+scale:focus,
+scale slider:focus {
+    outline: none;
+    box-shadow: none;
+}
+/* ---- SCROLLBAR: ROSE PINE ---- */
+
+/* Scrollbar track */
+scrollbar trough {
+    background-color: #111111;
+    background-image: none;
+    border: 1px solid #3f3f42;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Scrollbar handle */
+scrollbar slider {
+    background-color: #C4A7E7;
+    background-image: none;
+    border: 1px solid #3f3f42;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Hover */
+scrollbar slider:hover {
+    background-color: #E0C4FF;
+}
+
+/* Clicked / dragged */
+scrollbar slider:active {
+    background-color: #C4A7E7;
+    background-image: none;
+    border-color: #C4A7E7;
+    box-shadow: none;
+}
+
+/* Remove blue focus and selected states */
+scrollbar slider:focus,
+scrollbar slider:checked {
+    background-color: #C4A7E7;
+    background-image: none;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Scrollbar buttons */
+scrollbar button {
+    background-color: #111111;
+    background-image: none;
+    border: 1px solid #3f3f42;
+    box-shadow: none;
+}
+/* ---- FORCE ALL SEPARATORS AND DIVIDERS TO GREY ---- */
+
+separator,
+separator:backdrop,
+separator.horizontal,
+separator.vertical,
+.horizontal separator,
+.vertical separator {
+    background-color: #3f3f42;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    opacity: 1;
+}
+
+/* Remove bright inset borders and shadows */
+* {
+    box-shadow: none;
+    outline-color: #3f3f42;
+}
+
+/* Explicit horizontal separator */
+separator.horizontal {
+    min-height: 1px;
+    min-width: 0;
+}
+
+/* =========================================================
+   THUNAR FILE MANAGER
+   ========================================================= */
+
+/* Main window and file browser */
+window,
+window.background,
+window decoration,
+.thunar,
+.thunar-window {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: none;
+    color: #C4A7E7;
+}
+
+/* File list */
+treeview,
+treeview.view,
+treeview.view:selected,
+treeview.view:hover {
+    background-color: #111111;
+    background-image: none;
+    color: #C4A7E7;
+    border-color: #3f3f42;
+}
+
+/* File list selection */
+treeview.view:selected {
+    background-color: rgba(196, 167, 231, 0.25);
+    color: #ffffff;
+}
+
+/* Sidebar */
+.sidebar,
+.sidebar view,
+placessidebar,
+placessidebar list,
+placessidebar row {
+    background-color: #111111;
+    background-image: none;
+    color: #C4A7E7;
+    border-color: #3f3f42;
+}
+
+/* Path bar and toolbar */
+toolbar,
+toolbar button,
+.path-bar button,
+.location-bar,
+entry {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: none;
+    color: #C4A7E7;
+    border-color: #3f3f42;
+    box-shadow: none;
+}
+
+/* File and folder labels */
+cellview,
+treeview.view text,
+.sidebar label {
+    color: #C4A7E7;
+}
+
+/* Scrollbars */
+scrollbar trough {
+    background-color: #111111;
+}
+
+scrollbar slider {
+    background-color: #C4A7E7;
+    border: 1px solid #3f3f42;
+    box-shadow: none;
+}
+
+scrollbar slider:hover,
+scrollbar slider:active {
+    background-color: #E0C4FF;
+}
+
 
 .nemo-window,
 .nemo-window * {
