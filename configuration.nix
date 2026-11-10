@@ -167,6 +167,7 @@ virtualisation.spiceUSBRedirection.enable = true;
     cargo
     pkg-config
     stdenv.cc
+    dotnet-sdk_9
     dotnet-sdk_10
 
     wl-clipboard
