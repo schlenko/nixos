@@ -141,6 +141,13 @@ section("config.dwindle", function()
     })
 end)
 
+hl.config({
+    misc = {
+        session_lock_xray = true,
+        session_lock_blur = true,
+    },
+})
+
 
 -- Master layout
 section("config.master", function()
