@@ -9,7 +9,7 @@ local WALLPAPER_DIR = HOME .. "/Pictures/Wallpapers/Best"
 -- started one by one, in this order, after you unlock
 local apps = {
     T,
-    T .. " -- cmatrix -b -C blue",
+    T .. " -- cmatrix -b -C magenta",
     T .. " -- bash " .. HOME .. "/.config/hypr/scripts/fetch-autostart.sh",
     "waybar",
 }
@@ -25,8 +25,8 @@ for _, cmd in ipairs(apps) do
     parts[#parts + 1] = cmd .. " & sleep " .. GAP
 end
 
-parts[#parts + 1] = "sleep 1."
-parts[#parts + 1] = "awww img \"$(find " .. WALLPAPER_DIR .. " -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \\) | shuf -n 1)\" --transition-type wipe --transition-angle 135 --transition-duration 0.8 --transition-fps 60"
+parts[#parts + 1] = "sleep 2"
+parts[#parts + 1] = "awww img \"$(find " .. WALLPAPER_DIR .. " -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \\) | shuf -n 1)\" --transition-type wipe --transition-angle 135 --transition-duration 2 --transition-fps 60"
 parts[#parts + 1] = "touch " .. FLAG
 
 hl.on("hyprland.start", function()
