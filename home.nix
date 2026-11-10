@@ -9,7 +9,7 @@ let
   rofi-wall = pkgs.callPackage (appsPath + "/Packages/rofi-wall.nix") { };
   tui-globe = pkgs.callPackage(appsPath + "/Packages/tui-globe/tui-globe.nix") { }; 
   mako-tools = pkgs.callPackage (appsPath + "/mako/tools.nix") { };
-   inherit (mako-tools) notify-sound battery-notify nixos-rebuild-notify usb-notify;
+   inherit (mako-tools) notify-sound battery-notify usb-notify nixos-rebuild-notify;
 
   hyprtasking = inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking;
 
@@ -69,15 +69,30 @@ in
     pkgs.nerd-fonts.symbols-only
   ];
 
-  # Battery notifications: event-driven script run as a user service
-    systemd.user.services.usb-notify = {
+
+  systemd.user.services.battery-notify = {
     Unit = {
-      Description = "USB / USB-C plug notifications";
+      Description = "Battery notifications";
       After = [ "graphical-session.target" ];
       PartOf = [ "graphical-session.target" ];
     };
     Service = {
-      ExecStart = "${usb-notify}/bin/usb-notify usb";
+      ExecStart = "${battery-notify}/bin/battery-notify";
+      Restart = "on-failure";
+      RestartSec = 3;
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
+  # Battery notifications: event-driven script run as a user service
+  systemd.user.services.usb-notify = {
+    Unit = {
+      Description = "USB notifications";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${usb-notify}/bin/usb-notify";
       Restart = "on-failure";
       RestartSec = 3;
     };

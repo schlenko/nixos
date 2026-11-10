@@ -12,7 +12,7 @@ rec {
   '';
 
   usb-notify = pkgs.writeShellScriptBin "usb-notify" ''
-    export PATH=${pkgs.lib.makeBinPath [ pkgs.libnotify pkgs.systemd pkgs.util-linux pkgs.coreutils pkgs.gnused notify-sound ]}:$PATH
+    export PATH=${pkgs.lib.makeBinPath [ pkgs.libnotify pkgs.systemd pkgs.coreutils pkgs.gnugrep pkgs.gnused pkgs.util-linux pkgs.udisks2 pkgs.usbutils notify-sound ]}:$PATH
     ${builtins.readFile ./scripts/usb.sh}
   '';
 

@@ -26,7 +26,7 @@ let
     row() { printf '%s║%s  %-20s%s%14s%s  %s║%s\n' "$B" "$W" "$1" "$2" "$3" "$X" "$B" "$X"; }
 
     printf '\n%s╔══════════════════════════════════════╗%s\n' "$B" "$X"
-    printf '%s║%s%14s%sDO WHATEVER YOU WANT%s%14s%s║%s\n' "$B" "$X" "" "$W" "$X" "" "$B" "$X"
+    printf '%s║%s%9s%sDO WHATEVER YOU WANT%s%9s%s║%s\n' "$B" "$X" "" "$W" "$X" "" "$B" "$X"
     printf '%s╠══════════════════════════════════════╣%s\n' "$B" "$X"
     row "Services loaded:" "$G" "$ok"
     row "Services failed:" "$fc" "$bad"
@@ -76,4 +76,8 @@ in
       ExecStart = summary;
     };
   };
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card[0-9]*", RUN+="${config.systemd.package}/bin/systemctl restart --no-block systemd-vconsole-setup.service"
+  '';
 }
