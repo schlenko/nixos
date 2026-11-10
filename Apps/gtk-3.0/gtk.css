@@ -1,5 +1,9 @@
 /* Nemo, styled like the CatRice waybar */
-/* ---- transparent black base for every GTK3 app ---- */
+
+/* =========================================================
+   GLOBAL: every GTK3 app (polkit, VS Code dialogs, etc.)
+   ========================================================= */
+
 @define-color theme_bg_color rgba(0, 0, 0, 0.1);
 @define-color theme_base_color rgba(0, 0, 0, 0.1);
 @define-color theme_unfocused_bg_color rgba(0, 0, 0, 0.1);
@@ -7,10 +11,25 @@
 @define-color bg_color rgba(0, 0, 0, 0.1);
 @define-color base_color rgba(0, 0, 0, 0.1);
 @define-color insensitive_bg_color rgba(0, 0, 0, 0.1);
-@define-color theme_unfocused_selected_bg_color #1e1e1e;
 @define-color content_view_bg rgba(0, 0, 0, 0.1);
 
-/* fallback in case the theme hardcodes colors instead of using the names above */
+@define-color theme_fg_color #C4A7E7;
+@define-color theme_text_color #C4A7E7;
+@define-color theme_unfocused_fg_color #C4A7E7;
+@define-color theme_unfocused_text_color #C4A7E7;
+@define-color fg_color #C4A7E7;
+@define-color text_color #C4A7E7;
+@define-color theme_selected_bg_color rgba(196, 167, 231, 0.25);
+@define-color theme_selected_fg_color #ffffff;
+@define-color theme_unfocused_selected_bg_color rgba(196, 167, 231, 0.15);
+@define-color theme_unfocused_selected_fg_color #ffffff;
+@define-color selected_bg_color rgba(196, 167, 231, 0.25);
+@define-color selected_fg_color #ffffff;
+@define-color borders #3f3f42;
+@define-color unfocused_borders #3f3f42;
+@define-color insensitive_fg_color #5b4950;
+
+/* ---- backgrounds ---- */
 window,
 .background,
 dialog,
@@ -27,7 +46,63 @@ textview text,
     background-color: rgba(0, 0, 0, 0.1);
     background-image: none;
 }
-/* buttons in dialogs (VS Code "Do you want to save?", file chooser, etc.) */
+
+/* ---- text color ---- */
+label,
+.label,
+menuitem,
+menuitem label,
+treeview,
+treeview.view,
+textview text,
+.view,
+.view text,
+entry,
+spinbutton,
+combobox,
+checkbutton,
+radiobutton,
+expander,
+frame > label,
+tab label {
+    color: #C4A7E7;
+}
+
+/* ---- bars, including unfocused (:backdrop) ---- */
+headerbar,
+headerbar:backdrop,
+.titlebar,
+.titlebar:backdrop,
+menubar,
+menubar:backdrop,
+toolbar,
+toolbar:backdrop,
+actionbar,
+actionbar:backdrop,
+infobar,
+infobar:backdrop,
+infobar > revealer > box,
+statusbar,
+statusbar:backdrop,
+notebook > header,
+notebook > header:backdrop,
+notebook > header tab,
+notebook > header tab:backdrop,
+window:backdrop,
+.background:backdrop,
+dialog:backdrop {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: none;
+    border-color: #3f3f42;
+    box-shadow: none;
+    color: #C4A7E7;
+}
+
+notebook > header tab:checked {
+    border-bottom: 2px solid #C4A7E7;
+}
+
+/* ---- buttons ---- */
 button,
 button.text-button,
 button.image-button,
@@ -36,7 +111,6 @@ button.destructive-action,
 button.default,
 messagedialog button,
 dialog button,
-dialog .dialog-action-area button,
 .dialog-action-area button,
 .dialog-action-box button,
 filechooser button,
@@ -48,6 +122,14 @@ headerbar button,
     border-radius: 0;
     box-shadow: none;
     text-shadow: none;
+    color: #C4A7E7;
+}
+
+button:backdrop,
+dialog button:backdrop {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: none;
+    border-color: #3f3f42;
     color: #C4A7E7;
 }
 
@@ -71,7 +153,42 @@ button:disabled {
     opacity: 0.5;
 }
 
-/* file chooser (VS Code "Open Folder", save dialogs, etc.) */
+/* ---- input fields ---- */
+entry,
+entry:backdrop,
+spinbutton,
+spinbutton:backdrop,
+spinbutton text,
+spinbutton button,
+combobox button,
+combobox entry,
+searchentry,
+textview,
+textview text,
+textview text:backdrop {
+    background-color: rgba(0, 0, 0, 0.2);
+    background-image: none;
+    border: 2px solid #3f3f42;
+    border-radius: 0;
+    box-shadow: none;
+    color: #C4A7E7;
+    caret-color: #C4A7E7;
+}
+
+entry:focus,
+spinbutton:focus,
+searchentry:focus {
+    border-color: #C4A7E7;
+}
+
+entry selection,
+textview text selection,
+label selection {
+    background-color: rgba(196, 167, 231, 0.3);
+    color: #ffffff;
+}
+
+/* ---- file chooser (VS Code "Open Folder", save dialogs) ---- */
 filechooser,
 filechooser box,
 filechooser paned,
@@ -90,28 +207,107 @@ filechooser treeview,
 filechooser treeview.view,
 filechooser .view,
 filechooser .sidebar,
-filechooser .path-bar,
-filechooser .path-bar button,
-window.background.csd,
-window.background.csd > box,
-window.background.csd decoration,
-decoration {
+filechooser .path-bar {
     background-color: rgba(0, 0, 0, 0.1);
     background-image: none;
 }
 
-/* keep the selection visible */
 filechooser treeview.view:selected,
 filechooser row:selected {
     background-color: rgba(196, 167, 231, 0.18);
 }
+/* ---- table / treeview grid lines and headers ---- */
+treeview.view {
+    border-color: #3f3f42;
+    border-left-color: #3f3f42;
+    border-top-color: #3f3f42;
+    -GtkTreeView-grid-line-color: #3f3f42;
+    -GtkTreeView-tree-line-color: #3f3f42;
+}
 
-/* menus and popovers stay mostly opaque so text remains readable */
+treeview.view:backdrop {
+    border-color: #3f3f42;
+    border-left-color: #3f3f42;
+    border-top-color: #3f3f42;
+}
+
+treeview header button,
+treeview header button:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border-color: #3f3f42;
+    box-shadow: none;
+}
+
+separator,
+separator:backdrop,
+treeview.view.separator {
+    background-color: #3f3f42;
+    color: #3f3f42;
+    border-color: #3f3f42;
+}
+
+/* ---- dropdowns (combobox popups, menus) ---- */
+combobox window.popup,
+combobox window.popup menu,
+combobox menu,
 menu,
 .popup,
 popover.background {
     background-color: rgba(0, 0, 0, 0.1);
     background-image: none;
+    border: 1px solid #3f3f42;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+menuitem,
+menuitem:backdrop,
+combobox menu menuitem {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    border-image: none;
+    color: #C4A7E7;
+}
+
+/* this is what removes the blue underline */
+menuitem:hover,
+menuitem:selected,
+menuitem:active,
+menuitem:focus,
+combobox menu menuitem:hover,
+modelbutton:hover,
+modelbutton:focus {
+    background-color: rgba(196, 167, 231, 0.18);
+    background-image: none;
+    border: none;
+    border-image: none;
+    box-shadow: none;
+    outline: none;
+    color: #ffffff;
+}
+
+/* focus underline / outline on combos and entries */
+combobox button:focus,
+combobox button:checked,
+combobox entry:focus,
+combobox:focus,
+*:focus {
+    outline: none;
+    box-shadow: none;
+    border-image: none;
+}
+
+combobox button:focus,
+combobox button:checked {
+    border-color: #C4A7E7;
+}
+
+cellview {
+    background-color: transparent;
+    color: #C4A7E7;
 }
 
 .nemo-window,
