@@ -171,17 +171,6 @@ box#camera{
     padding: 0 6px;
 }
 
-/* ---- tooltips ---- */
-tooltip {
-    background: #111111;
-    border: 1px solid #333333;
-}
-
-tooltip label {
-    color: #e0def4;
-    font-size: 11px;
-}
-
 #pulseaudio.microphone {
     margin: 0 16px 0 16px;
 }
