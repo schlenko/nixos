@@ -577,7 +577,7 @@ treeview,
 treeview.view,
 treeview.view:selected,
 treeview.view:hover {
-    background-color: #111111;
+    background-color: rgba(0, 0, 0, 0.1);
     background-image: none;
     color: #C4A7E7;
     border-color: #3f3f42;
@@ -595,7 +595,7 @@ treeview.view:selected {
 placessidebar,
 placessidebar list,
 placessidebar row {
-    background-color: #111111;
+    background-color: rgba(0, 0, 0, 0.1);
     background-image: none;
     color: #C4A7E7;
     border-color: #3f3f42;
