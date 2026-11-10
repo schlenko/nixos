@@ -50,9 +50,9 @@
 "group/system": {
     "orientation": "horizontal",
     "modules": [
-        "battery",
-        "backlight",
-        "wireplumber"
+      "wireplumber",
+      "backlight",
+        "battery"
     ]
 },
 
