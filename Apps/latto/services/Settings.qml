@@ -42,8 +42,6 @@ FileView {
         property int pomodoroRounds: 4
         property bool pomodoroDnd: true
         // Night light colour temperature in kelvin.
-        property int nightLightTemperature: 4500
-        // Expanded-view tabs, in display order. Valid names: media,
         // notifications, stats, timers, clipboard, calendar, overview.
         property var tabs: ["media", "notifications", "stats", "timers", "clipboard", "calendar", "overview"]
         // Run latto's own notification daemon. Turn off to keep another one.
@@ -51,6 +49,8 @@ FileView {
         property int notificationDuration: 5000
         // Critical notifications still pop up during Do Not Disturb.
         property bool dndAllowCritical: true
+
+        
         // No banner for notifications from the app you're already using (its
         // window is focused); they still go to the history.
         property bool quietWhenFocused: true
@@ -67,6 +67,25 @@ FileView {
         property bool bluetoothAlerts: true
         property bool timerSound: true
         property string timerSoundFile: "/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga"
+        
+    }
+        // Live state, not stored in config.json. Read from hyprsunset at startup.
+    property int nightLightTemperature: 4500   // fallback if hyprsunset isn't running
+
+    function setNightLightTemperature(k) {
+        nightLightTemperature = k
+    }
+
+    property Process sunsetReader: Process {
+        running: true
+        command: ["hyprctl", "hyprsunset", "temperature"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                const k = parseInt(text.trim())
+                if (!isNaN(k) && k > 0)
+                    file.nightLightTemperature = k
+            }
+        }
     }
 
     readonly property alias fontFamily: adapter.fontFamily
@@ -84,7 +103,6 @@ FileView {
     readonly property alias pomodoroLongBreakMinutes: adapter.pomodoroLongBreakMinutes
     readonly property alias pomodoroRounds: adapter.pomodoroRounds
     readonly property alias pomodoroDnd: adapter.pomodoroDnd
-    readonly property alias nightLightTemperature: adapter.nightLightTemperature
     readonly property alias tabs: adapter.tabs
     readonly property alias notificationsEnabled: adapter.notificationsEnabled
     readonly property alias notificationDuration: adapter.notificationDuration
