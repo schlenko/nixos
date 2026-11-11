@@ -21,6 +21,16 @@ PanelWindow {
     property color barColor: "#08080a"
     readonly property bool integrated: barComponent !== null
     readonly property real centerWidth: pill.width
+        // Drag offset of the pill from its default spot.
+    property real dragX: 0
+    property real dragY: 0
+        // Horizontal travel: dragX = 20 puts the pill flush with the right edge,
+    // dragX = 20 - (window.width - pill.width) puts it flush with the left edge.
+    readonly property real maxDragX: 20
+    readonly property real minDragX: 20 - (width - pill.width)
+    // Extra transparent room below the bar so the pill can be dragged down.
+        // How far down the pill can travel: window height minus the pill and its top offset.
+    readonly property real maxDragY: Math.max(0, height - hostTopMargin - pill.height)
     readonly property int hostTopMargin: integrated ? 0 : 38
     readonly property int hostCompactHeight: integrated ? 32 : Theme.compactHeight
     readonly property int hostNotificationWidth: integrated ? 320 : Theme.notificationWidth
@@ -29,9 +39,10 @@ PanelWindow {
         top: true
         left: true
         right: true
+        bottom: true
     }
     // Room for the expanded pill plus its shadow.
-    implicitHeight: hostTopMargin + Theme.expandedHeight + 48
+    implicitHeight: hostTopMargin + Theme.expandedHeight + 48 + dragRoom
     exclusiveZone: integrated && !fullscreen ? hostCompactHeight : 0
     // The keyboard only while a field is being typed into (a Wi-Fi password);
     // Hyprland won't hand an "on demand" overlay the keyboard, so it is taken
@@ -199,9 +210,9 @@ PanelWindow {
         id: pill
 
         anchors.top: parent.top
-        anchors.topMargin: window.hostTopMargin
+        anchors.topMargin: window.hostTopMargin + window.dragY
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 20 - window.dragX
         transformOrigin: Item.Top
 
         width: window.integrated ? 156 : Theme.idleWidth
@@ -468,6 +479,29 @@ PanelWindow {
                     openTimer.stop();
                     closeTimer.restart();
                 }
+            }
+        }
+
+        DragHandler {
+            id: moveHandler
+            acceptedButtons: Qt.RightButton
+            target: null
+            property real startX
+            property real startY
+
+            onActiveChanged: {
+                if (active) {
+                    startX = window.dragX;
+                    startY = window.dragY;
+                }
+            }
+            // Scene coordinates stay put while the pill moves, so no feedback loop.
+            onCentroidChanged: {
+                if (!active) return;
+                const dx = centroid.scenePosition.x - centroid.scenePressPosition.x;
+                const dy = centroid.scenePosition.y - centroid.scenePressPosition.y;
+                                window.dragX = Math.max(window.minDragX, Math.min(window.maxDragX, startX + dx));
+                window.dragY = Math.max(0, Math.min(window.maxDragY, startY + dy));
             }
         }
 
