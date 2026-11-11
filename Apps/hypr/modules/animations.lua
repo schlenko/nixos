@@ -75,7 +75,7 @@ section("animations", function()
         { leaf = "windows",       enabled = true, speed = 3,    spring = "easy" },
         { leaf = "windowsIn",     enabled = true, speed = 5,    spring = "easy", style = "popin 87%" },
         { leaf = "windowsOut",    enabled = true, speed = 3,    bezier = "linear", style = "popin 87%" },
-        { leaf = "windowsMove",   enabled = true, speed = 1,    spring = "snappy" },
+        { leaf = "windowsMove",   enabled = true, speed = 1,    spring = "snapnobounce" },
 
         { leaf = "fadeIn",        enabled = true, speed = 3.2,  bezier = "almostLinear" },
         { leaf = "fadeOut",       enabled = true, speed = 3,    bezier = "almostLinear" },
