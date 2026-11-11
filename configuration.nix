@@ -188,7 +188,9 @@ virtualisation.spiceUSBRedirection.enable = true;
     slurp
 
     sl
-    cava
+    (pkgs.cava.override {
+      withSDL2 = true;
+    })
     asciiquarium
     pipes
     cowsay

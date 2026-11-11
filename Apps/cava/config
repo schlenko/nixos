@@ -11,14 +11,23 @@ source = auto
 [output]
 method = noncurses
 orientation = bottom
+channels = mono
+mono_option = average
+reverse = 0
+
+continuous_rendering = 1
+
 
 [color]
 background = default
 gradient = 1
-gradient_color_1 = '#C4A7E7'
-gradient_color_2 = '#ffffff'
+gradient_count = 3
+gradient_color_1 = '#FFFFFF'
+gradient_color_2 = '#C4A7E7'
+gradient_color_3 = '#8B5CF6'
+
 
 [smoothing]
 noise_reduction = 45
-monstercat = 0
-waves = 0
+monstercat = 1
+waves = 1
