@@ -68,14 +68,14 @@ section("config.decoration", function()
 
             blur = {
                 enabled = true,
-                size = 5,
+                size = 3,
                 passes = 3,
                 new_optimizations = true,
                 xray = false,
                 ignore_opacity = true,
-                noise = 0,
+                noise = 0.1,
                 contrast = 1.3,
-                brightness = 0.6,
+                brightness = 0.5,
                 vibrancy = 1.0,
                 vibrancy_darkness = 0.1,
                 popups = true,

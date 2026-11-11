@@ -14,7 +14,7 @@ window#waybar {
 window#waybar > box {
     background: transparent;
     border: none;
-    margin: 3px 0px 0px 0px;
+    margin: 5px 0px 0px 0px;
     padding: 0;
 }
 
@@ -41,7 +41,7 @@ box#date {
     background: rgba(0, 0, 0, 0.01);
     background-clip: padding-box;
     border: 2px solid #3F3F42;
-    border-radius: 100px;
+    border-radius: 13px;
     padding: 0px 20px;
     margin: 0px;
     min-height: 25px;
@@ -171,7 +171,7 @@ box#camera{
     padding: 0 6px;
 }
 
-#pulseaudio.microphone {
+ #pulseaudio.microphone {
     margin: 0 16px 0 16px;
 }
 
