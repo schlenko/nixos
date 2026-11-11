@@ -88,7 +88,7 @@ section("animations", function()
         { leaf = "fadeLayersOut", enabled = true, speed = 1.5, bezier = "quick" },
         { leaf = "workspaces",    enabled = true, speed = 1.2, bezier = "quick", style = "slidefade 20%" },
         { leaf = "workspacesIn",  enabled = true, speed = 1.2, bezier = "quick", style = "slidefade 20%" },
-        { leaf = "workspacesOut", enabled = false, speed = 1,   bezier = "quick", style = "slidefade 20%" },
+        { leaf = "workspacesOut", enabled = true, speed = 1,   bezier = "quick", style = "slidefade 20%" },
         { leaf = "zoomFactor",    enabled = true, speed = 8,    bezier = "quick" },
     }
 

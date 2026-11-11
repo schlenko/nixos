@@ -9,7 +9,7 @@ let
   rofi-wall = pkgs.callPackage (appsPath + "/Packages/rofi-wall.nix") { };
   tui-globe = pkgs.callPackage(appsPath + "/Packages/tui-globe/tui-globe.nix") { }; 
   mako-tools = pkgs.callPackage (appsPath + "/mako/tools.nix") { };
-   inherit (mako-tools) notify-sound battery-notify usb-notify nixos-rebuild-notify;
+    inherit (mako-tools) notify-sound battery-notify usb-notify bluetooth-notify wifi-notify nixos-rebuild-notify;
 
   hyprtasking = inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking;
 
@@ -58,10 +58,12 @@ in
     rofi-wall
     latto 
 
-    notify-sound
-    battery-notify
-    usb-notify
-    nixos-rebuild-notify
+   notify-sound
+   battery-notify
+   usb-notify
+   bluetooth-notify
+   wifi-notify
+   nixos-rebuild-notify
 
     pkgs.mako
     pkgs.libnotify
@@ -70,10 +72,29 @@ in
   ];
 
 
+    systemd.user.services.mako = {
+    Unit = {
+      Description = "Mako notification daemon";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "dbus";
+      BusName = "org.freedesktop.Notifications";
+      ExecStart = "${pkgs.mako}/bin/mako";
+      ExecReload = "${pkgs.mako}/bin/makoctl reload";
+      Environment = "PATH=${lib.makeBinPath [ notify-sound pkgs.bash pkgs.coreutils ]}";
+      Restart = "always";
+      RestartSec = 1;
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
   systemd.user.services.battery-notify = {
     Unit = {
       Description = "Battery notifications";
-      After = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" "mako.service" ];
+      Wants = [ "mako.service" ];
       PartOf = [ "graphical-session.target" ];
     };
     Service = {
@@ -84,11 +105,11 @@ in
     Install.WantedBy = [ "graphical-session.target" ];
   };
 
-  # Battery notifications: event-driven script run as a user service
   systemd.user.services.usb-notify = {
     Unit = {
       Description = "USB notifications";
-      After = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" "mako.service" ];
+      Wants = [ "mako.service" ];
       PartOf = [ "graphical-session.target" ];
     };
     Service = {
@@ -99,14 +120,30 @@ in
     Install.WantedBy = [ "graphical-session.target" ];
   };
 
-  systemd.user.services.mount-notify = {
+    systemd.user.services.bluetooth-notify = {
     Unit = {
-      Description = "Mount / unmount notifications";
-      After = [ "graphical-session.target" ];
+      Description = "Bluetooth notifications";
+      After = [ "graphical-session.target" "mako.service" ];
+      Wants = [ "mako.service" ];
       PartOf = [ "graphical-session.target" ];
     };
     Service = {
-      ExecStart = "${usb-notify}/bin/usb-notify mount";
+      ExecStart = "${bluetooth-notify}/bin/bluetooth-notify";
+      Restart = "on-failure";
+      RestartSec = 3;
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
+  systemd.user.services.wifi-notify = {
+    Unit = {
+      Description = "Wi-Fi notifications";
+      After = [ "graphical-session.target" "mako.service" ];
+      Wants = [ "mako.service" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${wifi-notify}/bin/wifi-notify";
       Restart = "on-failure";
       RestartSec = 3;
     };

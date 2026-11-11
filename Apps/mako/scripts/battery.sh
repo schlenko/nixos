@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-BAT=/sys/class/power_supply/BAT1
+BAT=$(ls -d /sys/class/power_supply/BAT* | head -n1)
 
 notify() {
   notify-send -a battery -h string:x-canonical-private-synchronous:battery "$@"

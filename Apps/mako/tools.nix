@@ -1,3 +1,4 @@
+
 { pkgs }:
 
 rec {
@@ -7,18 +8,61 @@ rec {
   '';
 
   battery-notify = pkgs.writeShellScriptBin "battery-notify" ''
-    export PATH=${pkgs.lib.makeBinPath [ pkgs.libnotify pkgs.systemd pkgs.upower pkgs.coreutils notify-sound ]}:$PATH
+    export PATH=${pkgs.lib.makeBinPath [
+      pkgs.libnotify
+      pkgs.systemd
+      pkgs.upower
+      pkgs.coreutils
+      notify-sound
+    ]}:$PATH
+
     ${builtins.readFile ./scripts/battery.sh}
   '';
 
   usb-notify = pkgs.writeShellScriptBin "usb-notify" ''
-    export PATH=${pkgs.lib.makeBinPath [ pkgs.libnotify pkgs.systemd pkgs.coreutils pkgs.gnugrep pkgs.gnused pkgs.util-linux pkgs.udisks2 pkgs.usbutils notify-sound ]}:$PATH
+    export PATH=${pkgs.lib.makeBinPath [
+      pkgs.libnotify
+      pkgs.systemd
+      pkgs.coreutils
+      notify-sound
+    ]}:$PATH
+
     ${builtins.readFile ./scripts/usb.sh}
   '';
 
-    nixos-rebuild-notify = pkgs.writeShellScriptBin "nixos-rebuild-notify" ''
+  bluetooth-notify = pkgs.writeShellScriptBin "bluetooth-notify" ''
+    export PATH=${pkgs.lib.makeBinPath [
+      pkgs.libnotify
+      pkgs.systemd
+      pkgs.coreutils
+      pkgs.bluez
+      notify-sound
+    ]}:$PATH
+
+    ${builtins.readFile ./scripts/bluetooth.sh}
+  '';
+
+  wifi-notify = pkgs.writeShellScriptBin "wifi-notify" ''
+    export PATH=${pkgs.lib.makeBinPath [
+      pkgs.libnotify
+      pkgs.systemd
+      pkgs.coreutils
+      pkgs.networkmanager
+      notify-sound
+    ]}:$PATH
+
+    ${builtins.readFile ./scripts/wifi.sh}
+  '';
+
+  nixos-rebuild-notify = pkgs.writeShellScriptBin "nixos-rebuild-notify" ''
     set -o pipefail
-    export PATH=${pkgs.lib.makeBinPath [ pkgs.libnotify pkgs.git pkgs.gnused pkgs.gnugrep pkgs.coreutils ]}:$PATH
+    export PATH=${pkgs.lib.makeBinPath [
+      pkgs.libnotify
+      pkgs.git
+      pkgs.gnused
+      pkgs.gnugrep
+      pkgs.coreutils
+    ]}:$PATH
 
     # flakes ignore untracked files
     git -C /etc/nixos add -A 2>/dev/null

@@ -34,12 +34,10 @@ end
 parts[#parts + 1] = "touch " .. FLAG
 
 hl.on("hyprland.start", function()
-    -- daemon starts right away, ignoring the cached wallpaper, and is set to black
+    -- daemon starts right away, ignoring the cached wallpaper, and is set to lack
     util.exec("awww-daemon --no-cache")
     util.exec("awww clear")
-    util.exec("mako")
     util.exec("hyprlock")
     util.exec("hyprsunset -t 4500")
-    util.exec("hyprctl setcursor '' 0")
     util.exec("sh -c \"" .. table.concat(parts, "; "):gsub('"', '\\"'):gsub("%$", "\\$") .. "\"")
 end)
