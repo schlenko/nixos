@@ -75,7 +75,7 @@ section("animations", function()
         { leaf = "windows",       enabled = true, speed = 3,    spring = "easy" },
         { leaf = "windowsIn",     enabled = true, speed = 5,    spring = "easy", style = "popin 87%" },
         { leaf = "windowsOut",    enabled = true, speed = 3,    bezier = "linear", style = "popin 87%" },
-        { leaf = "windowsMove",   enabled = true, speed = 1,    spring = "snapnobounce" },
+        { leaf = "windowsMove",   enabled = true, speed = 1,    spring = "snappy" },
 
         { leaf = "fadeIn",        enabled = true, speed = 3.2,  bezier = "almostLinear" },
         { leaf = "fadeOut",       enabled = true, speed = 3,    bezier = "almostLinear" },
@@ -88,7 +88,7 @@ section("animations", function()
         { leaf = "fadeLayersOut", enabled = true, speed = 1.5, bezier = "quick" },
         { leaf = "workspaces",    enabled = true, speed = 1.2, bezier = "quick", style = "slidefade 20%" },
         { leaf = "workspacesIn",  enabled = true, speed = 1.2, bezier = "quick", style = "slidefade 20%" },
-        { leaf = "workspacesOut", enabled = true, speed = 1,   bezier = "quick", style = "slidefade 20%" },
+        { leaf = "workspacesOut", enabled = false, speed = 1,   bezier = "quick", style = "slidefade 20%" },
         { leaf = "zoomFactor",    enabled = true, speed = 8,    bezier = "quick" },
     }
 
