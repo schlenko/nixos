@@ -73,7 +73,7 @@ section("config.decoration", function()
                 new_optimizations = true,
                 xray = false,
                 ignore_opacity = true,
-                noise = 0.1,
+                noise = 0.03,
                 contrast = 1.3,
                 brightness = 0.5,
                 vibrancy = 1.0,
