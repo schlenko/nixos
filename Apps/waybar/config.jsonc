@@ -193,13 +193,11 @@
   },
 
   "custom/camera": {
-    "exec": "bash ~/.config/waybar/scripts/camera.sh",
+    "exec": "bash ~/.config/waybar/scripts/camera.sh watch",
     "return-type": "json",
-    "interval": "once",
-    "signal": 9,
     "format": "{}",
     "tooltip": true,
     "on-click": "bash ~/.config/waybar/scripts/camera.sh toggle"
-}
+  }
 
 }

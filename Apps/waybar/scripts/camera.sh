@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 DEV=/sys/bus/usb/devices/3-7/authorized
-SIGNAL=9
 ICON="󰄀"
 
 enabled() { [ "$(cat "$DEV" 2>/dev/null)" = 1 ]; }
@@ -12,6 +11,16 @@ show() {
     else
         printf '{"text":"%s off","class":"disabled","tooltip":"Camera disabled"}\n' "$ICON"
     fi
+}
+
+# long-running: one instance per bar, redraws only when it gets USR1
+watch() {
+    trap show USR1
+    show
+    sleep infinity &
+    sp=$!
+    trap 'kill $sp 2>/dev/null' EXIT
+    while true; do wait "$sp"; done
 }
 
 toggle() {
@@ -25,10 +34,12 @@ toggle() {
         notify-send -u critical "Camera" "Toggle failed (exit $rc)"
     fi
 
-    pkill -RTMIN+"$SIGNAL" -x waybar
+    # wake every running watcher (one per bar)
+    pkill -USR1 -f "camera.sh watch"
 }
 
 case "${1:-show}" in
     show)   show ;;
+    watch)  watch ;;
     toggle) toggle ;;
 esac
