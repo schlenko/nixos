@@ -9,8 +9,8 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-      hyprtasking-src = {
-      url = "github:colonelpanic8/hyprtasking/hyprland-0.57";
+    hyprtasking-src = {
+      url = "github:raybbian/hyprtasking";
       flake = false;
     };
   };

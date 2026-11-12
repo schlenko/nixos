@@ -24,16 +24,15 @@
     "hyprtasking-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1793192374,
+        "lastModified": 1794272078,
         "narHash": "sha256-KzxmA0lqTvZKq/AHdSu2juugkfXwLC6ywR4BeAfiIIg=",
-        "owner": "colonelpanic8",
+        "owner": "raybbian",
         "repo": "hyprtasking",
-        "rev": "a3bd530ddad57c1bdd5c25fe465013d14d18553d",
+        "rev": "04d2365d37f032af537b8d5c55efbfe15f01adc7",
         "type": "github"
       },
       "original": {
-        "owner": "colonelpanic8",
-        "ref": "hyprland-0.57",
+        "owner": "raybbian",
         "repo": "hyprtasking",
         "type": "github"
       }
