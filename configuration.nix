@@ -201,6 +201,7 @@ virtualisation.spiceUSBRedirection.enable = true;
     pkgs-unstable.fastfetch
 
     dbeaver-bin
+    xnviewmp
     gparted
     libreoffice
 
