@@ -9,17 +9,9 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprland.url = "github:hyprwm/Hyprland/v0.56.1";
-
-    hyprtasking = {
-      url = "github:raybbian/hyprtasking";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins/v0.56.0";
-      inputs.hyprland.follows = "hyprland";
+      hyprtasking-src = {
+      url = "github:colonelpanic8/hyprtasking/hyprland-0.57";
+      flake = false;
     };
   };
 
@@ -31,13 +23,14 @@
         inherit system;
         config.allowUnfree = true;
       };
-     in
+    in
     {
       legacyPackages.${system} = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
       lib = nixpkgs.lib;
+
 
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -50,11 +43,10 @@
 
           ./Hardware/hardware-configuration.nix
           ./Hardware/VFIO_Swift.nix
-          ./Hardware/boot-style.nix 
+          ./Hardware/boot-style.nix
         #  ./Hardware/Nvidia.nix
 
           ./Hardware/display-scaling.nix
-
 
           home-manager.nixosModules.home-manager
 

@@ -49,19 +49,16 @@
     };
   };
 
-  virtualisation.libvirtd = {
-  enable = true;
-  qemu = {
-    swtpm.enable = true;
+    virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      swtpm.enable = true;
+    };
   };
-};
-programs.virt-manager.enable = true;
-virtualisation.spiceUSBRedirection.enable = true;
+  programs.virt-manager.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
-      nix.settings.substituters = [ "https://hyprland.cachix.org" ];
-      nix.settings.trusted-public-keys = [
-    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      ];
+
 
   swapDevices = [
     {
@@ -242,8 +239,8 @@ virtualisation.spiceUSBRedirection.enable = true;
   programs.hyprland = {
     enable = true;
     withUWSM = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    package = pkgs-unstable.hyprland;
+    portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland;
   };
 
   services.greetd = {
@@ -264,8 +261,9 @@ virtualisation.spiceUSBRedirection.enable = true;
     zlib
   ];
 
-  programs.vscode = {
+programs.vscode = {
   enable = true;
+  package = pkgs.vscodium;
 
   extensions = with pkgs.vscode-extensions; [
     bbenoist.nix
@@ -279,9 +277,6 @@ virtualisation.spiceUSBRedirection.enable = true;
     }
   ];
 };
-
-
-
 
   security.sudo.extraConfig = ''
     Defaults pwfeedback

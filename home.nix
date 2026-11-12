@@ -11,9 +11,10 @@ let
   mako-tools = pkgs.callPackage (appsPath + "/mako/tools.nix") { };
     inherit (mako-tools) notify-sound battery-notify usb-notify bluetooth-notify wifi-notify nixos-rebuild-notify;
 
-  hyprtasking = inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking;
-
-  hasPlugins = inputs ? hyprland-plugins;
+  hyprtasking = pkgs-unstable.hyprlandPlugins.hyprtasking.overrideAttrs (old: {
+    version = "0-unstable-${builtins.substring 0 8 inputs.hyprtasking-src.lastModifiedDate}";
+    src = inputs.hyprtasking-src;
+  });
 in
 {
   home.username = "t";
@@ -171,7 +172,7 @@ in
     "${hyprtasking}/lib/libhyprtasking.so";
 
   home.file.".local/share/hypr-plugins/libhyprbars.so".source =
-    "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars}/lib/libhyprbars.so";
+    "${pkgs-unstable.hyprlandPlugins.hyprbars}/lib/libhyprbars.so";
 
   programs.home-manager.enable = true;
 }
