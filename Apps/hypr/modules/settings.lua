@@ -91,7 +91,6 @@ section("config.input", function()
     hl.config({
         input = {
             kb_layout = "de,de",
-            kb_variant = ",ru",
             kb_model = "pc105",
             kb_options = "",
 

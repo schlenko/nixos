@@ -32,10 +32,6 @@ section("binds.apps", function()
         hl.dsp.exec_cmd("bash " .. os.getenv("HOME") .. "/.config/waybar/scripts/latto-toggle.sh"),
         { description = "Toggle latto" })
 
-    hl.bind(mainMod .. " + K",
-        hl.dsp.exec_cmd("hyprctl switchxkblayout all next"),
-        { description = "Switch keyboard layout" })
-
     hl.bind(mainMod .. " + SHIFT + W",
         hl.dsp.exec_cmd("rofi-wall"),
         { description = "Wallpaper picker" })
