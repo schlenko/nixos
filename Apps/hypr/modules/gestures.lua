@@ -109,3 +109,67 @@ section("gestures", function()
     })
 
 end)
+-- SUPER + 3 fingers vertical: browser-style zoom
+-- up = zoom in, down = zoom out
+local zoom = 1.0
+local zoom_rate = 0.04   -- zoom ratio change per unit of finger movement
+local zoom_max = 10.0
+
+local function set_zoom(z)
+    z = math.max(1.0, math.min(z, zoom_max))
+    if z == zoom then return end   -- skip redundant updates at the limits
+    zoom = z
+    hl.config({ cursor = { zoom_factor = zoom } })
+end
+
+safe(hl.gesture, {
+    fingers = 3,
+    direction = "vertical",
+    mods = "SUPER",
+
+    action = {
+        start = function(e) end,
+
+        update = function(e)
+            -- exponential: equal finger travel = equal zoom ratio
+            set_zoom(zoom * math.exp(-e.delta.y * zoom_rate))
+        end,
+
+        finish = function(e) end,
+    },
+})
+
+    -- SUPER + 3 fingers horizontal: color temperature (hyprsunset)
+    -- right = cooler (towards 6000 K, neutral), left = warmer
+    local temp_min = 1500
+    local temp_max = 6000          -- hyprsunset's neutral / identity value
+    local temp_rate = 10           -- Kelvin per unit of finger movement
+    local temp_step = 50           -- only apply in 50 K steps
+    local temp = temp_max
+    local temp_sent = temp_max
+
+    local function set_temp(t)
+        temp = math.max(temp_min, math.min(t, temp_max))
+
+        local snapped = math.floor(temp / temp_step + 0.5) * temp_step
+        if snapped == temp_sent then return end   -- avoid spawning hyprctl needlessly
+        temp_sent = snapped
+
+        exec("hyprctl hyprsunset temperature " .. snapped)
+    end
+
+    safe(hl.gesture, {
+        fingers = 3,
+        direction = "horizontal",
+        mods = "SUPER",
+
+        action = {
+            start = function(e) end,
+
+            update = function(e)
+                set_temp(temp + e.delta.x * temp_rate)
+            end,
+
+            finish = function(e) end,
+        },
+    })

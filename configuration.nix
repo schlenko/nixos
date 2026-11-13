@@ -161,6 +161,10 @@
     nmap
     nodejs
     rustc
+    wayland
+    libxkbcommon
+    mesa
+    libGL
     cargo
     pkg-config
     stdenv.cc
