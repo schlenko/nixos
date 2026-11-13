@@ -14,7 +14,7 @@
   "pomodoroLongBreakMinutes": 15,
   "pomodoroRounds": 4,
   "pomodoroDnd": true,
-  "nightLightTemperature": 4500,
+  "nightLightTemperature": 3100,
   "tabs": [
     "media",
     "notifications",
