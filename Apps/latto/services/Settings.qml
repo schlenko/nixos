@@ -70,7 +70,7 @@ FileView {
         
     }
         // Live state, not stored in config.json. Read from hyprsunset at startup.
-    property int nightLightTemperature: 4500   // fallback if hyprsunset isn't running
+    property int nightLightTemperature: 3100   // fallback if hyprsunset isn't running
 
     function setNightLightTemperature(k) {
         nightLightTemperature = k
