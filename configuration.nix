@@ -80,6 +80,8 @@
   hardware.bluetooth.enable = true;
   security.polkit.enable = true;
 
+  networking.firewall.checkReversePath = "loose";
+
   # Dark polkit dialog
   systemd.user.services.polkit-gnome-agent = {
     description = "Polkit Authentication Agent";
@@ -216,11 +218,8 @@
     ltrace
     python3
    ];
-
    programs.steam.enable = true;
 
-   
-  
   programs.chromium = {
     enable = true;
 
