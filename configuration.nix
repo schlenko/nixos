@@ -170,9 +170,10 @@
     cargo
     pkg-config
     stdenv.cc
-    dotnet-sdk_9
-    dotnet-sdk_10
-
+  (with pkgs.dotnetCorePackages; combinePackages [
+    sdk_9_0
+    sdk_10_0
+    ])
     wl-clipboard
     bluetui
     cmake
