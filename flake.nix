@@ -41,6 +41,7 @@
           ./configuration.nix
           ./Apps/docker/docker-container.nix
           ./Apps/Packages/dotnet.nix 
+          ./Apps/Packages/photocraft.nix 
 
           ./Hardware/hardware-configuration.nix
           ./Hardware/VFIO_Swift.nix
