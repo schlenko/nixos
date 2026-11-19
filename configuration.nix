@@ -57,7 +57,12 @@
   programs.virt-manager.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
+  programs.localsend.enable = true;
 
+  networking.firewall = {
+    allowedTCPPorts = [ 53317 ];
+    allowedUDPPorts = [ 53317 ];
+  };
 
   swapDevices = [
     {

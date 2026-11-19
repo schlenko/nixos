@@ -15,7 +15,7 @@ let
     if [ ! -f "$stamp" ] || [ "$(cat "$stamp")" != "${dotnet-combined}" ]; then
       echo "dotnet: refreshing writable SDK copy..." >&2
       chmod -R u+w "$target" 2>/dev/null || true
-      rm -rf "$target"
+      rm -rf "$target" and
       mkdir -p "$(dirname "$target")"
       cp -rL "${dotnet-combined}/share/dotnet" "$target"
       chmod -R u+w "$target"
