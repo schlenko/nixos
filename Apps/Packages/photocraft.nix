@@ -7,6 +7,9 @@
     freetype
     openssl
 
+    dbus.lib       
+    zenity          
+
     wayland
     libxkbcommon
     libGL
